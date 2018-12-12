@@ -1,22 +1,13 @@
-﻿<html>
+<!DOCTYPE html>
+<html>
 <head>
-    <link rel="Stylesheet" type="text/css" href="../../../../../style.css" />
-    <title>Chapter011</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../../../../../style.css">
+<title>Chapter011</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<div id="all">
-<div id="header">
-	<ul id="top-nav">
-		<li>
-			<a href="file:///D:/Documents/Vimwiki/Vimwiki_html/index.html">首页</a>
-		</li>
-	</ul>
-</div>
-</div>
-    <div class="content">
-    
-<h1 id="toc_1">Chapter 11 Controlling and Monitoring the Pipeline</h1>
+
+<div id="Chapter 11 Controlling and Monitoring the Pipeline"><h1 id="Chapter 11 Controlling and Monitoring the Pipeline">Chapter 11 Controlling and Monitoring the Pipeline</h1></div>
 <ul>
 <li>
 本章目标
@@ -34,7 +25,7 @@
 </ul>
 </ul>
 
-<h2 id="toc_1.1">11.1 Queries</h2>
+<div id="Chapter 11 Controlling and Monitoring the Pipeline-11.1 Queries"><h2 id="11.1 Queries">11.1 Queries</h2></div>
 <ul>
 <li>
 OpenGL 中问题使用 query objects 表示. glGenQueries() 生成该对象
@@ -64,7 +55,7 @@ void glDeleteQueries(GLsizei n,
 
 </ul>
 
-<h3 id="toc_1.1.1">11.1.1 Occlusion Queries</h3>
+<div id="Chapter 11 Controlling and Monitoring the Pipeline-11.1 Queries-11.1.1 Occlusion Queries"><h3 id="11.1.1 Occlusion Queries">11.1.1 Occlusion Queries</h3></div>
 <ul>
 <li>
 OpenGL 并不自动跟踪绘制的像素数量. 使用 glBeginQuery() 告知开始计数, 其使用两个参数, 第一个为询问的问题, 第二个为 query object的名称.
@@ -91,7 +82,7 @@ glEndQuery(GL_SAMPLES_PASSED);
 
 </ul>
 
-<h4 id="toc_1.1.1.1">11.1.1.1 Retrieving Query Results</h4>
+<div id="Chapter 11 Controlling and Monitoring the Pipeline-11.1 Queries-11.1.1 Occlusion Queries-11.1.1.1 Retrieving Query Results"><h4 id="11.1.1.1 Retrieving Query Results">11.1.1.1 Retrieving Query Results</h4></div>
 <ul>
 <li>
 返回数据
@@ -118,7 +109,7 @@ glGetQueryObjectuiv(the_query, GL_QUERY_RESULT_AVAILABLE, &amp;result);
 </ul>
 </ul>
 
-<h4 id="toc_1.1.1.2">11.1.1.2 Using the Results of a Query</h4>
+<div id="Chapter 11 Controlling and Monitoring the Pipeline-11.1 Queries-11.1.1 Occlusion Queries-11.1.1.2 Using the Results of a Query"><h4 id="11.1.1.2 Using the Results of a Query">11.1.1.2 Using the Results of a Query</h4></div>
 <ul>
 <li>
 用途: 通过避免无效的工作来优化应用的性能. 一个物品的渲染非常昂贵时, 当用户不会看见时则无需绘制.
@@ -215,7 +206,7 @@ RenderRealObject 发送给 OpemGL 的工作量远大于 RenderSimplifiedObject, 
 </ul>
 </ul>
 
-<h4 id="toc_1.1.1.3">11.1.1.3 Getting OpenGL to Make Decisions for You</h4>
+<div id="Chapter 11 Controlling and Monitoring the Pipeline-11.1 Queries-11.1.1 Occlusion Queries-11.1.1.3 Getting OpenGL to Make Decisions for You"><h4 id="11.1.1.3 Getting OpenGL to Make Decisions for You">11.1.1.3 Getting OpenGL to Make Decisions for You</h4></div>
 <ul>
 <li>
 在上面的例子中, 我们关心的是是否需要发送更多的工作给 OpenGL, 或者改变其可能渲染物体的方式. 从 OpenGL 返回结果给应用, 其可能花费了一个 CPU bus 或者一个网络连接, 应用可以决定是否发送更多的命令给 OpenGL. 但其仍导致延迟或损害性能
@@ -291,7 +282,7 @@ for (n = 0; n &lt; 10; n++)
 
 </ul>
 
-<h4 id="toc_1.1.1.4">11.1.1.4 Advanced Occlusion Queries</h4>
+<div id="Chapter 11 Controlling and Monitoring the Pipeline-11.1 Queries-11.1.1 Occlusion Queries-11.1.1.4 Advanced Occlusion Queries"><h4 id="11.1.1.4 Advanced Occlusion Queries">11.1.1.4 Advanced Occlusion Queries</h4></div>
 <ul>
 <li>
 GL_SAMPLES_PASSED 目标统计通过深度测试的样本数. 
@@ -312,7 +303,7 @@ GL_ANY_SAMPLES_PASSED_CONSERVATIVE: 如果没有样本通过的话, 这个比上
 
 </ul>
 
-<h3 id="toc_1.1.2">11.1.2 Timer Queries</h3>
+<div id="Chapter 11 Controlling and Monitoring the Pipeline-11.1 Queries-11.1.2 Timer Queries"><h3 id="11.1.2 Timer Queries">11.1.2 Timer Queries</h3></div>
 <ul>
 <li>
 GL_TIME_ELAPSED 作为 glBeginQuery() 和 glEndQuery() 的查询参数. glGetQueryObjectuiv() 得到 query object 的结果, 其值为纳秒单位. 这个可以发现程序中最花费时间的地方.
@@ -424,7 +415,7 @@ void glGetInteger64v(GL_TIMESTAMP, &amp;t);
 
 </ul>
 
-<h3 id="toc_1.1.3">11.1.3 Transform Feedback Queries</h3>
+<div id="Chapter 11 Controlling and Monitoring the Pipeline-11.1 Queries-11.1.3 Transform Feedback Queries"><h3 id="11.1.3 Transform Feedback Queries">11.1.3 Transform Feedback Queries</h3></div>
 <ul>
 <li>
 顶点着色器(无几何着色器)的 transform feedback, 记录顶点着色器的输出, 存储至 transform feedback 的顶点数量和发送给OpenGL的顶点数量一致, 除非 transform feedback 的空间耗尽. 如果有几何着色器, 则顶点数量可能不相同. 如果有 TCS, 则依赖于 tessellation factors 如果有 TCS, 则依赖于 tessellation factors.
@@ -485,7 +476,7 @@ GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN 只有当 transform feedback 激活时�
 
 </ul>
 
-<h4 id="toc_1.1.3.1">11.1.3.1 Indexed Queries</h4>
+<div id="Chapter 11 Controlling and Monitoring the Pipeline-11.1 Queries-11.1.3 Transform Feedback Queries-11.1.3.1 Indexed Queries"><h4 id="11.1.3.1 Indexed Queries">11.1.3.1 Indexed Queries</h4></div>
 <ul>
 <li>
 如果仅使用单个流(single stream)存储transform feedback中的顶点, 则调用 glBeginQuery() 和 glEndQuery() 及 GL_PRIMITIVES_GENERATED 或 GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN 都不错. 
@@ -508,7 +499,7 @@ void glEndQueryIndexed(GLenum target,
 
 </ul>
 
-<h4 id="toc_1.1.3.2">11.1.3.2 Using the Results of a Primitive Query</h4>
+<div id="Chapter 11 Controlling and Monitoring the Pipeline-11.1 Queries-11.1.3 Transform Feedback Queries-11.1.3.2 Using the Results of a Primitive Query"><h4 id="11.1.3.2 Using the Results of a Primitive Query">11.1.3.2 Using the Results of a Primitive Query</h4></div>
 <ul>
 <li>
 注意, 使用 transform feedback 将前端的结果存进一个 buffer, 将一个 buffer 设置为 transform feedback buffer, 需要将其绑定至一个 GL_TRANSFORM_FEEDBACK_BUFFER 绑定点. 
@@ -607,14 +598,14 @@ glDrawTransformFeedbackStreanInstanced() 等同于 glDrawTransformFeedbackInstan
 
 </ul>
 
-<h2 id="toc_1.2">11.2 Synchronization in OpenGL</h2>
+<div id="Chapter 11 Controlling and Monitoring the Pipeline-11.2 Synchronization in OpenGL"><h2 id="11.2 Synchronization in OpenGL">11.2 Synchronization in OpenGL</h2></div>
 <ul>
 <li>
 介绍一些方法同步管线的不同部分
 
 </ul>
 
-<h3 id="toc_1.2.1">11.2.1 Draining the Pipeline</h3>
+<div id="Chapter 11 Controlling and Monitoring the Pipeline-11.2 Synchronization in OpenGL-11.2.1 Draining the Pipeline"><h3 id="11.2.1 Draining the Pipeline">11.2.1 Draining the Pipeline</h3></div>
 <ul>
 <li>
 两个命令用于强制开始命令上的工作, 或者完成已发出的命令上的工作.
@@ -631,7 +622,7 @@ glFinish() --- 确保所有命令都完全被执行且管线为空, 确保所有
 
 </ul>
 
-<h3 id="toc_1.2.2">11.2.2 Synchronization and Fences</h3>
+<div id="Chapter 11 Controlling and Monitoring the Pipeline-11.2 Synchronization in OpenGL-11.2.2 Synchronization and Fences"><h3 id="11.2.2 Synchronization and Fences">11.2.2 Synchronization and Fences</h3></div>
 <ul>
 <li>
 需要知道 OpenGL 是否完成命令至某点, 而无需迫使清空管线. 管理的这种类型的同步为 sync objects. 其有两个可能的状态: signaled 和 unsignaled. 开始于 unsignaled state, 某事发生则触发 signaled state. 其依赖于sync object的类型触发状态. 我们感兴趣的 sync object 类型被称之为 fence sync. 其可用下面的代码创建一个
@@ -737,6 +728,5 @@ glDeleteSync(sync);
 
 </ul>
 
-    </div>
 </body>
 </html>

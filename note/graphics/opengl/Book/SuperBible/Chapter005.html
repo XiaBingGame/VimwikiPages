@@ -1,29 +1,20 @@
-﻿<html>
+<!DOCTYPE html>
+<html>
 <head>
-    <link rel="Stylesheet" type="text/css" href="../../../../../style.css" />
-    <title>OpenGL SuperBible 6 Chapter 5 Buffer</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../../../../../style.css">
+<title>OpenGL SuperBible 6 Chapter 5 Buffer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<div id="all">
-<div id="header">
-	<ul id="top-nav">
-		<li>
-			<a href="file:///D:/Documents/Vimwiki/Vimwiki_html/index.html">首页</a>
-		</li>
-	</ul>
-</div>
-</div>
-    <div class="content">
-    
 
-<h1 id="toc_1">Buffers</h1>
+
+<div id="Buffers"><h1 id="Buffers">Buffers</h1></div>
 <ul>
 <li>
 使用 buffers 之前, OpenGL 请求名称, 而后分配内存, 放置数据. 分配给一个buffer对象的内存称之为 data store. 使用时将该buffer绑定至一个buffer绑定点, 这样该buffer关联至一个OpenGL context.
 
 </ul>
-<h2 id="toc_1.1">使用buffers分配内存</h2>
+<div id="Buffers-使用buffers分配内存"><h2 id="使用buffers分配内存">使用buffers分配内存</h2></div>
 <ul>
 <li>
 glBufferData
@@ -109,7 +100,7 @@ glUnmapBuffer(GL_ARRAY_BUFFER);
 glMapBuffer 的好处是省略一次拷贝, 可以直接读取文件直接写进内存, 无需多一次暂存.
 
 </ul>
-<h2 id="toc_1.2">填充和拷贝Buffer中的数据</h2>
+<div id="Buffers-填充和拷贝Buffer中的数据"><h2 id="填充和拷贝Buffer中的数据">填充和拷贝Buffer中的数据</h2></div>
 <ul>
 <li>
 如果你想要写至buffer的数据为一个常量值, 使用 glClearBufferSubData() 更有效率
@@ -130,11 +121,6 @@ type 应当表示成员的数据类型, 例如 GL_UNSIGNED_BYTE 货 GL_FLOAT
 </ul>
 <li>
 下表为 5.2, 基本的 OpenGL Type 和它们对应的 C 类型
-
-</ul>
-<ul>
-<li>
-拷贝buffer的数据至其他buffer: glCopyBufferSubData()
 <table>
 <tr>
 <th>
@@ -209,6 +195,9 @@ GLdouble
 </td>
 </tr>
 </table>
+
+<li>
+拷贝buffer的数据至其他buffer: glCopyBufferSubData()
 <pre c++>
 void glCopyBufferSubData(GLenum readtarget, GLenum writetarget, GLintptr readoffset, GLintptr writeoffset, GLsizeptr size);
 </pre>
@@ -225,7 +214,7 @@ readtarget, writetarget 为两个你想要复制数据的buffer所绑定的绑�
 
 </ul>
 </ul>
-<h2 id="toc_1.3">从Buffer中填充数据给顶点着色器</h2>
+<div id="Buffers-从Buffer中填充数据给顶点着色器"><h2 id="从Buffer中填充数据给顶点着色器">从Buffer中填充数据给顶点着色器</h2></div>
 <ul>
 <li>
 为了使用顶点属性, 首先创建一个顶点数组对象用于存储顶点数组状态
@@ -314,7 +303,7 @@ void main(void)
 一旦禁止属性数组, 则其为静态的, 且通过 glVertexAttrib* 来传递值给着色器.
 
 </ul>
-<h2 id="toc_1.4">使用多个顶点着色器输入</h2>
+<div id="Buffers-使用多个顶点着色器输入"><h2 id="使用多个顶点着色器输入">使用多个顶点着色器输入</h2></div>
 <ul>
 <li>
 你可以在顶点着色器中声明多个输入, 每个输入分配一个唯一的位置(location)以便之后关联至该输入. 组合这些东西表示你可以让OpenGL同时给顶点着色器的多个输入提供数据. 考虑如下代码的声明.
@@ -393,7 +382,7 @@ glEnableVertexAttribArray(1);
 </pre>
 
 </ul>
-<h2 id="toc_1.5">从文件中加载数据</h2>
+<div id="Buffers-从文件中加载数据"><h2 id="从文件中加载数据">从文件中加载数据</h2></div>
 <ul>
 <li>
 本书使用 .SBM 文件表示模型, 完整的格式文档见附录B. 加载框架见 sb6::object.
@@ -406,13 +395,13 @@ my_object.render();
 
 </ul>
 
-<h1 id="toc_2">一致变量 </h1>
+<div id="一致变量 "><h1 id="一致变量 ">一致变量 </h1></div>
 <ul>
 <li>
 两种一致变量: 一种一致变量声明在默认块中, 另一种为一致变量块, 后者其值存储在 buffer object 中
 
 </ul>
-<h2 id="toc_2.1">Default Block Uniforms</h2>
+<div id="一致变量 -Default Block Uniforms"><h2 id="Default Block Uniforms">Default Block Uniforms</h2></div>
 <ul>
 <li>
 顶点着色器最常见的一致变量为变换矩阵.
@@ -427,7 +416,7 @@ uniform answer = 42;
 如果在多个着色器阶段声明相同的一致变量, 则每个阶段都看到相同值的该一致变量.
 
 </ul>
-<h3 id="toc_2.1.1">安排你的一致变量 </h3>
+<div id="一致变量 -Default Block Uniforms-安排你的一致变量 "><h3 id="安排你的一致变量 ">安排你的一致变量 </h3></div>
 <ul>
 <li>
 通过一致变量的位置在应用中关联至该一致变量.
@@ -445,7 +434,7 @@ glGetUniformLocation() 获取一致变量的位置: GLint glGetUniformLocation(G
 如果着色器程序没有使用一个一致变量, 则会丢弃该一致变量.
 
 </ul>
-<h3 id="toc_2.1.2">设置标量和向量类型的一致变量 </h3>
+<div id="一致变量 -Default Block Uniforms-设置标量和向量类型的一致变量 "><h3 id="设置标量和向量类型的一致变量 ">设置标量和向量类型的一致变量 </h3></div>
 <ul>
 <li>
 glUniform(1/2/3/4)(f/i/ui)
@@ -454,7 +443,7 @@ glUniform(1/2/3/4)(f/i/ui)
 布尔类型一致变量可以使用整数和浮点形式传递值, 0表示false, 非0表示true
 
 </ul>
-<h3 id="toc_2.1.3">设置一致数组 </h3>
+<div id="一致变量 -Default Block Uniforms-设置一致数组 "><h3 id="设置一致数组 ">设置一致数组 </h3></div>
 <ul>
 <li>
 glUniform(1/2/3/4)(f/i/ui)v(GLint location, GLuint count, const GLfloat* value)
@@ -471,7 +460,7 @@ glUniform4fv(iColorLocation, 2, vColors);
 
 </ul>
 </ul>
-<h3 id="toc_2.1.4">设置矩阵类型的一致变量 </h3>
+<div id="一致变量 -Default Block Uniforms-设置矩阵类型的一致变量 "><h3 id="设置矩阵类型的一致变量 ">设置矩阵类型的一致变量 </h3></div>
 <ul>
 <li>
 着色器的矩阵数据类型只有单精度和双精度浮点数.
@@ -481,7 +470,7 @@ glUniformMatrix(2/3/4)(f/d)v()
 
 </ul>
 
-<h2 id="toc_2.2">Uniform Block</h2>
+<div id="一致变量 -Uniform Block"><h2 id="Uniform Block">Uniform Block</h2></div>
 <ul>
 <li>
 OpenGL 允许将一组 uniform 变量组合进一个 uniform block, 而后在一个 buffer object 中存储该block. 通过改变绑定的buffer或者重写所绑定buffer的内容来快速设置整组 uniform 变量的内容. 
@@ -513,7 +502,7 @@ uniform TransformBlock
 
 </ul>
 </ul>
-<h3 id="toc_2.2.1">构建 Uniform 块 </h3>
+<div id="一致变量 -Uniform Block-构建 Uniform 块 "><h3 id="构建 Uniform 块 ">构建 Uniform 块 </h3></div>
 <ul>
 <li>
 使用 glBufferData() 或 glMapBuffer() 填充 buffer object 的数据来设置uniform block的数据. 如何填充有两种方法
@@ -871,7 +860,7 @@ OpenGL 保证的是其大小至少为64KB, 你可至少在单个程序中用14�
 
 </ul>
 
-<h2 id="toc_2.3">使用 Uniform 变换几何</h2>
+<div id="一致变量 -使用 Uniform 变换几何"><h2 id="使用 Uniform 变换几何">使用 Uniform 变换几何</h2></div>
 <ul>
 <li>
 例子, 立方体, 首先使用 vertex array object 设置立方体几何.
@@ -982,7 +971,7 @@ void main(void)
 
 </ul>
 
-<h1 id="toc_3">着色器的存储块(Shader Storage Block)</h1>
+<div id="着色器的存储块(Shader Storage Block)"><h1 id="着色器的存储块(Shader Storage Block)">着色器的存储块(Shader Storage Block)</h1></div>
 <ul>
 <li>
 buffer object 还可用于使用shader的一般性存储, 方法为使用 shader storage block.
@@ -1068,7 +1057,7 @@ void main(void)
 
 </ul>
 
-<h2 id="toc_3.1">原子的内存操作 </h2>
+<div id="着色器的存储块(Shader Storage Block)-原子的内存操作 "><h2 id="原子的内存操作 ">原子的内存操作 </h2></div>
 <ul>
 <li>
 shader storage 允许你在内存上执行原子操作, 一个原子操作是来自内存的一个读取可能其后跟随来自内存的一个写入的序列必须是不受干扰的, 以便于保证结果正确.
@@ -1120,7 +1109,7 @@ atomicCompSwap(mem, comp, data) --- 从mem中读取, 其值和comp比较, 如果
 
 </ul>
 </ul>
-<h3 id="toc_3.1.1">内存的同步访问 </h3>
+<div id="着色器的存储块(Shader Storage Block)-原子的内存操作 -内存的同步访问 "><h3 id="内存的同步访问 ">内存的同步访问 </h3></div>
 <ul>
 <li>
 当你的着色器开始往buffer objects中写入数据时, 无论是在shader storage blocks中的变量还是通过原子操作函数的显示调用, 你都需要避免一些危险的情况.
@@ -1166,7 +1155,7 @@ GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT --- 确保 OpenGL 其会让shader等待, 在�
 要注意的是, glMemoryBarrier() 其包含在 barriers 中的项目是目标的子系统, 由该机制更新的数据不应是相关联的(isn't relevant)
 
 </ul>
-<h2 id="toc_3.2">着色器中使用 Barriers</h2>
+<div id="着色器的存储块(Shader Storage Block)-着色器中使用 Barriers"><h2 id="着色器中使用 Barriers">着色器中使用 Barriers</h2></div>
 <ul>
 <li>
 正如你在应用的代码中插入内存barriers以便控制由你的着色器执行的内存访问的次序, 你还可以在你的着色器中插入barriers以便从某种次序的内存读写中停止OpenGL, 除了你着色器代码所讲的次序.
@@ -1182,7 +1171,7 @@ void memoryBarrier();
 
 </ul>
 
-<h1 id="toc_4">Atomic Counter</h1>
+<div id="Atomic Counter"><h1 id="Atomic Counter">Atomic Counter</h1></div>
 <ul>
 <li>
 特殊类型的变量, 表示可在多个shader invocation共享的storage. 该storage在buffer object的背后, GLSL提供的函数可以增加和减少存储在该buffer中的值. 这些操作为原子的操作. 
@@ -1324,7 +1313,7 @@ void main(void)
 
 </ul>
 </ul>
-<h2 id="toc_4.1">Synchronizing Access to Atomic Counters</h2>
+<div id="Atomic Counter-Synchronizing Access to Atomic Counters"><h2 id="Synchronizing Access to Atomic Counters">Synchronizing Access to Atomic Counters</h2></div>
 <ul>
 <li>
 原子计数器表示了 buffer object中的位置, 当着色器执行时, 其值位于显卡处理器中的特殊内存中(这一点使得其比shader storage blocks成员的原子内存操作更快).
@@ -1354,7 +1343,7 @@ glMemoryBarrier(GL_ATOMIC_COUNTER_BARRIER_BIT);
 
 </ul>
 
-<h1 id="toc_5">纹理</h1>
+<div id="纹理"><h1 id="纹理">纹理</h1></div>
 <ul>
 <li>
 纹理为一个存储的结构形式, 其可以被着色器访问用于读写. 常用于以许多形式存储图像数据.  最常用的纹理布局是二维的. 但也可以有一维, 三维的纹理, 数组形式的纹理(多个纹理堆积组合成一个逻辑对象), 立方体纹理等等.
@@ -1363,7 +1352,7 @@ glMemoryBarrier(GL_ATOMIC_COUNTER_BARRIER_BIT);
 纹理表示为一个可以被生成的对象, 绑定至纹理单元, 以及操作该纹理. 为了创建一个纹理, 首先我们使用 glGenTextures 请求OpenGL保留一个名字. 此时, 改名字表示即将创建的纹理对象, 仅当其绑定至一个纹理目标则将开始其作为纹理的生命期. 这类似于绑定一个buffer object至一个buffer绑定点. 然而, 一旦你绑定一个纹理名字至一个纹理目标, 则其直至销毁都使用该目标的类型.
 
 </ul>
-<h2 id="toc_5.1">创建和初始化纹理</h2>
+<div id="纹理-创建和初始化纹理"><h2 id="创建和初始化纹理">创建和初始化纹理</h2></div>
 <ul>
 <li>
 纹理的一个完整创建包括生成名称, 将名称绑定至纹理目标, 告知纹理用于纹理存储的图像大小.
@@ -1404,7 +1393,7 @@ delete [] data;
 </pre>
 
 </ul>
-<h2 id="toc_5.2">纹理目标和类型 </h2>
+<div id="纹理-纹理目标和类型 "><h2 id="纹理目标和类型 ">纹理目标和类型 </h2></div>
 <ul>
 <li>
 纹理目标: GL_TEXTURE_* (1D, 2D, 3D, RECTANGLE, 1D_ARRAY, 2D_ARRAY, CUBE_MAP, CUBE_MAP_ARRAY, BUFFER, 2D_MULTISAMPLE, 2D_MULTISAMPLE_ARRAY).
@@ -1427,7 +1416,7 @@ Buffer纹理, 类似于1D纹理的特殊形式. 和1D纹理不同的是他们的
 
 </ul>
 </ul>
-<h2 id="toc_5.3">着色器中读取纹理 </h2>
+<div id="纹理-着色器中读取纹理 "><h2 id="着色器中读取纹理 ">着色器中读取纹理 </h2></div>
 <ul>
 <li>
 纹理在着色器中表示为sampler变量, 通过声明uniform的sampler类型和外部连在一起.  表示二维纹理的sampler类型为 sampler2D. 为了在着色器中访问我们的纹理, 我们创建一个uniform的sampler2D类型变量. 而后使用 texelFetch 内置函数以及该uniform变量和纹理坐标去读取该纹理. 
@@ -1452,7 +1441,7 @@ texelFetch 函数接受整数坐标, 范围从 (0, 0) 到纹理的高宽度. 其
 
 </ul>
 
-<h3 id="toc_5.3.1">Sampler 类型</h3>
+<div id="纹理-着色器中读取纹理 -Sampler 类型"><h3 id="Sampler 类型">Sampler 类型</h3></div>
 <ul>
 <li>
 纹理的每个维度都有一个纹理对象用来绑定的目标, 在之前的章节已经介绍, 每个目标在你的着色器中有对应的 sampler 类型用于访问它们. 表格 5.6 列出应用于着色器中以便访问的基本纹理类型和sampler.
@@ -1484,7 +1473,7 @@ uvec4 texelFetch(usampler3D s, ivec3 P, int lod);
 上述函数的返回值都是四个成员的向量类型, 如果读取图像数据的返回值少于四个成员, 则绿色和蓝色通道默认为0, alpha 通道默认为1.
 
 </ul>
-<h2 id="toc_5.4">从文件中加载纹理.</h2>
+<div id="纹理-从文件中加载纹理."><h2 id="从文件中加载纹理.">从文件中加载纹理.</h2></div>
 <ul>
 <li>
 OpenGL支持的格式: KTX 格式(Khronos TeXture format). 头文件如下:
@@ -1545,7 +1534,7 @@ sb6::ktx::file::load("media/textures/icemoon.ktx", texture);
 
 </ul>
 
-<h2 id="toc_5.5">纹理坐标</h2>
+<div id="纹理-纹理坐标"><h2 id="纹理坐标">纹理坐标</h2></div>
 <ul>
 <li>
 一般顶点着色器产生纹理坐标, 而后片段着色器使用其插值生成的纹理坐标
@@ -1594,7 +1583,7 @@ void main(void)
 
 </ul>
 
-<h2 id="toc_5.6">Controlling How Texture Data Is Read</h2>
+<div id="纹理-Controlling How Texture Data Is Read"><h2 id="Controlling How Texture Data Is Read">Controlling How Texture Data Is Read</h2></div>
 <ul>
 <li>
 如何控制落在0.0和1.0之外的纹理坐标的方法, 称之为sampler 的 wrapping mode. 如何计算真正样点之间的值, 称之为sampler 的filtering mode. 
@@ -1654,7 +1643,7 @@ pname 和 param 和用于 glSamplerParameteri() 和 glSamplerParameterf() 的参
 
 </ul>
 </ul>
-<h2 id="toc_5.7">使用多重纹理</h2>
+<div id="纹理-使用多重纹理"><h2 id="使用多重纹理">使用多重纹理</h2></div>
 <ul>
 <li>
 如果你想要在单个着色器中使用多个纹理, 你需要创建多个 sampler uniform 变量, 并设置它们关联至不同的纹理单元. 你同样也需要同时绑定多个纹理至你的上下文. 为了允许该功能, OpenGL 支持多个纹理单元. glGetIntegerv() 函数和 GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS 参数可以查询支持的单元数量.
@@ -1711,7 +1700,7 @@ layout (binding = 2) uniform sampler2D baz;
 第二种方法更为好用.
 
 </ul>
-<h2 id="toc_5.8">纹理过滤</h2>
+<div id="纹理-纹理过滤"><h2 id="纹理过滤">纹理过滤</h2></div>
 <ul>
 <li>
 texelFetch() 在具体的整数纹理坐标得到单个像素
@@ -1741,7 +1730,7 @@ glSamplerParameteri(sampler, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 </pre>
 
 </ul>
-<h2 id="toc_5.9">MipMap</h2>
+<div id="纹理-MipMap"><h2 id="MipMap">MipMap</h2></div>
 <ul>
 <li>
 图像要求1/3更多的内存
@@ -1754,7 +1743,7 @@ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 4);
 </pre>
 
 </ul>
-<h2 id="toc_5.10">Mipmap Filterring</h2>
+<div id="纹理-Mipmap Filterring"><h2 id="Mipmap Filterring">Mipmap Filterring</h2></div>
 <ul>
 <li>
 GL_NEAREST_MIPMAP_NEAREST, GL_NEAREST_MIPMAP_LINEAR, GL_LINEAR_MIPMAP_NEAREST, GL_LINEAR_MIPMAP_LINEAR, 前面的选择该mipmap上纹素的方式, 后者则是mipmap level的选择方式. 即为 GL_&lt;FILTER&gt;<em>MIPMAP</em>&lt;SELECTOR&gt;
@@ -1763,7 +1752,7 @@ GL_NEAREST_MIPMAP_NEAREST, GL_NEAREST_MIPMAP_LINEAR, GL_LINEAR_MIPMAP_NEAREST, G
 GL_LINEAR_MIMAP_NEAREST 常用于加速游戏运行, 注意 GL_&lt;&gt; _ MIPMAP _ &lt;&gt; 只能用于 GL_TEXTURE_MIN_FILTER 设置, GL_TEXTURE_MAG_FILTER 设置则只能用 GL_NEAREST 或 GL_LINEAR 中的一个
 
 </ul>
-<h2 id="toc_5.11">生成 mip 等级</h2>
+<div id="纹理-生成 mip 等级"><h2 id="生成 mip 等级">生成 mip 等级</h2></div>
 <ul>
 <li>
 使用下面的函数对加载的0级纹理生成所有的mip levels
@@ -1777,7 +1766,7 @@ target 参数可以是 GL_TEXTURE_1D, GL_TEXTURE_2D, GL_TEXTURE_3D, GL_TEXTURE_C
 
 </ul>
 </ul>
-<h2 id="toc_5.12">Texture Wrap</h2>
+<div id="纹理-Texture Wrap"><h2 id="Texture Wrap">Texture Wrap</h2></div>
 <ul>
 <li>
 你可以设置纹理坐标每个成分的wrap模式, 使用函数 glSamplerParameteri(), 参数有GL_TEXTURE_WRAP_S, GL_TEXTURE_WRAP_T, GL_TEXTURE_WRAP_R, 设置的值有 GL_REPEAT, GL_MIRRORED_REPEAT, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_BORDER
@@ -1789,7 +1778,7 @@ wrap mode 同样影响到纹理映射其边缘如何进行过滤.
 glSamplerParameterfv() 和参数 GL_TEXTURE_BORDER_COLOR 可以设置边框颜色
 
 </ul>
-<h2 id="toc_5.13">Array Textures</h2>
+<div id="纹理-Array Textures"><h2 id="Array Textures">Array Textures</h2></div>
 <ul>
 <li>
 在数组纹理中, 你可以加载一些 1D, 2D, 立体映射纹理至单个纹理对象. 你拥有绑定至单个纹理对象的整个纹理图像数组, 且在着色器中通过它们索引. 因为极大地增加了我们在应用任意时刻可以利用的纹理量.
@@ -1807,7 +1796,7 @@ glSamplerParameterfv() 和参数 GL_TEXTURE_BORDER_COLOR 可以设置边框颜�
 一个 2D 数组纹理和一个3D纹理(或一个1D数组纹理和一个2D纹理)之间的区别, 最大的区别是数组纹理的层之间没有过滤可以应用. 另外数组纹理可支持的最大数量可能要比最大的3D纹理大小还大.
 
 </ul>
-<h2 id="toc_5.14">加载一个 2D array texture</h2>
+<div id="纹理-加载一个 2D array texture"><h2 id="加载一个 2D array texture">加载一个 2D array texture</h2></div>
 <ul>
 <li>
 创建一个新的纹理对象, 绑定至 GL_TEXTURE_2D_ARRAY 目标, glTexStorage3D() 分配存储, 使用一个或多个 glTexSubImage3D() 调用来加载图像, 注意这些函数使用3D版本, 这是因为传递的深度和z坐标解释为数组的元素, 或layer.
@@ -1839,7 +1828,7 @@ for (int i = 0; i &lt; 100; i++)
 .KTX 文件格式支持数组纹理, 书中的加载器可以直接从磁盘加载它们, 简单的使用 sb6::ktx::file::load 从文件加载一个数组纹理. 我们可以看看 aliens rainning 的例子. 
 
 </ul>
-<h2 id="toc_5.15">访问 Texture Arrays</h2>
+<div id="纹理-访问 Texture Arrays"><h2 id="访问 Texture Arrays">访问 Texture Arrays</h2></div>
 <ul>
 <li>
 纹理坐标的第三个坐标则是 texture array 的整数索引
@@ -1848,7 +1837,7 @@ for (int i = 0; i &lt; 100; i++)
 当我们使用顶点着色器的整数输入时, 注意我们使用 glVertexAttrib*() 的 glVertexAttribI*() 的 li 变种.
 
 </ul>
-<h2 id="toc_5.16">在着色器中写入纹理 </h2>
+<div id="纹理-在着色器中写入纹理 "><h2 id="在着色器中写入纹理 ">在着色器中写入纹理 </h2></div>
 <ul>
 <li>
 OpenGL 允许你直接在顶点着色器中写入纹理. 你可以使用一个 image 变量表示来自一个纹理的单个图像. 
@@ -2208,7 +2197,7 @@ image 加载和存储的好处是你可以在单个着色器中包含任意数�
 
 </ul>
 
-<h2 id="toc_5.17">Atomic Operations on Images</h2>
+<div id="纹理-Atomic Operations on Images"><h2 id="Atomic Operations on Images">Atomic Operations on Images</h2></div>
 <ul>
 <li>
 一个原子操作为不可分割的读取, 修改, 写入序列.
@@ -2386,7 +2375,7 @@ void main(void)
 
 </ul>
 </ul>
-<h2 id="toc_5.18">对图像的同步访问</h2>
+<div id="纹理-对图像的同步访问"><h2 id="对图像的同步访问">对图像的同步访问</h2></div>
 <ul>
 <li>
 当images表示内存中的一大区域时, 我们已经揭示了如何在你的着色器中直接写入图像, 你可能已经猜测了我们将解释内存的barrier类型, 这样你可以用于同步访问该段内存. 和buffers及原子计数器一起, 你可以调用
@@ -2404,7 +2393,7 @@ glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BIT);
 
 </ul>
 
-<h1 id="toc_6">纹理压缩</h1>
+<div id="纹理压缩"><h1 id="纹理压缩">纹理压缩</h1></div>
 <ul>
 <li>
 当你不能加载所有的纹理数据至 GPU 的时候, 你的渲染将会慢下来. 此时可用压缩纹理. 两个好处, 一减少存储的空间需求, 另一个由于图形处理器需要读取更少的数据, 因此可用更少的内存带宽.
@@ -2503,7 +2492,7 @@ Ericsson Texture Compression(ETC2)和Ericsson Alpha 6 Compression(EAC)都是low-
 
 </ul>
 
-<h2 id="toc_6.1">使用压缩</h2>
+<div id="纹理压缩-使用压缩"><h2 id="使用压缩">使用压缩</h2></div>
 <ul>
 <li>
 当你加载纹理时, 可要求 OpenGL 以某种格式压缩纹理, 虽然强烈建议你自己压缩纹理并将纹理存储在一个文件中. 如果 OpenGL 不支持你选择格式的压缩, 当纹理图像加载时, 你需要做的是内部格式必须是压缩格式的一种, 且OpenGL将采用你未压缩的数据并压缩它. 对于压缩的纹理和未压缩的纹理之间, 没有实际上的区别. 许多用于创建纹理和其他图像的成像工具, 允许你直接以压缩格式保存你的数据.
@@ -2532,14 +2521,14 @@ glGetCompressedTexImage(GL_TEXTURE_2D, 0, data);
 如果你想要自己加载压缩的纹理图像, 而非使用书本的 KTX 加载器, 你可以调用 glTexStorage2D() 或 glTexStorage3D() 以及所想要的内部压缩格式来分配用于纹理的存储, 而后调用 glCompressedTexSubImage2D() 或 glCompressedTexSubImage3D() 将数据上传至其内. 当你做这些的时候, 需要确保 xoffset, yoffset, 以及其他的参数遵守纹理格式的具体规则. 特别地, 大多数纹理压缩格式压缩块状纹理, 块的大小通常为 4x4 纹素. 使用 glCompressedTexSubImage2D() 更新的该区域需要排列对齐用于这些格式其块的边缘, 以使得其可以工作.
 
 </ul>
-<h2 id="toc_6.2">Shared Exponents</h2>
+<div id="纹理压缩-Shared Exponents"><h2 id="Shared Exponents">Shared Exponents</h2></div>
 <ul>
 <li>
 虽然shared exponent texture并不是真正意义上的压缩格式, 但允许你使用浮点纹理数据在storage space中保存, 其替换存储R, G, B值每个的exponent, shared exponent格式为整个纹素使用相同的exponent. 小数和exponent部分存储为整数, 当纹理采样时组合在一起. 对于 GL_RGB9_E5, 每颜色存储为9位, 所有channel的共同exponent存储为5位. 该格式将三个浮点值打包成32位, 其产生了67%的节省. 为了使用shared exponents, 你可以从一个内容创建的工具直接得到该格式的纹理数据, 或者写一个转换器将你的浮点RGB值压缩成共享指数格式.
 
 </ul>
 
-<h1 id="toc_7">Texture Views</h1>
+<div id="Texture Views"><h1 id="Texture Views">Texture Views</h1></div>
 <ul>
 <li>
 你创建和加载的纹理可能和着色器所期待的纹理格式可能不一致. 你可以使用 texture view 在一个纹理对象上重用纹理数据. 以下为两个主要使用情况:
@@ -2556,7 +2545,7 @@ glGetCompressedTexImage(GL_TEXTURE_2D, 0, data);
 你可以同时做上面的两种"假装"
 
 </ul>
-<h2 id="toc_7.1">创建 Texture Views</h2>
+<div id="Texture Views-创建 Texture Views"><h2 id="创建 Texture Views">创建 Texture Views</h2></div>
 <ul>
 <li>
 使用函数 glTextureView() 
@@ -2599,7 +2588,7 @@ minlevel 和 numlevels 参数设置了第一个mipmap level 和包含在该view�
 
 <ul>
 <li>
-If origtexture is... (GL_TEXTURE_<strong>) --- You can create a view of it as... (GL_TEXTURE_</strong>)
+If origtexture is... (GL_TEXTURE_<span id="Texture Views-创建 Texture Views-) --- You can create a view of it as... (GL_TEXTURE_"></span><strong id=") --- You can create a view of it as... (GL_TEXTURE_">) --- You can create a view of it as... (GL_TEXTURE_</strong>)
 
 <li>
 1D --- 1D or 1D_ARRAY
@@ -2687,6 +2676,5 @@ BPTC_FLOAT --- GL_COMPRESSED_RGB_BPTC_SIGNED_FLOAT, GL_COMPRESSED_RGB_BPTC_UNSIG
 
 </ul>
 
-    </div>
 </body>
 </html>

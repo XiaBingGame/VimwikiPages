@@ -1,22 +1,13 @@
-﻿<html>
+<!DOCTYPE html>
+<html>
 <head>
-    <link rel="Stylesheet" type="text/css" href="../../../../../style.css" />
-    <title>Chapter010</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../../../../../style.css">
+<title>Chapter010</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<div id="all">
-<div id="header">
-	<ul id="top-nav">
-		<li>
-			<a href="file:///D:/Documents/Vimwiki/Vimwiki_html/index.html">首页</a>
-		</li>
-	</ul>
-</div>
-</div>
-    <div class="content">
-    
-<h1 id="toc_1">Chapter 10 Compute Shaders</h1>
+
+<div id="Chapter 10 Compute Shaders"><h1 id="Chapter 10 Compute Shaders">Chapter 10 Compute Shaders</h1></div>
 <ul>
 <li>
 本章节内容
@@ -34,7 +25,7 @@
 </ul>
 </ul>
 
-<h2 id="toc_1.1">10.1 Using Compute Shaders</h2>
+<div id="Chapter 10 Compute Shaders-10.1 Using Compute Shaders"><h2 id="10.1 Using Compute Shaders">10.1 Using Compute Shaders</h2></div>
 <ul>
 <li>
 创建计算着色器时, 调用 glCreateShader(() 并使用 GL_COMPUTE_SHADER 参数作为着色器类型. glShaderSource() 加载着色器代码. glCompileShader() 编译, glAttachShader() 附属至程序对象, glLinkProgram() 链接程序对象.
@@ -78,7 +69,7 @@ glUseProgram() 使该程序为当前程序, 一旦其为当前程序, 类似 glU
 
 </ul>
 
-<h3 id="toc_1.1.1">10.1.1 Executing Compute Shaders</h3>
+<div id="Chapter 10 Compute Shaders-10.1 Using Compute Shaders-10.1.1 Executing Compute Shaders"><h3 id="10.1.1 Executing Compute Shaders">10.1.1 Executing Compute Shaders</h3></div>
 <ul>
 <li>
 执行计算程序的函数
@@ -104,7 +95,7 @@ typedef struct {
 </ul>
 </ul>
 
-<h4 id="toc_1.1.1.1">10.1.1.1 Global and Local Work Groups</h4>
+<div id="Chapter 10 Compute Shaders-10.1 Using Compute Shaders-10.1.1 Executing Compute Shaders-10.1.1.1 Global and Local Work Groups"><h4 id="10.1.1.1 Global and Local Work Groups">10.1.1.1 Global and Local Work Groups</h4></div>
 <ul>
 <li>
 计算着色器在被称之为 work groups(工作组) 的地方内执行. glDispatchCompute() 或 glDispatchComputeIndirect() 的单个调用可以让单个全局工作组发送给 OpenGL 用于执行. 这个全局工作组将会被子划分为一些本地工作 - 本地工作组的数量见 x, y, z 维度的值, 由 num_groups_x, num_groups_y, num_groups_z 参数设置. 一个工作组其基本上是一个工作项(work items, 单位)的3D块, 每个工作项由你代码中运行的计算着色器的一次invocation所处理. 每个本地工作组的大小在x, y, z 维度上, 使用着色器源码中的 input layout 前缀设置. 可见上面的简单例子. 看起来就像下面的代码:
@@ -154,7 +145,7 @@ printf("Work group size is %d x %d % xd items.\n",
 
 </ul>
 
-<h4 id="toc_1.1.1.2">10.1.1.2 Compute Shader Inputs and Outputs</h4>
+<div id="Chapter 10 Compute Shaders-10.1 Using Compute Shaders-10.1.1 Executing Compute Shaders-10.1.1.2 Compute Shader Inputs and Outputs"><h4 id="10.1.1.2 Compute Shader Inputs and Outputs">10.1.1.2 Compute Shader Inputs and Outputs</h4></div>
 <ul>
 <li>
 计算着色器没有内置的输出. 有一些内置的输入变量用于确定为位于 local work group 或者更大的 global work group 内的何处.
@@ -234,7 +225,7 @@ glDispatchCompute(IMAGE_WIDTH / 32, IMAGE_HEIGHT / 32, 1);
 </ul>
 </ul>
 
-<h3 id="toc_1.1.2">10.1.2 Compute Shader Communication</h3>
+<div id="Chapter 10 Compute Shaders-10.1 Using Compute Shaders-10.1.2 Compute Shader Communication"><h3 id="10.1.2 Compute Shader Communication">10.1.2 Compute Shader Communication</h3></div>
 <ul>
 <li>
 在工作组内的工作项上执行计算着色器类似于分批在控制点上执行TCS --- 都从一组 invocations 中创建工作组和 patches. 在单个 patch 内, TCS 可以写入 patch 前缀的变量, 如果它们正确同步了, 可以读取其他invocation写入的值. 这样允许了一个有限形式的TCS invocation在单个patch内的通讯. 然而这还有些限制, patch前缀的变量其可用的存储量相当有限, 单个 patch 内的控制点数非常的小.
@@ -247,7 +238,7 @@ glDispatchCompute(IMAGE_WIDTH / 32, IMAGE_HEIGHT / 32, 1);
 
 </ul>
 
-<h4 id="toc_1.1.2.1">10.1.2.1 Synchronizing Compute Shaders</h4>
+<div id="Chapter 10 Compute Shaders-10.1 Using Compute Shaders-10.1.2 Compute Shader Communication-10.1.2.1 Synchronizing Compute Shaders"><h4 id="10.1.2.1 Synchronizing Compute Shaders">10.1.2.1 Synchronizing Compute Shaders</h4></div>
 <ul>
 <li>
 一个工作组内的 invocations 可能并行运行, 处理器可能将每个本地工作组分割成一些更小的chunk, 而后单个chunk内其步调一致地(in lockstep)执行这些 invocations. 而后在处理器的计算资源上时间分片这些chunks, 而这些时间片(timeslices)可能以任何顺序分配. 有可能相同的本地工作组开始后, 一个chunk的invocation在其他的chunks之前完成, 更可能的是在任意时间上许多 "live(活着的)" chunks 出现在处理器<a href="..html">.</a>
@@ -289,8 +280,8 @@ void main(void)
 </ul>
 </ul>
 
-<h2 id="toc_1.2">10.2 Examples</h2>
-<h3 id="toc_1.2.1">10.2.1 Compute Shader Parallel Prefix Sum</h3>
+<div id="Chapter 10 Compute Shaders-10.2 Examples"><h2 id="10.2 Examples">10.2 Examples</h2></div>
+<div id="Chapter 10 Compute Shaders-10.2 Examples-10.2.1 Compute Shader Parallel Prefix Sum"><h3 id="10.2.1 Compute Shader Parallel Prefix Sum">10.2.1 Compute Shader Parallel Prefix Sum</h3></div>
 <ul>
 <li>
 prefix sum 操作是一个算法, 给定一个输入数组, 计算出一个新的数组, 其元素为输入数组当前元素之前所有元素的累计. 包括当前元素则为 inclusive prefix sum, 不包含则为 exclusive prefix sum. 下面为 C++ 的简单实现
@@ -554,7 +545,7 @@ Pre-bias 我们的渲染图像 -0.5, 对于更大的图像, 保证其summed area
 </ul>
 </ul>
 
-<h3 id="toc_1.2.2">10.2.2 Compute Shader Flocking</h3>
+<div id="Chapter 10 Compute Shaders-10.2 Examples-10.2.2 Compute Shader Flocking"><h3 id="10.2.2 Compute Shader Flocking">10.2.2 Compute Shader Flocking</h3></div>
 <ul>
 <li>
 flocking 算法则是通过更新大型组内独立于其他成员的单个成员的属性显示的一个 emergent behavior. 例如蜂群, 鸟群, 鱼群. 其内单个个体的行为依赖于组内附近成员的感知. 成员之间不会产生任意特定决定之上的协作 - 我们知道鱼群没有一个头鱼, 因此组内每个成员有效地独立, 每个属性的值可以并行地计算 - 用GPU实现非常理想.
@@ -831,6 +822,5 @@ void main(void)
 
 </ul>
 
-    </div>
 </body>
 </html>

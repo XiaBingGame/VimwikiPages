@@ -1,36 +1,27 @@
-﻿<html>
+<!DOCTYPE html>
+<html>
 <head>
-    <link rel="Stylesheet" type="text/css" href="../../../../../style.css" />
-    <title>Chapter012</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../../../../../style.css">
+<title>Chapter012</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<div id="all">
-<div id="header">
-	<ul id="top-nav">
-		<li>
-			<a href="file:///D:/Documents/Vimwiki/Vimwiki_html/index.html">首页</a>
-		</li>
-	</ul>
-</div>
-</div>
-    <div class="content">
-    
-<h1 id="toc_1">Chaper 12 Rendering Techniques</h1>
-<h2 id="toc_1.1">12.1 Lighting Models</h2>
-<h3 id="toc_1.1.1">12.1.1 The Phong Lighting Model</h3>
+
+<div id="Chaper 12 Rendering Techniques"><h1 id="Chaper 12 Rendering Techniques">Chaper 12 Rendering Techniques</h1></div>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models"><h2 id="12.1 Lighting Models">12.1 Lighting Models</h2></div>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.1 The Phong Lighting Model"><h3 id="12.1.1 The Phong Lighting Model">12.1.1 The Phong Lighting Model</h3></div>
 <ul>
 <li>
 物体有三个材质属性, ambient, diffuse, specular.
 
 </ul>
 
-<h4 id="toc_1.1.1.1">12.1.1.1 Ambient Light</h4>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.1 The Phong Lighting Model-12.1.1.1 Ambient Light"><h4 id="12.1.1.1 Ambient Light">12.1.1.1 Ambient Light</h4></div>
 <pre class="brush: glsl">
 uniform vec3 ambient = vec3(0.1, 0.1, 0.1);
 </pre>
 
-<h4 id="toc_1.1.1.2">12.1.1.2 Diffuse Light</h4>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.1 The Phong Lighting Model-12.1.1.2 Diffuse Light"><h4 id="12.1.1.2 Diffuse Light">12.1.1.2 Diffuse Light</h4></div>
 <pre class="brush: glsl">
 uniform vec3 vDiffuseMaterial;
 uniform vec3 vDiffuseLight;
@@ -38,7 +29,7 @@ float fDotProduct = max(0.0, dot(vNormal, vLightDir));
 vec3 vDiffuseColor = vDiffuseMaterial * vDiffuseLight * fDotProduct;
 </pre>
 
-<h4 id="toc_1.1.1.3">12.1.1.3 Specular Highlight</h4>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.1 The Phong Lighting Model-12.1.1.3 Specular Highlight"><h4 id="12.1.1.3 Specular Highlight">12.1.1.3 Specular Highlight</h4></div>
 <pre class="brush: glsl">
 uniform vec3 vSpecularMaterial;
 uniform vec3 vSpecularLight;
@@ -128,7 +119,7 @@ void main(void)
 
 </ul>
 
-<h4 id="toc_1.1.1.4">12.1.1.4 Phong Shading</h4>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.1 The Phong Lighting Model-12.1.1.4 Phong Shading"><h4 id="12.1.1.4 Phong Shading">12.1.1.4 Phong Shading</h4></div>
 <ul>
 <li>
 phong shading 和 phong lighting model 是不同的东西. 其不在顶点之间插值颜色值, 而是在顶点之间插值法线值, 得到最终法线以用于片段的光照计算.
@@ -211,7 +202,7 @@ void main(void)
 
 </ul>
 
-<h3 id="toc_1.1.2">12.1.2 Blinn-Phong Lighting</h3>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.2 Blinn-Phong Lighting"><h3 id="12.1.2 Blinn-Phong Lighting">12.1.2 Blinn-Phong Lighting</h3></div>
 <ul>
 <li>
 Blinn-Phong Lighting 是 Phong Lighting model 的扩展或者优化. 反射向量R使用半角向量H代替. H 为光照向量与视觉向量的半角. H = (L+E)/|L+E|.
@@ -255,7 +246,7 @@ void main(void)
 
 </ul>
 
-<h3 id="toc_1.1.3">12.1.3 Rim Lighting</h3>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.3 Rim Lighting"><h3 id="12.1.3 Rim Lighting">12.1.3 Rim Lighting</h3></div>
 <ul>
 <li>
 Rim lighting --- 也就是 back-lighting. 需要面法线和view direction.
@@ -268,7 +259,7 @@ Rim lighting --- 也就是 back-lighting. 需要面法线和view direction.
 
 </ul>
 
-<h3 id="toc_1.1.4">12.1.4 Normal Mapping</h3>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.4 Normal Mapping"><h3 id="12.1.4 Normal Mapping">12.1.4 Normal Mapping</h3></div>
 <ul>
 <li>
 为了查看表面的详细细节(feature), 则需要在原始模型中表现该level of detail. 这就需要大量的几何, 以及每个三角形仅覆盖很少的像素. 
@@ -380,7 +371,7 @@ void main(void)
 
 </ul>
 
-<h3 id="toc_1.1.5">12.1.5 Environment Mapping</h3>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.5 Environment Mapping"><h3 id="12.1.5 Environment Mapping">12.1.5 Environment Mapping</h3></div>
 <ul>
 <li>
 类型 spherical environment map, equirectangular map, cube map
@@ -396,7 +387,7 @@ cube map, 六个面组成的特殊纹理.
 
 </ul>
 
-<h4 id="toc_1.1.5.1">12.1.5.1 Spherical Environment Maps</h4>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.5 Environment Mapping-12.1.5.1 Spherical Environment Maps"><h4 id="12.1.5.1 Spherical Environment Maps">12.1.5.1 Spherical Environment Maps</h4></div>
 <ul>
 <li>
 view 方向和法线计算出纹理坐标.
@@ -452,7 +443,7 @@ void main(void)
 
 </ul>
 
-<h4 id="toc_1.1.5.2">12.1.5.2 Equirectangular Environment Maps</h4>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.5 Environment Mapping-12.1.5.2 Equirectangular Environment Maps"><h4 id="12.1.5.2 Equirectangular Environment Maps">12.1.5.2 Equirectangular Environment Maps</h4></div>
 <ul>
 <li>
 使用 view-space 法线和 view direction 向量, 在顶点着色器中计算, 而后插值, 而后片段着色器反射挤奶的view direction. 接下来, 我们取出y成分, 而后设置y为0从而投影该向量至 xz平面, 而后单元化. 而后取出 x成分, 产生我们第二个纹理坐标. 
@@ -490,7 +481,7 @@ void main(void)
 
 </ul>
 
-<h4 id="toc_1.1.5.3">12.1.5.3 Cube Maps</h4>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.5 Environment Mapping-12.1.5.3 Cube Maps"><h4 id="12.1.5.3 Cube Maps">12.1.5.3 Cube Maps</h4></div>
 <ul>
 <li>
 纹理对象 GL_TEXTURE_CUBE_MAP, glTexStorage2D() 设置纹理的存储尺寸, 使用 glTexSubImage2D() 加载每个面. GL_TEXTURE_CUBE_MAP_POSITIVE_X, GL_TEXTURE_CUBE_MAP_NEGATIVE_X, GL_TEXTURE_CUBE_MAP_POSITIVE_Y, GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, GL_TEXTURE_CUBE_MAP_POSITIVE_Z, GL_TEXTURE_CUBE_MAP_NEGATIVE_Z. 
@@ -601,7 +592,7 @@ void main(void)
 
 </ul>
 
-<h3 id="toc_1.1.6">12.1.6 Material Properties</h3>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.6 Material Properties"><h3 id="12.1.6 Material Properties">12.1.6 Material Properties</h3></div>
 <ul>
 <li>
 物体不同部分应用不同的材质. 通过在纹理中存储面的信息来给每个面, 每个三角形, 或每个像素分配材质属性. 例如镜面指数可以存储在纹理中. 
@@ -651,8 +642,8 @@ void main(void)
 
 </ul>
 
-<h3 id="toc_1.1.7">12.1.7 Casting Shadows</h3>
-<h4 id="toc_1.1.7.1">12.1.7.1 Shadow Mapping</h4>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.7 Casting Shadows"><h3 id="12.1.7 Casting Shadows">12.1.7 Casting Shadows</h3></div>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.7 Casting Shadows-12.1.7.1 Shadow Mapping"><h4 id="12.1.7.1 Shadow Mapping">12.1.7.1 Shadow Mapping</h4></div>
 <ul>
 <li>
 depth buffer. 渲染以光源为视点的深度信息. 使用一个 framebuffer object 包含 depth attachment. 渲染光源的深度信息. 而后进行我们的场景渲染之时, 比较每个像素的距离. 比较的时候, 将我们渲染的点从view space投影至光源的坐标系. 而后读取之前渲染的深度纹理. 
@@ -776,8 +767,8 @@ units --- 实现定义的缩放值, 其内部乘以在深度buffer中确保产�
 </ul>
 </ul>
 
-<h3 id="toc_1.1.8">12.1.8 Atmospheric Effects</h3>
-<h4 id="toc_1.1.8.1">12.1.8.1 Fog</h4>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.8 Atmospheric Effects"><h3 id="12.1.8 Atmospheric Effects">12.1.8 Atmospheric Effects</h3></div>
+<div id="Chaper 12 Rendering Techniques-12.1 Lighting Models-12.1.8 Atmospheric Effects-12.1.8.1 Fog"><h4 id="12.1.8.1 Fog">12.1.8.1 Fog</h4></div>
 <ul>
 <li>
 第八章的地形例子, 修改 TES
@@ -864,14 +855,14 @@ void main(void)
 
 </ul>
 
-<h2 id="toc_1.2">12.2 Non-Photo-Realistic Rendering</h2>
+<div id="Chaper 12 Rendering Techniques-12.2 Non-Photo-Realistic Rendering"><h2 id="12.2 Non-Photo-Realistic Rendering">12.2 Non-Photo-Realistic Rendering</h2></div>
 <ul>
 <li>
 产生非真实的图像. 例如 pencil-sketch 效果. 这就是 non-photo-realistic 渲染
 
 </ul>
 
-<h3 id="toc_1.2.1">12.2.1 Cell Shading — Texels as Light</h3>
+<div id="Chaper 12 Rendering Techniques-12.2 Non-Photo-Realistic Rendering-12.2.1 Cell Shading — Texels as Light"><h3 id="12.2.1 Cell Shading — Texels as Light">12.2.1 Cell Shading — Texels as Light</h3></div>
 <ul>
 <li>
 一维纹理, 类卡通绘制, toon shading. 也就是 cell shading. 使用一维纹理映射作为查找表. 使用 GL_NEAREST. 使用光的方向和法线的点乘作为纹理坐标进行查找.
@@ -956,8 +947,8 @@ void main(void)
 </ul>
 </ul>
 
-<h2 id="toc_1.3">12.3 Alternative Rendering Methods</h2>
-<h3 id="toc_1.3.1">12.3.1 Deferred Shading</h3>
+<div id="Chaper 12 Rendering Techniques-12.3 Alternative Rendering Methods"><h2 id="12.3 Alternative Rendering Methods">12.3 Alternative Rendering Methods</h2></div>
+<div id="Chaper 12 Rendering Techniques-12.3 Alternative Rendering Methods-12.3.1 Deferred Shading"><h3 id="12.3.1 Deferred Shading">12.3.1 Deferred Shading</h3></div>
 <ul>
 <li>
 一个片段计算之后可能被覆写, 所以使用该技术延迟计算片段.
@@ -967,7 +958,7 @@ void main(void)
 
 </ul>
 
-<h4 id="toc_1.3.1.1">12.3.1.1 Generating the G-Buffer</h4>
+<div id="Chaper 12 Rendering Techniques-12.3 Alternative Rendering Methods-12.3.1 Deferred Shading-12.3.1.1 Generating the G-Buffer"><h4 id="12.3.1.1 Generating the G-Buffer">12.3.1.1 Generating the G-Buffer</h4></div>
 <ul>
 <li>
 使用带有几个 attachments 的 framebuffer object 创建 G-buffer. OpenGL 支持最多 8个 attachment, 每个 attachment 可以有 4 个 32-bit channels(使用 GL_RGBA32F), 
@@ -1041,7 +1032,7 @@ void main(void)
 
 </ul>
 
-<h4 id="toc_1.3.1.2">12.3.1.2 Consuming the G-Buffer</h4>
+<div id="Chaper 12 Rendering Techniques-12.3 Alternative Rendering Methods-12.3.1 Deferred Shading-12.3.1.2 Consuming the G-Buffer"><h4 id="12.3.1.2 Consuming the G-Buffer">12.3.1.2 Consuming the G-Buffer</h4></div>
 <ul>
 <li>
 使用打包代码相反的操作, unpackHalf2x16 和 uintBitsToFloat 函数.
@@ -1107,7 +1098,7 @@ vec4 light_fragment(fragment_info_t fragment)
 
 </ul>
 
-<h4 id="toc_1.3.1.3">12.3.1.3 Normal Mapping and Deferred Shading</h4>
+<div id="Chaper 12 Rendering Techniques-12.3 Alternative Rendering Methods-12.3.1 Deferred Shading-12.3.1.3 Normal Mapping and Deferred Shading"><h4 id="12.3.1.3 Normal Mapping and Deferred Shading">12.3.1.3 Normal Mapping and Deferred Shading</h4></div>
 <ul>
 <li>
 在 deferred 渲染器中, G-buffer 中存储的法线位于世界或者view空间. 为了生成可以存储至 G-buffer 用于 defferred 着色的 view-space 法线, 我们根据来自 normal map 的切线空间的法线, 而后在 G-buffer 生成中变换至 view-space, 这需要对 normal mapping 算法做一点修改.
@@ -1161,7 +1152,7 @@ void main(void)
 
 </ul>
 
-<h4 id="toc_1.3.1.4">12.3.1.4 Deferred Shading — Downsides</h4>
+<div id="Chaper 12 Rendering Techniques-12.3 Alternative Rendering Methods-12.3.1 Deferred Shading-12.3.1.4 Deferred Shading — Downsides"><h4 id="12.3.1.4 Deferred Shading — Downsides">12.3.1.4 Deferred Shading — Downsides</h4></div>
 <ul>
 <li>
 对带宽要求高.
@@ -1180,14 +1171,14 @@ void main(void)
 
 </ul>
 
-<h3 id="toc_1.3.2">12.3.2 Screen-Space Techniques</h3>
+<div id="Chaper 12 Rendering Techniques-12.3 Alternative Rendering Methods-12.3.2 Screen-Space Techniques"><h3 id="12.3.2 Screen-Space Techniques">12.3.2 Screen-Space Techniques</h3></div>
 <ul>
 <li>
 deferred shading, 某种在屏幕空间中实现的渲染处理.
 
 </ul>
 
-<h4 id="toc_1.3.2.1">12.3.2.1 Ambient Occlusion</h4>
+<div id="Chaper 12 Rendering Techniques-12.3 Alternative Rendering Methods-12.3.2 Screen-Space Techniques-12.3.2.1 Ambient Occlusion"><h4 id="12.3.2.1 Ambient Occlusion">12.3.2.1 Ambient Occlusion</h4></div>
 <ul>
 <li>
 深深的皱褶和缝隙不会有环境光的效果. 使用 ad-hoc 方法和总的近似来实现这个效果.
@@ -1313,8 +1304,8 @@ void main(void)
 
 </ul>
 
-<h3 id="toc_1.3.3">12.3.3 Rendering without Triangles</h3>
-<h4 id="toc_1.3.3.1">12.3.3.1 Rendering Julia Fractals</h4>
+<div id="Chaper 12 Rendering Techniques-12.3 Alternative Rendering Methods-12.3.3 Rendering without Triangles"><h3 id="12.3.3 Rendering without Triangles">12.3.3 Rendering without Triangles</h3></div>
+<div id="Chaper 12 Rendering Techniques-12.3 Alternative Rendering Methods-12.3.3 Rendering without Triangles-12.3.3.1 Rendering Julia Fractals"><h4 id="12.3.3.1 Rendering Julia Fractals">12.3.3.1 Rendering Julia Fractals</h4></div>
 <ul>
 <li>
 我们创建一个 Julia set, 从纹理坐标中创建图像数据. Julia sets 和 Mandelbrot set(iconic bulblike fractal) 有关. 
@@ -1383,7 +1374,7 @@ else
 
 </ul>
 
-<h4 id="toc_1.3.3.2">12.3.3.2 Ray Tracing in a Fragment Shader</h4>
+<div id="Chaper 12 Rendering Techniques-12.3 Alternative Rendering Methods-12.3.3 Rendering without Triangles-12.3.3.2 Ray Tracing in a Fragment Shader"><h4 id="12.3.3.2 Ray Tracing in a Fragment Shader">12.3.3.2 Ray Tracing in a Fragment Shader</h4></div>
 <ul>
 <li>
 将一些像素发送给管线, 而后发现几何体的哪些部分覆盖了这些像素. OpenGL 不直接支持. 需要在着色器中自己实现. 
@@ -1538,6 +1529,5 @@ float intersect_ray_plane(ray R,
 
 </ul>
 
-    </div>
 </body>
 </html>

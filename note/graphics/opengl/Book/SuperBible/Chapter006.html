@@ -1,36 +1,27 @@
-﻿<html>
+<!DOCTYPE html>
+<html>
 <head>
-    <link rel="Stylesheet" type="text/css" href="../../../../../style.css" />
-    <title>OpenGL SuperBible 6 Chapter 6 Shaders and Programs</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../../../../../style.css">
+<title>OpenGL SuperBible 6 Chapter 6 Shaders and Programs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<div id="all">
-<div id="header">
-	<ul id="top-nav">
-		<li>
-			<a href="file:///D:/Documents/Vimwiki/Vimwiki_html/index.html">首页</a>
-		</li>
-	</ul>
-</div>
-</div>
-    <div class="content">
-    
 
-<h1 id="toc_1">第六章 着色器和程序 </h1>
-<h2 id="toc_1.1">语言概览</h2>
+
+<div id="第六章 着色器和程序 "><h1 id="第六章 着色器和程序 ">第六章 着色器和程序 </h1></div>
+<div id="第六章 着色器和程序 -语言概览"><h2 id="语言概览">语言概览</h2></div>
 <ul>
 <li>
 C 和 GLSL 之间的一个主要不同是matrix和vector类型为GLSL的第一类公民. 另一个主要的不同为 GLSL 被设计为在大规模地并行实现上运行. 大多数图形处理器将会同时运行着色器的数千拷贝(或invocations). 例如, 不允许在GLSL中有递归, 浮点数的精度要求并不和IEEE标准一样严格, 这点和大多数C实现不同.
 
 </ul>
-<h3 id="toc_1.1.1">数据类型</h3>
+<div id="第六章 着色器和程序 -语言概览-数据类型"><h3 id="数据类型">数据类型</h3></div>
 <ul>
 <li>
 GLSL 支持标量和向量数据类型, 数组和结构, 以及一些不透明的数据用于表示纹理和其他数据结构.
 
 </ul>
-<h4 id="toc_1.1.1.1">标量类型</h4>
+<div id="第六章 着色器和程序 -语言概览-数据类型-标量类型"><h4 id="标量类型">标量类型</h4></div>
 <ul>
 <li>
 GLSL中标量数据类型支持 32位和64位浮点数, 32位有符号和无符号整数, 以及布尔值. 不提供类似 short, char, string 的支持, 不支持指针或大于32位的整数. 支持的标量类型见表格 6.1
@@ -63,7 +54,7 @@ unsigned int --- 32-bit unsigned integer
 
 </ul>
 
-<h4 id="toc_1.1.1.2">向量和矩阵 </h4>
+<div id="第六章 着色器和程序 -语言概览-数据类型-向量和矩阵 "><h4 id="向量和矩阵 ">向量和矩阵 </h4></div>
 <ul>
 <li>
 支持所有标量类型的向量, 支持单精度和双精度浮点数的矩阵
@@ -113,7 +104,7 @@ s, t, p, q
 
 </ul>
 
-<h4 id="toc_1.1.1.3">数组和结构 </h4>
+<div id="第六章 着色器和程序 -语言概览-数据类型-数组和结构 "><h4 id="数组和结构 ">数组和结构 </h4></div>
 <ul>
 <li>
 你可以构造聚合类型如数组和结构, 包括结构的数组和数组的结构(arrays of structures and structures of arrays). 没有 typedef 关键字. GLSL 中的结构定义其隐式地声明了一个新的类型.
@@ -206,8 +197,8 @@ b.length() 返回 2, b[1].length() 返回 10
 </ul>
 </ul>
 
-<h3 id="toc_1.1.2">内置函数</h3>
-<h4 id="toc_1.1.2.1">术语</h4>
+<div id="第六章 着色器和程序 -语言概览-内置函数"><h3 id="内置函数">内置函数</h3></div>
+<div id="第六章 着色器和程序 -语言概览-内置函数-术语"><h4 id="术语">术语</h4></div>
 <ul>
 <li>
 genType 表示任意单精度标量或向量, 或者浮点, vec2, vec3, vec4 中的一个
@@ -229,7 +220,7 @@ dmat 表示任意双精度浮点矩阵
 
 </ul>
 
-<h4 id="toc_1.1.2.2">内置的矩阵和向量函数</h4>
+<div id="第六章 着色器和程序 -语言概览-内置函数-内置的矩阵和向量函数"><h4 id="内置的矩阵和向量函数">内置的矩阵和向量函数</h4></div>
 <ul>
 <li>
 matrixCompMult() 函数执行两个矩阵逐成员的乘法, 两个矩阵的 * 操作执行传统的矩阵乘法. transpose() 函数转置矩阵. inverse() 求出逆矩阵. determinant() 求解出矩阵的行列式.
@@ -248,7 +239,7 @@ length() 返回向量长度, distance() 返回两点间的距离. normalize() �
 
 </ul>
 
-<h4 id="toc_1.1.2.3">内置的数学函数 </h4>
+<div id="第六章 着色器和程序 -语言概览-内置函数-内置的数学函数 "><h4 id="内置的数学函数 ">内置的数学函数 </h4></div>
 <ul>
 <li>
 abs(), sign(), ceil(), floor(), trunc(), round(), roundEven(), fract(), mod(), modf(), min(), max(). 这些函数可作用域向量和标量. roundEven() 如果小数部分是0.5, 则四舍五入至最近的偶数.
@@ -316,7 +307,7 @@ GLSL 主要以弧度表示角度. radians(), degrees().
 
 </ul>
 
-<h4 id="toc_1.1.2.4">内置的数据操作函数 </h4>
+<div id="第六章 着色器和程序 -语言概览-内置函数-内置的数据操作函数 "><h4 id="内置的数据操作函数 ">内置的数据操作函数 </h4></div>
 <ul>
 <li>
 frexp() 允许你将一个浮点数转换成尾数和指数部分. ldexp() 允许你根据一个尾数和指数构建一个浮点数
@@ -344,8 +335,8 @@ GLSL支持的其他位操作包括 bitfieldReverse(), bitCount(), findLSB(), fin
 
 </ul>
 
-<h2 id="toc_1.2">编译, 链接和测试程序 </h2>
-<h3 id="toc_1.2.1">从编译器中得到信息 </h3>
+<div id="第六章 着色器和程序 -编译, 链接和测试程序 "><h2 id="编译, 链接和测试程序 ">编译, 链接和测试程序 </h2></div>
+<div id="第六章 着色器和程序 -编译, 链接和测试程序 -从编译器中得到信息 "><h3 id="从编译器中得到信息 ">从编译器中得到信息 </h3></div>
 <ul>
 <li>
 一旦你设置了着色器的源码并调用了 glCompileShader() 编译后, 你可用 glGetShaderiv() 得到编译状态.
@@ -431,7 +422,7 @@ glShaderSource() 允许你连接多个源字符串至单个着色器对象.
 
 </ul>
 
-<h3 id="toc_1.2.2">从链接器中得到信息 </h3>
+<div id="第六章 着色器和程序 -编译, 链接和测试程序 -从链接器中得到信息 "><h3 id="从链接器中得到信息 ">从链接器中得到信息 </h3></div>
 <ul>
 <li>
 glLinkProgram() 链接程序. 一个程序对象含有一些属性, 包括它的链接状态, 资源使用等等. 你可以使用 glGetProgramiv() 返回其状态
@@ -489,7 +480,7 @@ void glGetProgramInfoLog(GLuint program,
 
 </ul>
 
-<h3 id="toc_1.2.3">分离程序</h3>
+<div id="第六章 着色器和程序 -编译, 链接和测试程序 -分离程序"><h3 id="分离程序">分离程序</h3></div>
 <ul>
 <li>
 OpenGL 支持在 separable mode 中链接程序对象. 其可以链接仅包含管线中一个或几个stage的着色器. 多个程序对象, 其每个表示 OpenGL 管线的一部分. 它们可以连接至一个程序管线对象且在运行时匹配在一起.
@@ -548,7 +539,7 @@ void glBindProgramPipeline(GLuint pipeline);
 
 </ul>
 
-<h3 id="toc_1.2.4">接口匹配</h3>
+<div id="第六章 着色器和程序 -编译, 链接和测试程序 -接口匹配"><h3 id="接口匹配">接口匹配</h3></div>
 <ul>
 <li>
 当你将一套着色器链接成单个程序对象, OpenGL 链接器会告知你是否匹配不同stage的输入和输出.
@@ -681,7 +672,7 @@ Index 2: float extra @ location 1.
 </ul>
 </ul>
 
-<h4 id="toc_1.2.4.1">着色器子程序(Shader Subroutines)</h4>
+<div id="第六章 着色器和程序 -编译, 链接和测试程序 -接口匹配-着色器子程序(Shader Subroutines)"><h4 id="着色器子程序(Shader Subroutines)">着色器子程序(Shader Subroutines)</h4></div>
 <ul>
 <li>
 separable mode 使用程序, 其切换程序对象性能代价仍相当昂贵. 因此使用 subroutine uniforms. 这是一个特殊的uniform类型, 行为类似C的函数指针. 为了使用 subroutine uniform, 我们声明一个 subroutine 类型, 声明一个或多个 compatible subroutines(本质上为带有特殊声明格式的函数), 而后在这些函数上"指向" 我们的 subroutine uniform, 一个简单例子如下:
@@ -839,7 +830,7 @@ void subroutines_app::render(double currentTime)
 
 </ul>
 
-<h3 id="toc_1.2.5">程序的二进制结果(Program Binaries)</h3>
+<div id="第六章 着色器和程序 -编译, 链接和测试程序 -程序的二进制结果(Program Binaries)"><h3 id="程序的二进制结果(Program Binaries)">程序的二进制结果(Program Binaries)</h3></div>
 <ul>
 <li>
 一旦你编译和链接了一个程序, 你可以请求 OpenGL 给出一个二进制对象表示该程序的内部版本. 以后可能让OpenGL放入程序的二进制版本而绕过编译器和链接器. 如果你想要使用这个功能, 你应当在调用 glLinkProgram()之前调用 glProgramParameteri() 并将 pname 设置为 GL_PROGRAM_BINARY_RETRIEVABLE_HINT, 而后设置为 GL_TRUE. 这告知 OpenGL 你计划得到二进制数据并使用.
@@ -896,6 +887,5 @@ OpenGL 的大多数功能被现代显卡处理器直接支持. 然而, 它们中
 
 </ul>
 
-    </div>
 </body>
 </html>

@@ -1,28 +1,19 @@
-﻿<html>
+<!DOCTYPE html>
+<html>
 <head>
-    <link rel="Stylesheet" type="text/css" href="../../../../../style.css" />
-    <title>Chapter008</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../../../../../style.css">
+<title>Chapter008</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<div id="all">
-<div id="header">
-	<ul id="top-nav">
-		<li>
-			<a href="file:///D:/Documents/Vimwiki/Vimwiki_html/index.html">首页</a>
-		</li>
-	</ul>
-</div>
-</div>
-    <div class="content">
-    
-<h1 id="toc_1">Chapter 8 Primitive Processing</h1>
+
+<div id="Chapter 8 Primitive Processing"><h1 id="Chapter 8 Primitive Processing">Chapter 8 Primitive Processing</h1></div>
 <ul>
 <li>
 顶点着色器之后的几个stage, 可以看着是图元处理stage. tessellation shader stage和固定功能的tessellator处理patches. 几何着色器处理整个图元(点, 线, 三角形).
 
 </ul>
-<h2 id="toc_1.1">8.1 Tessellation</h2>
+<div id="Chapter 8 Primitive Processing-8.1 Tessellation"><h2 id="8.1 Tessellation">8.1 Tessellation</h2></div>
 <ul>
 <li>
 tessellation 其将一个大图元当成一个 patch 以打破分割成更小的图元. 最常用的用途是给一个低真实度的mesh添加几何细节. 
@@ -55,13 +46,13 @@ tessellation factor 发送给固定功能的 tessellation engine, 该引擎使�
 
 </ul>
 
-<h3 id="toc_1.1.1">8.1.1 Tessellation Primitive Modes</h3>
+<div id="Chapter 8 Primitive Processing-8.1 Tessellation-8.1.1 Tessellation Primitive Modes"><h3 id="8.1.1 Tessellation Primitive Modes">8.1.1 Tessellation Primitive Modes</h3></div>
 <ul>
 <li>
-tessellation mode 用于确定 OpenGL 如何将一个 patch 打破分割成更小的图元. 其在 TES 的输入 layout 前缀中设置, 可以是 quads, triangles, isolines 中的一个. 该 mode 不仅是控制 tessellator 产生的图元形式, 其害解释了 TES 的 gl_TessCoord 输入变量.
+tessellation mode 用于确定 OpenGL 如何将一个 patch 打破分割成更小的图元. 其在 TES 的输入 layout 前缀中设置, 可以是 quads, triangles, isolines 中的一个. 该 mode 不仅是控制 tessellator 产生的图元形式, 其还解释了 TES 的 gl_TessCoord 输入变量.
 
 </ul>
-<h4 id="toc_1.1.1.1">8.1.1.1 Tessellation Using Quads</h4>
+<div id="Chapter 8 Primitive Processing-8.1 Tessellation-8.1.1 Tessellation Primitive Modes-8.1.1.1 Tessellation Using Quads"><h4 id="8.1.1.1 Tessellation Using Quads">8.1.1.1 Tessellation Using Quads</h4></div>
 <ul>
 <li>
 如果 mode 设为 quads, 则 tessellation 引擎将生成一个四边形, 而后打破成一个三角形集. 
@@ -118,7 +109,7 @@ void main(void)
 
 </ul>
 
-<h4 id="toc_1.1.1.2">8.1.1.2 Tessellation Using Triangles</h4>
+<div id="Chapter 8 Primitive Processing-8.1 Tessellation-8.1.1 Tessellation Primitive Modes-8.1.1.2 Tessellation Using Triangles"><h4 id="8.1.1.2 Tessellation Using Triangles">8.1.1.2 Tessellation Using Triangles</h4></div>
 <ul>
 <li>
 gl_TessLevelInner[] 数组只有第一个元素被使用, 该 level 应用于tessellated三角形的整个内部区域. gl_TessLevelOuter[] 的前三个元素则用于设置三角形三个边的tessellation因子. 
@@ -157,14 +148,14 @@ void main(void)
 
 </ul>
 
-<h4 id="toc_1.1.1.3">8.1.1.3 Tessellation Using Isolines</h4>
+<div id="Chapter 8 Primitive Processing-8.1 Tessellation-8.1.1 Tessellation Primitive Modes-8.1.1.3 Tessellation Using Isolines"><h4 id="8.1.1.3 Tessellation Using Isolines">8.1.1.3 Tessellation Using Isolines</h4></div>
 <ul>
 <li>
 isoline tessellation 其产生真正的线条图元, 在tessellation domain中产生相等v坐标的线条. 每个线条沿着u方向打破成线段. 两个 outer tessellation 因子存储在 gl_TessLevelOuter[] 的前两个元素中. 用于指定线条的数目以及每个线条其线段的数目. 至于 inner tessellation 因子(gl_TessLevelInnere[])则完全不使用. 
 
 </ul>
 
-<h4 id="toc_1.1.1.4">8.1.1.4 Tessellation Point Mode</h4>
+<div id="Chapter 8 Primitive Processing-8.1 Tessellation-8.1.1 Tessellation Primitive Modes-8.1.1.4 Tessellation Point Mode"><h4 id="8.1.1.4 Tessellation Point Mode">8.1.1.4 Tessellation Point Mode</h4></div>
 <ul>
 <li>
 在TES中使用 point_mode 输入layout前缀. 
@@ -180,7 +171,7 @@ layout (triangles, point_mode) in;
 
 </ul>
 
-<h3 id="toc_1.1.2">8.1.2 Tessellation Subdivision Modes</h3>
+<div id="Chapter 8 Primitive Processing-8.1 Tessellation-8.1.2 Tessellation Subdivision Modes"><h3 id="8.1.2 Tessellation Subdivision Modes">8.1.2 Tessellation Subdivision Modes</h3></div>
 <ul>
 <li>
 tessellation 引擎生成一个三角形或四边形图元, 而后根据内部和外部tessellation factors将其边分割成线段. 而后分组这些生成顶点形成点, 线段, 或三角形, 并将之发送下一步的处理中.
@@ -213,7 +204,7 @@ layout (fractional_odd_spacing) in;
 
 </ul>
 
-<h4 id="toc_1.1.2.1">8.1.2.1 Controlling the Winding Order</h4>
+<div id="Chapter 8 Primitive Processing-8.1 Tessellation-8.1.2 Tessellation Subdivision Modes-8.1.2.1 Controlling the Winding Order"><h4 id="8.1.2.1 Controlling the Winding Order">8.1.2.1 Controlling the Winding Order</h4></div>
 <ul>
 <li>
 你可以设置 tessellated 生成的顶点是顺时针还是逆时针次序. 在 TES 使用输入 layout 前缀设置.
@@ -228,7 +219,7 @@ cw 和 ccw layout 前缀可以与其他 layout 前缀一起使用. 默认围绕�
 
 </ul>
 
-<h3 id="toc_1.1.3">8.1.3 Passing Data between Tessellation Shaders</h3>
+<div id="Chapter 8 Primitive Processing-8.1 Tessellation-8.1.3 Passing Data between Tessellation Shaders"><h3 id="8.1.3 Passing Data between Tessellation Shaders">8.1.3 Passing Data between Tessellation Shaders</h3></div>
 <ul>
 <li>
 为了让 tessellation 更有趣, 我们沿着管线向下传递更多的数据.
@@ -275,7 +266,7 @@ TCS 到 TES 除了每个顶点的数据之外, 还可以传递常量数据. 在 
 
 </ul>
 
-<h4 id="toc_1.1.3.1">8.1.3.1 Rendering without a Tessellation Control Shader</h4>
+<div id="Chapter 8 Primitive Processing-8.1 Tessellation-8.1.3 Passing Data between Tessellation Shaders-8.1.3.1 Rendering without a Tessellation Control Shader"><h4 id="8.1.3.1 Rendering without a Tessellation Control Shader">8.1.3.1 Rendering without a Tessellation Control Shader</h4></div>
 <ul>
 <li>
 TCS 的目的是执行一些任务, 如计算到TES的每个patch的输入值, 计算被固定功能的 tessellator 使用的内部和外部 tessellation levels. 
@@ -298,7 +289,7 @@ GL_PATCH_DEFAULT_INNER_LEVEL: 指向两个浮点数的数组的值. GL_PATCH_DEF
 
 </ul>
 
-<h3 id="toc_1.1.4">8.1.4 Communication between Shader Invocations</h3>
+<div id="Chapter 8 Primitive Processing-8.1 Tessellation-8.1.4 Communication between Shader Invocations"><h3 id="8.1.4 Communication between Shader Invocations">8.1.4 Communication between Shader Invocations</h3></div>
 <ul>
 <li>
 TCS 除了将数据传递给 TES 之外, 其还可以在 TCS 的调用之间通讯. patch 中的每个控制点都调用一次 TCS, 因此 TCS 中的每个输入变量都是一个数组. 数组的长度为输出patch的控制点数量. 通常, 每个 TCS 调用将负责写入数组的一个元素.
@@ -314,7 +305,7 @@ TCS 可以读取它们的输出变量 - 包括可能由其他调用写入的变�
 
 </ul>
 
-<h3 id="toc_1.1.5">8.1.5 Tessellation Example - Terrain Rendering</h3>
+<div id="Chapter 8 Primitive Processing-8.1 Tessellation-8.1.5 Tessellation Example - Terrain Rendering"><h3 id="8.1.5 Tessellation Example - Terrain Rendering">8.1.5 Tessellation Example - Terrain Rendering</h3></div>
 <ul>
 <li>
 地形例子, 基于四边形 patch 和 displacement(移置) mapping. displacement map 是一个纹理, 其包含了surface每个位置的移置信息. 每个 patch 表示一个 landscape 的小部分区域, 根据其可能的屏幕空间区域进行 tessellated. 每个 tessellated 的顶点根据displacement map 存储的值沿着surface的切线移动. 这样即可添加surface的几何细节而无需显式地存储每个tessellated顶点的位置. 
@@ -466,7 +457,7 @@ void main(void)
 
 </ul>
 
-<h3 id="toc_1.1.6">8.1.6 Tessellation Example - Cubic Bezier Patches</h3>
+<div id="Chapter 8 Primitive Processing-8.1 Tessellation-8.1.6 Tessellation Example - Cubic Bezier Patches"><h3 id="8.1.6 Tessellation Example - Cubic Bezier Patches">8.1.6 Tessellation Example - Cubic Bezier Patches</h3></div>
 <ul>
 <li>
 使用数学生成几何.
@@ -578,7 +569,7 @@ void main(void)
 
 </ul>
 
-<h2 id="toc_1.2">8.2 Geometry Shaders</h2>
+<div id="Chapter 8 Primitive Processing-8.2 Geometry Shaders"><h2 id="8.2 Geometry Shaders">8.2 Geometry Shaders</h2></div>
 <ul>
 <li>
 几何着色器一次处理整个图元(三角形, 线, 点), 可以改变管线中的数据量.
@@ -594,7 +585,7 @@ void main(void)
 
 </ul>
 
-<h3 id="toc_1.2.1">8.2.1 The Pass-Through Geometry Shader</h3>
+<div id="Chapter 8 Primitive Processing-8.2 Geometry Shaders-8.2.1 The Pass-Through Geometry Shader"><h3 id="8.2.1 The Pass-Through Geometry Shader">8.2.1 The Pass-Through Geometry Shader</h3></div>
 <ul>
 <li>
 最简单的几何着色器是 pass-through(转发) 着色器
@@ -654,7 +645,7 @@ gl_in[] 数组的长度由输入图元模式决定. 例如 triangles, 其 gl_in[
 
 </ul>
 
-<h3 id="toc_1.2.2">8.2.2 Using Geometry Shader in an Application</h3>
+<div id="Chapter 8 Primitive Processing-8.2 Geometry Shaders-8.2.2 Using Geometry Shader in an Application"><h3 id="8.2.2 Using Geometry Shader in an Application">8.2.2 Using Geometry Shader in an Application</h3></div>
 <ul>
 <li>
 glCreateShader() 函数和 GL_GEOMETRY_SHADER 参数
@@ -854,7 +845,7 @@ EndPrimitive() 和 strip 相关, 表示如果你想要绘制单个线条或三�
 
 </ul>
 
-<h3 id="toc_1.2.3">8.2.3 Discarding Geometry in the Geometry Shader</h3>
+<div id="Chapter 8 Primitive Processing-8.2 Geometry Shaders-8.2.3 Discarding Geometry in the Geometry Shader"><h3 id="8.2.3 Discarding Geometry in the Geometry Shader">8.2.3 Discarding Geometry in the Geometry Shader</h3></div>
 <ul>
 <li>
 你可以完全不调用 EmitVertex() 和 EndPrimitive(), 这将让你裁减掉该几何体并完全抛弃了该图元.
@@ -905,7 +896,7 @@ if (d &gt; 0.0)
 
 </ul>
 
-<h3 id="toc_1.2.4">8.2.4 Modifying Geometry in the Geometry Shader</h3>
+<div id="Chapter 8 Primitive Processing-8.2 Geometry Shaders-8.2.4 Modifying Geometry in the Geometry Shader"><h3 id="8.2.4 Modifying Geometry in the Geometry Shader">8.2.4 Modifying Geometry in the Geometry Shader</h3></div>
 <ul>
 <li>
 如果输入几何的形式为 triangle strips 或 fans, 则产生的几何体会有共享的顶点或共享的边. 使用顶点着色器移动共享的顶点则会移动所有共享该顶点的三角形. 其不可能分离两个共享一条边的三角形. 这些可以用几何着色器做到.
@@ -939,7 +930,7 @@ for (int i = 0; i &lt; 3; i++)
 
 </ul>
 
-<h3 id="toc_1.2.5">8.2.5 Generating Geometry in the Geometry Shader</h3>
+<div id="Chapter 8 Primitive Processing-8.2 Geometry Shaders-8.2.5 Generating Geometry in the Geometry Shader"><h3 id="8.2.5 Generating Geometry in the Geometry Shader">8.2.5 Generating Geometry in the Geometry Shader</h3></div>
 <ul>
 <li>
 可以多次调用 EmitVertex() 和 EndPrimitive() 产生新的几何体. 
@@ -1016,7 +1007,7 @@ make_face(d, e, f);
 
 </ul>
 
-<h3 id="toc_1.2.6">8.2.6 Changing the Primitive Type in the Geometry Shader</h3>
+<div id="Chapter 8 Primitive Processing-8.2 Geometry Shaders-8.2.6 Changing the Primitive Type in the Geometry Shader"><h3 id="8.2.6 Changing the Primitive Type in the Geometry Shader">8.2.6 Changing the Primitive Type in the Geometry Shader</h3></div>
 <ul>
 <li>
 normalviewer 例子. 将三角形改成线条. 
@@ -1085,7 +1076,7 @@ EndPrimitive();
 
 </ul>
 
-<h3 id="toc_1.2.7">8.2.7 Multiple Stream of Storage</h3>
+<div id="Chapter 8 Primitive Processing-8.2 Geometry Shaders-8.2.7 Multiple Stream of Storage"><h3 id="8.2.7 Multiple Stream of Storage">8.2.7 Multiple Stream of Storage</h3></div>
 <ul>
 <li>
 当只有一个顶点着色器的时候, 在输入给着色器的顶点和transform feedback buffer中存储的顶点之间, 其只有简单的一一对应的进出关系
@@ -1147,7 +1138,7 @@ stream 参数必须是编译器常量, 如果允许光栅化(rasterization), 则
 </ul>
 </ul>
 
-<h3 id="toc_1.2.8">8.2.8 New Primitive Types Introduced by the Geometry Shader</h3>
+<div id="Chapter 8 Primitive Processing-8.2 Geometry Shaders-8.2.8 New Primitive Types Introduced by the Geometry Shader"><h3 id="8.2.8 New Primitive Types Introduced by the Geometry Shader">8.2.8 New Primitive Types Introduced by the Geometry Shader</h3></div>
 <ul>
 <li>
 新的图元类型: GL_LINES_ADJACENCY, GL_LINE_STRIP_ADJACENCY, GL_TRIANGLES_ADJACENCY, GL_TRIANGLE_STRIP_ADJACENCY. 这些图元类型只有当几何着色器激活的时候才有用. 对于 adjacency 图元类型, 每个传送给几何着色器的线条或三角形, 其不仅可访问定义该图元的顶点, 其还可以访问其正处理图元的下一个图元的顶点.
@@ -1169,7 +1160,7 @@ GL_TRIANGLE_STRIP_ADJACENCY 表示一个三角形带, 其相隔一个顶点组�
 
 </ul>
 
-<h4 id="toc_1.2.8.1">8.2.8.1 Rendering Quads Using a Geometry Shader</h4>
+<div id="Chapter 8 Primitive Processing-8.2 Geometry Shaders-8.2.8 New Primitive Types Introduced by the Geometry Shader-8.2.8.1 Rendering Quads Using a Geometry Shader"><h4 id="8.2.8.1 Rendering Quads Using a Geometry Shader">8.2.8.1 Rendering Quads Using a Geometry Shader</h4></div>
 <ul>
 <li>
 现代图形 APIs 不支持直接渲染四边形, 主要因为图形硬件不支持 quads. 当建模程序产生由四边形组成的对象后, 其会包含一个选项, 以便导出几何数据, 其内每个四边形转换成两个三角形. 而后由图形硬件直接渲染. 有些图形硬件, 其支持 quads, 但是内部会做这种转换. 
@@ -1250,7 +1241,7 @@ void main(void)
 
 </ul>
 
-<h3 id="toc_1.2.9">8.2.9 Multiple Viewport Transformations</h3>
+<div id="Chapter 8 Primitive Processing-8.2 Geometry Shaders-8.2.9 Multiple Viewport Transformations"><h3 id="8.2.9 Multiple Viewport Transformations">8.2.9 Multiple Viewport Transformations</h3></div>
 <ul>
 <li>
 使用 glViewport() 和 glDepthRange() 设置你渲染的窗口矩形区域. 你可以四处移动你的viewport, 可以在单个很大的 framebuffer 中绘制多个虚拟窗口. 更进一步, OpenGL 允许你同时绘制多个 viewport. 这就是 viewport arrays
@@ -1337,6 +1328,5 @@ void main(void)
 
 </ul>
 
-    </div>
 </body>
 </html>

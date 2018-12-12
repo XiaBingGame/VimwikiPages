@@ -1,23 +1,14 @@
-﻿<html>
+<!DOCTYPE html>
+<html>
 <head>
-    <link rel="Stylesheet" type="text/css" href="../../../../../style.css" />
-    <title>Chapter003</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../../../../../style.css">
+<title>Chapter003</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<div id="all">
-<div id="header">
-	<ul id="top-nav">
-		<li>
-			<a href="file:///D:/Documents/Vimwiki/Vimwiki_html/index.html">首页</a>
-		</li>
-	</ul>
-</div>
-</div>
-    <div class="content">
-    
-<h1 id="toc_1">传递数据给顶点着色器</h1>
-<h2 id="toc_1.1">顶点属性 </h2>
+
+<div id="传递数据给顶点着色器"><h1 id="传递数据给顶点着色器">传递数据给顶点着色器</h1></div>
+<div id="传递数据给顶点着色器-顶点属性 "><h2 id="顶点属性 ">顶点属性 </h2></div>
 <ul>
 <li>
 in 前缀变量为 vertex attribute.
@@ -30,14 +21,14 @@ layout 前缀设置其位置.
 
 </ul>
 
-<h1 id="toc_2">将数据在stage之间传递 </h1>
+<div id="将数据在stage之间传递 "><h1 id="将数据在stage之间传递 ">将数据在stage之间传递 </h1></div>
 <ul>
 <li>
 使用相同的变量名来传递.
 
 </ul>
 
-<h1 id="toc_3">Interface Blocks</h1>
+<div id="Interface Blocks"><h1 id="Interface Blocks">Interface Blocks</h1></div>
 <ul>
 <li>
 有Block名和instance名, stage之间block名要一致, shader内部只关心 instance 名
@@ -54,13 +45,13 @@ Interface Block 只能用于 shader stage 之间传递数据.
 
 </ul>
 
-<h1 id="toc_4">Tessellation</h1>
+<div id="Tessellation"><h1 id="Tessellation">Tessellation</h1></div>
 <ul>
 <li>
 Tessellation 表示一个处理过程, 将一个高阶图元(OpenGL称之为patch)划分成许多更小的, 更简单的图元(如三角形). OpenGL 包含一个固定功能管线上可配置的Tessellation engine, 其可以将四边形, 三角形和线条拆分成大量更小的点, 线条, 三角形. 由三个部分组成:TCS, tessellation 引擎, TES
 
 </ul>
-<h2 id="toc_4.1">Tessellation Control Shaders</h2>
+<div id="Tessellation-Tessellation Control Shaders"><h2 id="Tessellation Control Shaders">Tessellation Control Shaders</h2></div>
 <ul>
 <li>
 负责两件事情: 首先确定发送给 tessellation engine 的 tessellation 层级(level), 生成发送给TES的数据.
@@ -108,7 +99,7 @@ void main(void)
 
 </ul>
 
-<h2 id="toc_4.2">The Tessellation Engin</h2>
+<div id="Tessellation-The Tessellation Engin"><h2 id="The Tessellation Engin">The Tessellation Engin</h2></div>
 <ul>
 <li>
 将一个表示成patch的高阶表面, 分割拆分成简单的图元, 如点, 线, 三角形.
@@ -117,7 +108,7 @@ void main(void)
 tessellation engine 产生输出图元之后, TES 则采用这些图元的顶点. tessellation engine 负责产生用于TES每次调用的参数, TES变换engine产生的图元, 并准备光栅化.
 
 </ul>
-<h2 id="toc_4.3">Tessellation Evaluation Shaders</h2>
+<div id="Tessellation-Tessellation Evaluation Shaders"><h2 id="Tessellation Evaluation Shaders">Tessellation Evaluation Shaders</h2></div>
 <ul>
 <li>
 tessellation engine 生成的图元每个顶点都会调用 TES 一次. 因此 tessellation levels 如果很高, 则会调用 TES 很多次.
@@ -150,7 +141,7 @@ void glPolygonMode(GLenum face,
 
 </ul>
 
-<h1 id="toc_5">几何着色器</h1>
+<div id="几何着色器"><h1 id="几何着色器">几何着色器</h1></div>
 <ul>
 <li>
 每个图元运行一次. 可访问图元内所有顶点.
@@ -188,20 +179,20 @@ void main(void)
 
 </ul>
 
-<h1 id="toc_6">Primitive Assembly, Clipping, and Rasterization</h1>
-<h2 id="toc_6.1">Clipping</h2>
+<div id="Primitive Assembly, Clipping, and Rasterization"><h1 id="Primitive Assembly, Clipping, and Rasterization">Primitive Assembly, Clipping, and Rasterization</h1></div>
+<div id="Primitive Assembly, Clipping, and Rasterization-Clipping"><h2 id="Clipping">Clipping</h2></div>
 <ul>
 <li>
 裁剪空间中的坐标除以第四个分量得到单元设备空间的坐标. 可见区域范围x,y为-1.0到1.0, z 为 0.0 到 1.0. 
 
 </ul>
-<h2 id="toc_6.2">Viewport Transformation</h2>
+<div id="Primitive Assembly, Clipping, and Rasterization-Viewport Transformation"><h2 id="Viewport Transformation">Viewport Transformation</h2></div>
 <ul>
 <li>
 设备单元坐标转换至窗口坐标
 
 </ul>
-<h2 id="toc_6.3">Culling</h2>
+<div id="Primitive Assembly, Clipping, and Rasterization-Culling"><h2 id="Culling">Culling</h2></div>
 <ul>
 <li>
 根据面的朝向剔除
@@ -213,21 +204,21 @@ void main(void)
 glEnable() 和参数 GL_CULL_FACE, glCullFace() 和参数 GL_FRONT, GL_BACK, GL_FRONT_AND_BACK
 
 </ul>
-<h2 id="toc_6.4">Rasterization</h2>
+<div id="Primitive Assembly, Clipping, and Rasterization-Rasterization"><h2 id="Rasterization">Rasterization</h2></div>
 <ul>
 <li>
 确定如线条或三角形的图元可能会覆盖哪些片段. OpenGL使用 half-space-based 法. OpenGL 首先在窗口坐标中确定三角形的围绕盒, 而后测试每个片段是否位于三角形内. 为了做到这点, 三角形的三条边用于将窗口分成一半, 而后处理.
 
 </ul>
 
-<h1 id="toc_7">Fragment Shader</h1>
+<div id="Fragment Shader"><h1 id="Fragment Shader">Fragment Shader</h1></div>
 <ul>
 <li>
 片段着色器常用来计算光照, 应用材质, 确定片段深度. 可用的输入有如 gl_FragCoord 这样的内置变量.
 
 </ul>
 
-<h1 id="toc_8">Framebuffer Operations</h1>
+<div id="Framebuffer Operations"><h1 id="Framebuffer Operations">Framebuffer Operations</h1></div>
 <ul>
 <li>
 framebuffer表示屏幕的可见内容, 还表示可存储每个像素其颜色值之外内容的额外内存.
@@ -236,7 +227,7 @@ framebuffer表示屏幕的可见内容, 还表示可存储每个像素其颜色�
 由 windowing系统提供的framebuffer为默认framebuffer, 还可提供你自己的framebuffer, 用于渲染off-screen区域.
 
 </ul>
-<h2 id="toc_8.1">像素操作</h2>
+<div id="Framebuffer Operations-像素操作"><h2 id="像素操作">像素操作</h2></div>
 <ul>
 <li>
 scissor test
@@ -252,7 +243,7 @@ depth test
 
 </ul>
 
-<h1 id="toc_9">Compute Shaders</h1>
+<div id="Compute Shaders"><h1 id="Compute Shaders">Compute Shaders</h1></div>
 <ul>
 <li>
 compute shader stage看成一个单独的管线, 独立于其他面向图形的管线.
@@ -276,6 +267,5 @@ void main(void)
 
 </ul>
 
-    </div>
 </body>
 </html>

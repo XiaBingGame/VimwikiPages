@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../../../../style.css">
+<title>ʹ��˵��</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<ul>
+<li>
+windows 需要添加 winmm.lib 库
+
+<li>
+需要配置 resources 子目录, 使用 Atomosphere::Initialize() 初始化
+
+<li>
+类概览
+
+<ul>
+<li>
+首先创建 SilverLining::Atmosphere 对象
+
+<li>
+创建 SilverLining::AtmosphericConditions 对象, 用于配置天气
+
+<li>
+配置时间和位置 SilverLining::AtmosphericConditions::SetTime() 和  SilverLining::AtmosphericConditions::SetLocation()
+
+<li>
+模拟风 SilverLining::WindVolume 类和 SilverLining::AtmosphericConditions::SetWind()
+
+<li>
+添加云 SilverLining::AtmosphericConditions::SetPresetConditions(). 
+
+<li>
+为了对云条件的更多控制, 创建 SilverLining::CloudLayer 对象, 而后添加云层 SilverLining::AtmosphericConditions::AddCloudLayer().
+
+<ul>
+<li>
+使用 SilverLining::CloudLayerFactory 创建 CloudLayer
+
+</ul>
+<li>
+使用 SilverLining::Atmosphere::SetConditions() 设置你的云条件
+
+<li>
+使用 SilverLining::Atmosphere::SetCameraMatrix() 和 SilverLining::Atmosphere::SetProjectionMatrix() 设置矩阵. 
+
+<li>
+使用 SilverLining::Atmosphere::DrawSky() 渲染天空
+
+<li>
+使用 SilverLining::Atmosphere::DrawObjects() 渲染物体
+
+</ul>
+</ul>
+
+</body>
+</html>

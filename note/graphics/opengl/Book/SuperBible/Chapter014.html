@@ -1,23 +1,14 @@
-﻿<html>
+<!DOCTYPE html>
+<html>
 <head>
-    <link rel="Stylesheet" type="text/css" href="../../../../../style.css" />
-    <title>Chapter014</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../../../../../style.css">
+<title>Chapter014</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<div id="all">
-<div id="header">
-	<ul id="top-nav">
-		<li>
-			<a href="file:///D:/Documents/Vimwiki/Vimwiki_html/index.html">首页</a>
-		</li>
-	</ul>
-</div>
-</div>
-    <div class="content">
-    
-<h1 id="toc_1">Chapter 14 Platform Speci?cs</h1>
-<h2 id="toc_1.1">14.1 Using Extensions in OpenGL</h2>
+
+<div id="Chapter 14 Platform Speci?cs"><h1 id="Chapter 14 Platform Speci?cs">Chapter 14 Platform Speci?cs</h1></div>
+<div id="Chapter 14 Platform Speci?cs-14.1 Using Extensions in OpenGL"><h2 id="14.1 Using Extensions in OpenGL">14.1 Using Extensions in OpenGL</h2></div>
 <ul>
 <li>
 OpenGL 可以由硬件厂商, 操作系统厂商, 工具和调试器的发布者扩展和增强.
@@ -33,7 +24,7 @@ OpenGL 可以由硬件厂商, 操作系统厂商, 工具和调试器的发布者
 
 </ul>
 
-<h3 id="toc_1.1.1">14.1.1 Enhancing OpenGL with Extensions</h3>
+<div id="Chapter 14 Platform Speci?cs-14.1 Using Extensions in OpenGL-14.1.1 Enhancing OpenGL with Extensions"><h3 id="14.1.1 Enhancing OpenGL with Extensions">14.1.1 Enhancing OpenGL with Extensions</h3></div>
 <ul>
 <li>
 两个函数确保 OpenGL 支持哪些扩展
@@ -150,27 +141,27 @@ funcname --- 函数名称
 </ul>
 </ul>
 
-<h2 id="toc_1.2">14.2 OpenGL on Windows</h2>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows"><h2 id="14.2 OpenGL on Windows">14.2 OpenGL on Windows</h2></div>
 <ul>
 <li>
 windows中, 一系列函数前缀 wgl_, token 前缀 WGL_. 表示 Windows 和 OpenGL 之间的接口.
 
 </ul>
 
-<h3 id="toc_1.2.1">14.2.1 OpenGL Implementations on Windows</h3>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.1 OpenGL Implementations on Windows"><h3 id="14.2.1 OpenGL Implementations on Windows">14.2.1 OpenGL Implementations on Windows</h3></div>
 <ul>
 <li>
 OpenGL 为 windows 平台的原生API, 通过 opengl32.dll 库导出函数, 以及 user32.dll 内的支持组成. 
 
 </ul>
-<h4 id="toc_1.2.1.1">14.2.1.1 Microsoft’s OpenGL</h4>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.1 OpenGL Implementations on Windows-14.2.1.1 Microsoft’s OpenGL"><h4 id="14.2.1.1 Microsoft’s OpenGL">14.2.1.1 Microsoft’s OpenGL</h4></div>
 <ul>
 <li>
 Microsoft 装备了 OpenGL 的一般实现. 如果没有 3D 硬件或者没有合适的驱动, 则使用该版本的 opengl 实现. 微软操作系统支持的 OpenGL 版本是 1.1. 
 
 </ul>
 
-<h4 id="toc_1.2.1.2">14.2.1.2 Modern Graphics Drivers</h4>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.1 OpenGL Implementations on Windows-14.2.1.2 Modern Graphics Drivers"><h4 id="14.2.1.2 Modern Graphics Drivers">14.2.1.2 Modern Graphics Drivers</h4></div>
 <ul>
 <li>
 The Installable Client Driver(ICD) 用于 Windows NT 的源生硬件驱动. 用软件和专有硬件的组合实现整个管线. 厂商提供的 ICDs 和微软的 OpenGL 一起实现. 当应用链接至 opengl32.dll 试图创建一个 context, 则该哭检查是否有一个厂商提供的驱动, 如果有, 则加载驱动, 而后传递 OpenGL 调用给它.
@@ -183,7 +174,7 @@ AMD opengl 驱动为 atioglxx.dll, Nvidia 驱动为 nvoglv32.dll
 
 </ul>
 
-<h4 id="toc_1.2.1.3">14.2.1.3 OpenGL on Windows Vista and Beyond</h4>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.1 OpenGL Implementations on Windows-14.2.1.3 OpenGL on Windows Vista and Beyond"><h4 id="14.2.1.3 OpenGL on Windows Vista and Beyond">14.2.1.3 OpenGL on Windows Vista and Beyond</h4></div>
 <ul>
 <li>
 每个渲染的窗口受 DWM(desktop window manager) 管理. 其负责显示 Aero 用户接口. 窗口的边变得半透明. DWM 负责运行2D和3D的应用和GPU组合起来创建用户看到的最终图像.
@@ -193,8 +184,8 @@ opengl32.dll 仅支持 opengl 1.4.
 
 </ul>
 
-<h3 id="toc_1.2.2">14.2.2 Basic Window Setup</h3>
-<h4 id="toc_1.2.2.1">14.2.2.1 GDI Device Contexts</h4>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.2 Basic Window Setup"><h3 id="14.2.2 Basic Window Setup">14.2.2 Basic Window Setup</h3></div>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.2 Basic Window Setup-14.2.2.1 GDI Device Contexts"><h4 id="14.2.2.1 GDI Device Contexts">14.2.2.1 GDI Device Contexts</h4></div>
 <ul>
 <li>
 GDI 不再以相同的方式进行硬件加速了. 现在使用 WPF(windows presentation foundation).
@@ -210,7 +201,7 @@ OpenGL 也有一个 context identifier, 称之为 rendering context(RC). renderi
 
 </ul>
 
-<h4 id="toc_1.2.2.2">14.2.2.2 Creating a Window</h4>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.2 Basic Window Setup-14.2.2.2 Creating a Window"><h4 id="14.2.2.2 Creating a Window">14.2.2.2 Creating a Window</h4></div>
 <ul>
 <li>
 如果你需要一个 OpenGL Context, 则你首先需要有一个 GDI context, 如果你需要有一个 GDI context, 则你首先需要有一个窗口. 使用 CreateWindowEx 函数. 创建一个用于窗口的类class. RegisterClass 注册窗口类
@@ -272,7 +263,7 @@ HDC dc = ::GetDC(hWnd);
 
 </ul>
 
-<h4 id="toc_1.2.2.3">14.2.2.3 Pixel Formats</h4>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.2 Basic Window Setup-14.2.2.3 Pixel Formats"><h4 id="14.2.2.3 Pixel Formats">14.2.2.3 Pixel Formats</h4></div>
 <ul>
 <li>
 配置窗口以满足渲染需要, 例如单缓存还是双缓存, stencil 或者目标的 alpha. 窗口设置了这些参数之后就不能改变, 只能通过销毁窗口而后重新创建新窗口来应用改变.
@@ -282,7 +273,7 @@ OpenGL 在窗口上使用 pixel formats 来份封装所有这些信息. 而后�
 
 </ul>
 
-<h4 id="toc_1.2.2.4">14.2.2.4 Choosing a Pixel Format</h4>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.2 Basic Window Setup-14.2.2.4 Choosing a Pixel Format"><h4 id="14.2.2.4 Choosing a Pixel Format">14.2.2.4 Choosing a Pixel Format</h4></div>
 <ul>
 <li>
 无法通过旧的 pixel format selectioni 方法访问多重采样 buffers.
@@ -362,7 +353,7 @@ int iPixelFormat = ::ChoosePixelFormat(dc, &amp;pfd);
 
 </ul>
 
-<h3 id="toc_1.2.3">14.2.3 The OpenGL Rendering Context</h3>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.3 The OpenGL Rendering Context"><h3 id="14.2.3 The OpenGL Rendering Context">14.2.3 The OpenGL Rendering Context</h3></div>
 <ul>
 <li>
 OpenGL 环境在 Rendering Context 中. 其内有OpenGL settings 和 state.
@@ -395,7 +386,7 @@ for (;;)
 
 </ul>
 
-<h4 id="toc_1.2.3.1">14.2.3.1 Double Buffering</h4>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.3 The OpenGL Rendering Context-14.2.3.1 Double Buffering"><h4 id="14.2.3.1 Double Buffering">14.2.3.1 Double Buffering</h4></div>
 <ul>
 <li>
 像素格式请求 PFD_DOUBLEBUFFER.
@@ -412,7 +403,7 @@ SwapBuffers(dc);
 
 </ul>
 
-<h4 id="toc_1.2.3.2">14.2.3.2 Extending WGL</h4>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.3 The OpenGL Rendering Context-14.2.3.2 Extending WGL"><h4 id="14.2.3.2 Extending WGL">14.2.3.2 Extending WGL</h4></div>
 <ul>
 <li>
 可用的扩展添加函数至 OpenGL, 同样也可以添加至 WGL.
@@ -638,7 +629,7 @@ if (nPixelFormat == -1)
 
 </ul>
 
-<h4 id="toc_1.2.3.3">14.2.3.3 Enumerating Pixel Formats</h4>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.3 The OpenGL Rendering Context-14.2.3.3 Enumerating Pixel Formats"><h4 id="14.2.3.3 Enumerating Pixel Formats">14.2.3.3 Enumerating Pixel Formats</h4></div>
 <ul>
 <li>
 wglGetPixelFormatAttribivARB() 和 wglGetPixelFormatAttribfvARB() 查询支持的格式列表以及其属性.
@@ -699,7 +690,7 @@ for (int i=0; i&lt;nPixelFormatCount; i++)
 </ul>
 </ul>
 
-<h4 id="toc_1.2.3.4">14.2.3.4 Advanced Context Creation</h4>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.3 The OpenGL Rendering Context-14.2.3.4 Advanced Context Creation"><h4 id="14.2.3.4 Advanced Context Creation">14.2.3.4 Advanced Context Creation</h4></div>
 <ul>
 <li>
 一些 OpenGL 版本并不与其他版本相投兼容. wglCreateContext() 函数, 得到一个 context, 其向后兼容于 OpenGL 1.0.
@@ -745,14 +736,14 @@ HGLRC oglRC2 = wglCreateContextAttribsARB(g_hDC, oglRC1, attribs);
 
 </ul>
 
-<h4 id="toc_1.2.3.5">14.2.3.5 Advanced Pixel Formats</h4>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.3 The OpenGL Rendering Context-14.2.3.5 Advanced Pixel Formats"><h4 id="14.2.3.5 Advanced Pixel Formats">14.2.3.5 Advanced Pixel Formats</h4></div>
 <ul>
 <li>
 WGL_ARB_pixel_format 扩展. 允许你检查和选择的像素格式功能, 其可以不是windows提供访问的像素格式功能. 例如多重采样渲染.
 
 </ul>
 
-<h4 id="toc_1.2.3.6">14.2.3.6 Pixel Format Attributes</h4>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.3 The OpenGL Rendering Context-14.2.3.6 Pixel Format Attributes"><h4 id="14.2.3.6 Pixel Format Attributes">14.2.3.6 Pixel Format Attributes</h4></div>
 <ul>
 <li>
 wglGetPixelFormatAttribivARB() 得到一个像素格式的任意特殊信息.
@@ -775,7 +766,7 @@ wglGetPixelFormatAttribivARB (hDC, pixFmt, 0, 1, attrib, nResults);
 
 </ul>
 
-<h3 id="toc_1.2.4">14.2.4 Full-Screen Rendering</h3>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.4 Full-Screen Rendering"><h3 id="14.2.4 Full-Screen Rendering">14.2.4 Full-Screen Rendering</h3></div>
 <pre class="brush: c++">
 if(bUseFS)
 {
@@ -820,7 +811,7 @@ AdjustWindowRectEx(&amp;g_windowRect, dwWindStyle, FALSE, dwExtStyle);
 // Create the window again
 . . .
 </pre>
-<h4 id="toc_1.2.4.1">14.2.4.1 Eliminating Visual Tearing</h4>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.4 Full-Screen Rendering-14.2.4.1 Eliminating Visual Tearing"><h4 id="14.2.4.1 Eliminating Visual Tearing">14.2.4.1 Eliminating Visual Tearing</h4></div>
 <ul>
 <li>
 如果 SwapBuffers() 比刷新率更快, 则产生撕裂的丑陋效果, 如果你在前一帧完成scanned out 就 SwapBuffers, 则会看到一阵的部分出现, 下一帧出现另一部分.
@@ -844,7 +835,7 @@ BOOL wglSwapIntervalEXT(GLint interval);
 </ul>
 </ul>
 
-<h3 id="toc_1.2.5">14.2.5 Cleaning Up</h3>
+<div id="Chapter 14 Platform Speci?cs-14.2 OpenGL on Windows-14.2.5 Cleaning Up"><h3 id="14.2.5 Cleaning Up">14.2.5 Cleaning Up</h3></div>
 <ul>
 <li>
 首先删除所有你创建的 objects(例如纹理, buffers, 等). 而后删除所有窗口系统的objects.
@@ -875,10 +866,9 @@ BOOL UnregisterClass(LPCTSTR lpClassName, HINSTANCE hInstance);
 
 </ul>
 
-<h2 id="toc_1.3">14.3 OpenGL on Mac OS X</h2>
-<h2 id="toc_1.4">14.4 OpenGL on Linux</h2>
-<h2 id="toc_1.5">14.5 OpenGL on Mobile Platforms</h2>
+<div id="Chapter 14 Platform Speci?cs-14.3 OpenGL on Mac OS X"><h2 id="14.3 OpenGL on Mac OS X">14.3 OpenGL on Mac OS X</h2></div>
+<div id="Chapter 14 Platform Speci?cs-14.4 OpenGL on Linux"><h2 id="14.4 OpenGL on Linux">14.4 OpenGL on Linux</h2></div>
+<div id="Chapter 14 Platform Speci?cs-14.5 OpenGL on Mobile Platforms"><h2 id="14.5 OpenGL on Mobile Platforms">14.5 OpenGL on Mobile Platforms</h2></div>
 
-    </div>
 </body>
 </html>

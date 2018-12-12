@@ -1,30 +1,21 @@
-﻿<html>
+<!DOCTYPE html>
+<html>
 <head>
-    <link rel="Stylesheet" type="text/css" href="../../../../../style.css" />
-    <title>Chapter013</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../../../../../style.css">
+<title>Chapter013</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<div id="all">
-<div id="header">
-	<ul id="top-nav">
-		<li>
-			<a href="file:///D:/Documents/Vimwiki/Vimwiki_html/index.html">首页</a>
-		</li>
-	</ul>
-</div>
-</div>
-    <div class="content">
-    
-<h1 id="toc_1">Chapter 13  Debugging and Performance Optimization</h1>
-<h2 id="toc_1.1">13.1 Debugging Your Applications</h2>
+
+<div id="Chapter 13  Debugging and Performance Optimization"><h1 id="Chapter 13  Debugging and Performance Optimization">Chapter 13  Debugging and Performance Optimization</h1></div>
+<div id="Chapter 13  Debugging and Performance Optimization-13.1 Debugging Your Applications"><h2 id="13.1 Debugging Your Applications">13.1 Debugging Your Applications</h2></div>
 <ul>
 <li>
 debug context --- 通过错误检查或者使用 OpenGL API 得到的反馈
 
 </ul>
 
-<h3 id="toc_1.1.1">13.1.1 Debug Contexts</h3>
+<div id="Chapter 13  Debugging and Performance Optimization-13.1 Debugging Your Applications-13.1.1 Debug Contexts"><h3 id="13.1.1 Debug Contexts">13.1.1 Debug Contexts</h3></div>
 <ul>
 <li>
 当你创建一个 OpenGL context 时, 其有选项创建其中一个模式, 其中一个模式是 debug context. 当你创建一个 debug context, OpenGL 在应用和驱动及GPU之间安装一个额外的layer. 这些额外的 layer 执行严格的错误检查, 分析参数, 记录错误, 或者其他昂贵的内容. 
@@ -280,7 +271,7 @@ label, length 则是物体的名称和名称的长度.
 </ul>
 </ul>
 
-<h2 id="toc_1.2">13.2 Performance Optimization</h2>
+<div id="Chapter 13  Debugging and Performance Optimization-13.2 Performance Optimization"><h2 id="13.2 Performance Optimization">13.2 Performance Optimization</h2></div>
 <ul>
 <li>
 改进性能主要是做两件事情
@@ -295,7 +286,7 @@ label, length 则是物体的名称和名称的长度.
 </ol>
 </ul>
 
-<h3 id="toc_1.2.1">13.2.1 Performance Analysis Tools</h3>
+<div id="Chapter 13  Debugging and Performance Optimization-13.2 Performance Optimization-13.2.1 Performance Analysis Tools"><h3 id="13.2.1 Performance Analysis Tools">13.2.1 Performance Analysis Tools</h3></div>
 <ul>
 <li>
 第一个工具是 GPUView. 微软的 Windows Performance Toolkit 的一部分.
@@ -305,7 +296,7 @@ AMD 的 GPU PerfStudio 2
 
 </ul>
 
-<h4 id="toc_1.2.1.1">13.2.1.1 Windows Performance Toolkit and GPUView</h4>
+<div id="Chapter 13  Debugging and Performance Optimization-13.2 Performance Optimization-13.2.1 Performance Analysis Tools-13.2.1.1 Windows Performance Toolkit and GPUView"><h4 id="13.2.1.1 Windows Performance Toolkit and GPUView">13.2.1.1 Windows Performance Toolkit and GPUView</h4></div>
 <ul>
 <li>
 Windows Performance Toolkit 可以用于测量窗口系统不同部分性能的工具包, 其可以测量 CPU 使用和事件, 内存和硬盘访问, 网络活跃等.
@@ -330,21 +321,21 @@ present packets 指示操作系统显示渲染结果的事件(由 SwapBuffer() �
 
 </ul>
 
-<h4 id="toc_1.2.1.2">13.2.1.2 GPU PerfStudio 2</h4>
+<div id="Chapter 13  Debugging and Performance Optimization-13.2 Performance Optimization-13.2.1 Performance Analysis Tools-13.2.1.2 GPU PerfStudio 2"><h4 id="13.2.1.2 GPU PerfStudio 2">13.2.1.2 GPU PerfStudio 2</h4></div>
 <ul>
 <li>
 frame profiler 需要 AMD 硬件, 但是 API trace 和 frame debugger 在任何显卡上工作的都很好. 
 
 </ul>
 
-<h3 id="toc_1.2.2">13.2.2 Tuning Your Application for Speed</h3>
+<div id="Chapter 13  Debugging and Performance Optimization-13.2 Performance Optimization-13.2.2 Tuning Your Application for Speed"><h3 id="13.2.2 Tuning Your Application for Speed">13.2.2 Tuning Your Application for Speed</h3></div>
 <ul>
 <li>
 最小化OpenGL驱动需要做的工作量, 最大化你可以从一个GPU得到的工作量.
 
 </ul>
 
-<h4 id="toc_1.2.2.1">13.2.2.1 Reading State or Data from OpenGL</h4>
+<div id="Chapter 13  Debugging and Performance Optimization-13.2 Performance Optimization-13.2.2 Tuning Your Application for Speed-13.2.2.1 Reading State or Data from OpenGL"><h4 id="13.2.2.1 Reading State or Data from OpenGL">13.2.2.1 Reading State or Data from OpenGL</h4></div>
 <ul>
 <li>
 从 OpenGL 中将数据读回至应用不是一个好主意. 包括 glReadPixels() 读取 framebuffer, 读取 occlusion queries 的结果, transform feedback queries, 或者其他依赖于渲染的结果. 或者等待一个可能还未完成的fence. 应当从没有有必要调用 glFinish(). 
@@ -371,7 +362,7 @@ glReadPixels() --- 如果目的是为了将结果的数据用于OpenGL中的其�
 </ul>
 </ul>
 
-<h4 id="toc_1.2.2.2">13.2.2.2 Effective Buffer Mapping</h4>
+<div id="Chapter 13  Debugging and Performance Optimization-13.2 Performance Optimization-13.2.2 Tuning Your Application for Speed-13.2.2.2 Effective Buffer Mapping"><h4 id="13.2.2.2 Effective Buffer Mapping">13.2.2.2 Effective Buffer Mapping</h4></div>
 <ul>
 <li>
 使用 glBufferData() 分配内存. 使用 glMapBufferRange() 函数映射 buffer 的一部分, 其有几个 flag 可以控制数据如何映射, 以及如何与管线其他部分同步. 原型为
@@ -437,7 +428,7 @@ GL_MAP_UNSYNCHRONIZED_BIT --- 告知 OpenGL 不要等待, 直到所给出指向b
 
 </ul>
 
-<h4 id="toc_1.2.2.3">13.2.2.3 Use the Features OpenGL Gives You</h4>
+<div id="Chapter 13  Debugging and Performance Optimization-13.2 Performance Optimization-13.2.2 Tuning Your Application for Speed-13.2.2.3 Use the Features OpenGL Gives You"><h4 id="13.2.2.3 Use the Features OpenGL Gives You">13.2.2.3 Use the Features OpenGL Gives You</h4></div>
 <ul>
 <li>
 OpenGL 拥有不少容器 objects. 它们表示 blocks of state. 举例有vertex array objects, framebuffer objects, transform feedback objects, transform feedback objects. 通常, 尽量使用容器 objects, 而非修改许多状态. 举例, 一个 vertex array object 包含与 OpenGL 前端有关的所有顶点数组的state. 其包含 bound buffer stores, 以及这些store内的顶点属性格式, 跨度, 偏移; 允许或禁止哪个 attributes. 你可以使用 glBindVertexArray() 快速切换这些信息的完整集. 参考 sb6::object::render.
@@ -450,7 +441,7 @@ transform feedback objects 包装了所有的state, 该state为表示 OpenGL tra
 
 </ul>
 
-<h4 id="toc_1.2.2.4">13.2.2.4 Use Only the Data You Need</h4>
+<div id="Chapter 13  Debugging and Performance Optimization-13.2 Performance Optimization-13.2.2 Tuning Your Application for Speed-13.2.2.4 Use Only the Data You Need"><h4 id="13.2.2.4 Use Only the Data You Need">13.2.2.4 Use Only the Data You Need</h4></div>
 <ul>
 <li>
 位置数据, 单元化物体空间的数据, 使得其位于区间 -1.0 到 1.0 之间, 这将允许你使用有符号单元化数据存储坐标 - glVertexAttribPointer() 传递 GL_SHORT 参数, 且normalized参数设为 GL_TRUE. 而后你可以包含一个缩放因子位于任意的模型矩阵中以返回物体原先的scale. 这样你可以每个成员使用16位来存储. 对于世界空间的坐标数据, w 成分永远都是 1.0, 没必要存储这个数据. 同样的策略还可用于法线和切线. 对于法线和切线, 10位精度足够. 所以可以使用 GL_INT_2_10_10_10_REV 作为类型参数传递给 glVertexAttribPointer(). 同样, 这使用了有符号的单元化数据, 且提供了一个类似层次的精度, 如16位浮点数据以及位于 -1.0 到 1.0 之间.
@@ -469,7 +460,7 @@ transform feedback objects 包装了所有的state, 该state为表示 OpenGL tra
 
 </ul>
 
-<h4 id="toc_1.2.2.5">13.2.2.5 Shader Compilation Performance</h4>
+<div id="Chapter 13  Debugging and Performance Optimization-13.2 Performance Optimization-13.2.2 Tuning Your Application for Speed-13.2.2.5 Shader Compilation Performance"><h4 id="13.2.2.5 Shader Compilation Performance">13.2.2.5 Shader Compilation Performance</h4></div>
 <ul>
 <li>
 着色器的编译影响用户的体验. 使用 glCompileShader() 编译着色器时, 如果使用 glGetShaderiv() 查看编译状态或其 info log时, 可能会产生暂停, 这是因为必须要完成编译才能给予答案. 除了一次编译一个着色器且查询编译结果, 你还可以按照如下的做法做:
@@ -518,7 +509,7 @@ transform feedback objects 包装了所有的state, 该state为表示 OpenGL tra
 
 </ul>
 
-<h4 id="toc_1.2.2.6">13.2.2.6 Making Use of Multiple GPUs</h4>
+<div id="Chapter 13  Debugging and Performance Optimization-13.2 Performance Optimization-13.2.2 Tuning Your Application for Speed-13.2.2.6 Making Use of Multiple GPUs"><h4 id="13.2.2.6 Making Use of Multiple GPUs">13.2.2.6 Making Use of Multiple GPUs</h4></div>
 <ul>
 <li>
 多显卡, 多GPU系统, AMD 称之为 CrossFire, NVIDIA 称之为 SLI. 使用多显卡的改进渲染的性能技术称之为 alternate frame rendering(AFR) mode, 一个 GPU 渲染一帧, 下个GPU渲染下一帧, 如此往复. 
@@ -548,7 +539,7 @@ transform feedback objects 包装了所有的state, 该state为表示 OpenGL tra
 
 </ul>
 
-<h4 id="toc_1.2.2.7">13.2.2.7 Using Multiple Threads</h4>
+<div id="Chapter 13  Debugging and Performance Optimization-13.2 Performance Optimization-13.2.2 Tuning Your Application for Speed-13.2.2.7 Using Multiple Threads"><h4 id="13.2.2.7 Using Multiple Threads">13.2.2.7 Using Multiple Threads</h4></div>
 <ul>
 <li>
 OpenGL 完全支持多线程, 有多线程模块. 每个线程拥有一个"current context". wglMakeCurrent, glXMakeCurrent() 会改变用于一个线程的 context, 一旦 context 是一个线程的 current context, 则该线程可以创建 objects, 编译着色器, 加载纹理, 渲染至窗口. 
@@ -573,7 +564,7 @@ OpenGL 完全支持多线程, 有多线程模块. 每个线程拥有一个"curre
 
 </ul>
 
-<h4 id="toc_1.2.2.8">13.2.2.8 Throw Out What You Don’t Need</h4>
+<div id="Chapter 13  Debugging and Performance Optimization-13.2 Performance Optimization-13.2.2 Tuning Your Application for Speed-13.2.2.8 Throw Out What You Don’t Need"><h4 id="13.2.2.8 Throw Out What You Don’t Need">13.2.2.8 Throw Out What You Don’t Need</h4></div>
 <ul>
 <li>
 OpenGL 允许你详细告知哪些资源应当保留, 哪些需要释放掉. 对于纹理, 我们有两个函数 glInvalidateTexImage() 和 glInvalidateTexSubImage().
@@ -653,6 +644,5 @@ target 可以为 GL_FRAMEBUFFER, GL_DRAW_FRAMEBUFFER, 或者 GL_READ_FRAMEBUFFER
 
 </ul>
 
-    </div>
 </body>
 </html>

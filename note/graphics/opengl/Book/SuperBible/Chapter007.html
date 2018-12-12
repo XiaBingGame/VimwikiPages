@@ -1,30 +1,21 @@
-﻿<html>
+<!DOCTYPE html>
+<html>
 <head>
-    <link rel="Stylesheet" type="text/css" href="../../../../../style.css" />
-    <title>OpenGL SuperBible 6 Chapter 7 Vertex Processing and Drawing Commands</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../../../../../style.css">
+<title>OpenGL SuperBible 6 Chapter 7 Vertex Processing and Drawing Commands</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<div id="all">
-<div id="header">
-	<ul id="top-nav">
-		<li>
-			<a href="file:///D:/Documents/Vimwiki/Vimwiki_html/index.html">首页</a>
-		</li>
-	</ul>
-</div>
-</div>
-    <div class="content">
-    
 
-<h1 id="toc_1">Chapter 7 Vertex Processing and Drawing Commands</h1>
-<h2 id="toc_1.1">7.1 Vertex Processing</h2>
+
+<div id="Chapter 7 Vertex Processing and Drawing Commands"><h1 id="Chapter 7 Vertex Processing and Drawing Commands">Chapter 7 Vertex Processing and Drawing Commands</h1></div>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.1 Vertex Processing"><h2 id="7.1 Vertex Processing">7.1 Vertex Processing</h2></div>
 <ul>
 <li>
 vertex fetch stage 获取到顶点着色器的输入. 顶点着色器的责任为设置顶点的位置, 而后该顶点用于后续stage. 同样其也可以设置一些用户自定义的或者内置的输出用于OpenGL在后面来描绘这些顶点.
 
 </ul>
-<h3 id="toc_1.1.1">7.1.1 Vertex Shader Inputs</h3>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.1 Vertex Processing-7.1.1 Vertex Shader Inputs"><h3 id="7.1.1 Vertex Shader Inputs">7.1.1 Vertex Shader Inputs</h3></div>
 <ul>
 <li>
 首先是 vertex fetch stage, 用于形成顶点着色器的输入. glVertexAttribPointer() 函数将缓存中的数据和顶点着色器的输入挂钩起来. 
@@ -187,7 +178,7 @@ void glVertexAttribBinding(5, 2); // material_id
 
 </ul>
 
-<h3 id="toc_1.1.2">7.1.2 Vertex Shader Outputs</h3>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.1 Vertex Processing-7.1.2 Vertex Shader Outputs"><h3 id="7.1.2 Vertex Shader Outputs">7.1.2 Vertex Shader Outputs</h3></div>
 <ul>
 <li>
 OpenGL 顶点着色器内置里面除了提供 glPosition 输出, 还提供了 gl_PointSize, gl_ClipDistance[]. 它们被包装成一个叫做 gl_PerVertex 的interface block. 声明如下:
@@ -205,7 +196,7 @@ gl_ClipDistance[] 用于 clippinig, gl_PointSize 用于控制可能渲染的点�
 
 </ul>
 
-<h4 id="toc_1.1.2.1">7.1.2.1 Variable Point Sizes</h4>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.1 Vertex Processing-7.1.2 Vertex Shader Outputs-7.1.2.1 Variable Point Sizes"><h4 id="7.1.2.1 Variable Point Sizes">7.1.2.1 Variable Point Sizes</h4></div>
 <ul>
 <li>
 默认情况下, OpenGL 绘制的点为一个片段大小. 你可以使用 glPointSize() 修改点的大小. 可设置的最大大小至少为64个像素. glGetIntegerv() 和 GL_POINT_SIZE_RANGE 可查询其限制. 你可以在顶点着色器中编程点的大小(或者在前端中的任意stage中). 设置 gl_PointSize 为你想要的点直径的大小. 注意要告诉OpenGL你想要用自己设置的点大小.
@@ -221,7 +212,7 @@ glEnable(GL_PROGRAM_POINT_SIZE);
 
 </ul>
 
-<h2 id="toc_1.2">7.2 Drawing Commands</h2>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.2 Drawing Commands"><h2 id="7.2 Drawing Commands">7.2 Drawing Commands</h2></div>
 <ul>
 <li>
 目前我们仅用 glDrawArrays() 绘制命令.
@@ -231,7 +222,7 @@ glEnable(GL_PROGRAM_POINT_SIZE);
 
 </ul>
 
-<h3 id="toc_1.2.1">7.2.1 Indexed Drawing Commands</h3>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.2 Drawing Commands-7.2.1 Indexed Drawing Commands"><h3 id="7.2.1 Indexed Drawing Commands">7.2.1 Indexed Drawing Commands</h3></div>
 <ul>
 <li>
 glDrawArrays() 为 non-indexed 绘制命令. 这表示顶点是有序存放, 仅需将buffer中的顶点数据依序填充至顶点着色器即可. 
@@ -333,7 +324,7 @@ glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0);
 
 </ul>
 </ul>
-<h4 id="toc_1.2.1.1">7.2.1.1 The Base Vertex</h4>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.2 Drawing Commands-7.2.1 Indexed Drawing Commands-7.2.1.1 The Base Vertex"><h4 id="7.2.1.1 The Base Vertex">7.2.1.1 The Base Vertex</h4></div>
 <ul>
 <li>
 glDrawElements() 的第一个高级版本 glDrawElementsBaseVertex(), 其有额外的参数:
@@ -350,7 +341,7 @@ void glDrawElementsBaseVertex(GLenum mode,
 
 </ul>
 
-<h4 id="toc_1.2.1.2">7.2.1.2 Combining Geometry using Primitive Restart</h4>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.2 Drawing Commands-7.2.1 Indexed Drawing Commands-7.2.1.2 Combining Geometry using Primitive Restart"><h4 id="7.2.1.2 Combining Geometry using Primitive Restart">7.2.1.2 Combining Geometry using Primitive Restart</h4></div>
 <ul>
 <li>
 有许多用于"条带化"几何体的工具. 其将"triangle soup"(即大量的未连接三角形), 将它们合并成一个三角形带集合, 这样可以改善性能. 现有通过新的"stripifier"传递一些有名(well-known)的模型来进行测量. 对当前的目前技术水平的stripifiers产生的新工具生成的strips 比较其数量和平均长度.
@@ -376,7 +367,7 @@ glPrimitiveRestartIndex(index);
 
 </ul>
 
-<h3 id="toc_1.2.2">7.2.2 Instancing</h3>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.2 Drawing Commands-7.2.2 Instancing"><h3 id="7.2.2 Instancing">7.2.2 Instancing</h3></div>
 <ul>
 <li>
 假设绘制一片草原, 其有许多叶子, 每个叶子由四个三角形组成的三角形strip组成. 则代码可能如下:
@@ -485,7 +476,7 @@ gl_InstanceID 的值可以直接当着着色器函数的参数, 或用于索引�
 
 </ul>
 
-<h4 id="toc_1.2.2.1">7.2.2.1 Getting Your Data Automatically</h4>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.2 Drawing Commands-7.2.2 Instancing-7.2.2.1 Getting Your Data Automatically"><h4 id="7.2.2.1 Getting Your Data Automatically">7.2.2.1 Getting Your Data Automatically</h4></div>
 <ul>
 <li>
 即使没有使用 instanced 绘制函数, 你也可以使用 gl_InstanceID, 只是其值为0, 因此你可以使用相同的着色器用于 instanced 和 non-instanced 渲染.
@@ -653,7 +644,7 @@ glDrawArraysInstanced(GL_TRIANGLE_FAN, 0, 4, 4);
 
 </ul>
 
-<h3 id="toc_1.2.3">7.2.3 Indirect Draws</h3>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.2 Drawing Commands-7.2.3 Indirect Draws"><h3 id="7.2.3 Indirect Draws">7.2.3 Indirect Draws</h3></div>
 <ul>
 <li>
 之前的渲染命令, 我们传递给绘制的参数比如顶点数量或instance数量, 它们直接传递给函数. 这里有一套绘制命令, 允许每个绘制的参数存储在一个 buffer object 中. 这意味着, 在你的应用调用绘制命令时, 它不需要知道这些参数, 仅需要知道参数存储在buffer中的位置. 这让我们有了一些有趣的可能性, 例如:
@@ -901,7 +892,7 @@ indirect draw buffer 的内容不必是静态的, 我们可以使用不同的技
 
 </ul>
 
-<h2 id="toc_1.3">7.3 Storing Transformed Vertices</h2>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.3 Storing Transformed Vertices"><h2 id="7.3 Storing Transformed Vertices">7.3 Storing Transformed Vertices</h2></div>
 <ul>
 <li>
 OpenGL 中, 可以将顶点着色器, tessellation evaluation 着色器, 几何着色器的结果存储至一个或多个buffer对象中, 这就是 transform feedback, 其为前端的最后stage. 这是一个不可编程的固定功能stage, 虽然其可以高度定制. 
@@ -917,7 +908,7 @@ OpenGL 中, 可以将顶点着色器, tessellation evaluation 着色器, 几何�
 
 </ul>
 
-<h3 id="toc_1.3.1">7.3.1 Using Transform Feedback</h3>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.3 Storing Transformed Vertices-7.3.1 Using Transform Feedback"><h3 id="7.3.1 Using Transform Feedback">7.3.1 Using Transform Feedback</h3></div>
 <ul>
 <li>
 glTransformFeedbackVaryings() 函数 --- 告知 OpenGL 哪个要记录输出.
@@ -1078,7 +1069,7 @@ glTransformFeedbackVaryings(program,
 
 </ul>
 
-<h3 id="toc_1.3.2">7.3.2 Starting, Pausing, and Stopping Transform Feedback</h3>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.3 Storing Transformed Vertices-7.3.2 Starting, Pausing, and Stopping Transform Feedback"><h3 id="7.3.2 Starting, Pausing, and Stopping Transform Feedback">7.3.2 Starting, Pausing, and Stopping Transform Feedback</h3></div>
 <ul>
 <li>
 当准备接收 transform feedback 结果的buffer已经绑定之后, 调用下面的函数激活 transform feedback mode.
@@ -1143,7 +1134,7 @@ glEndTransformFeedback();
 
 </ul>
 
-<h3 id="toc_1.3.3">7.3.3 Ending the Pipeline with Transform Feedback</h3>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.3 Storing Transformed Vertices-7.3.3 Ending the Pipeline with Transform Feedback"><h3 id="7.3.3 Ending the Pipeline with Transform Feedback">7.3.3 Ending the Pipeline with Transform Feedback</h3></div>
 <ul>
 <li>
 在许多 transform feedback 的应用中, 你可能仅需要存储transform feedback stage产生的顶点, 而不想要绘制任何东西. 你可以用下面的函数关闭光栅化
@@ -1159,7 +1150,7 @@ glDisable(GL_RASTERIZER_DISCARD);
 
 </ul>
 
-<h3 id="toc_1.3.4">7.3.4 Transform Feedback Example --- Physical Simulation</h3>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.3 Storing Transformed Vertices-7.3.4 Transform Feedback Example --- Physical Simulation"><h3 id="7.3.4 Transform Feedback Example --- Physical Simulation">7.3.4 Transform Feedback Example --- Physical Simulation</h3></div>
 <ul>
 <li>
 关于位置和速度信息, 我们用了 double-buffer. 类似于渲染的双缓存技术. 一个读一个写. 其中两个VAO使用相同的连接信息缓存. 使用两个 TBO, 一个作为位置VBO, 一个作为TBO, 交替使用.
@@ -1172,7 +1163,7 @@ glDisable(GL_RASTERIZER_DISCARD);
 
 </ul>
 
-<h2 id="toc_1.4">7.4 Clipping</h2>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.4 Clipping"><h2 id="7.4 Clipping">7.4 Clipping</h2></div>
 <ul>
 <li>
 点要么接受, 要么完全放弃
@@ -1184,7 +1175,7 @@ glDisable(GL_RASTERIZER_DISCARD);
 三角形则完全放弃, 完全接受, 或者创建多个的小三角形.
 
 </ul>
-<h4 id="toc_1.4.0.1">7.4.0.1 The Guard Band</h4>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.4 Clipping-7.4.0.1 The Guard Band"><h4 id="7.4.0.1 The Guard Band">7.4.0.1 The Guard Band</h4></div>
 <ul>
 <li>
 由于clip产生多个三角形可能会产生性能问题, 有些情况, 可能允许这样的三角形无修改地通过clipping阶段, 而后由光栅器抛弃这不可见的部分. 为了实现这个, 一些GPU包含了一个 guard band. 即一个允许三角形无修改通过的外部clip空间. 
@@ -1194,7 +1185,7 @@ guard band 的宽度可能相当大, 至少和viewport一样大.
 
 </ul>
 
-<h3 id="toc_1.4.1">7.4.1 User-Defined Clipping</h3>
+<div id="Chapter 7 Vertex Processing and Drawing Commands-7.4 Clipping-7.4.1 User-Defined Clipping"><h3 id="7.4.1 User-Defined Clipping">7.4.1 User-Defined Clipping</h3></div>
 <ul>
 <li>
 通过点到平面的有符号距离来确定点位于平面的哪一边. 你可以用该方法实现你自己的clipping算法
@@ -1237,6 +1228,5 @@ gl_ClipDistance[] 数组还可作为片段着色器的输入. 如果片段其 gl
 
 </ul>
 
-    </div>
 </body>
 </html>

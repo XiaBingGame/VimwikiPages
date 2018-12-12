@@ -1,0 +1,785 @@
+﻿<html>
+<head>
+    <link rel="Stylesheet" type="text/css" href="../../../../style.css" />
+    <title>thebiggestoneframe</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<div id="all">
+<div id="header">
+	<ul id="top-nav">
+		<li>
+			<a href="../index.html">首页</a>
+		</li>
+	</ul>
+</div>
+</div>
+    <div class="content">
+    
+<ul>
+<li>
+osgViewer/ViewerBase.cpp
+
+<ul>
+<li>
+ViewerBase::frame(dboule) 主要执行内容如下:
+
+<ol>
+<li>
+第一帧: viewerInit(), realize()
+
+<li>
+advance(double)
+
+<li>
+eventTraversal()
+
+<li>
+updateTraversal()
+
+<li>
+renderingTraversals()
+
+</ol>
+<li>
+viewerInit() 调用 osgViewer::View::init()
+
+<ul>
+<li>
+_eventQueue 储存视景器的事件队列
+
+<li>
+窗口事件使用 osgGA::GUIEventAdapter 派生并重写 handler() 函数(见例子 osgkeyboardmouse)
+
+<li>
+osgGA::GUIEventAdapter::setEventType 设置事件类型为 osgGA::GUIEventAdapter::FRAME, 每帧都调用
+
+<li>
+_cameraManipulator 存储相机操作器
+
+<ul>
+<li>
+可用 setCameraManipulator 来设置这个变量的内容
+
+</ul>
+<li>
+将初始化事件和 Viewer 自身传递给 _cameraManipulator 的 init 函数, 该函数可以用于初始化工作. 重写 osgGA::MatrixManipulator::init 可以初始化自定义漫游器的功能.
+
+</ul>
+<li>
+realize() 完成窗口和场景的"设置"工作
+
+<ul>
+<li>
+getContexts(contexts) 使用 osg::GraphicsContext 对象.
+
+<ul>
+<li>
+osg::GraphicsContext::Traits 设置窗口属性.
+
+<li>
+创建的 osg::GraphicsContext 赋予给相机
+
+<li>
+getContexts 获取主相机和从属相机的 GraphicsContexts 并保存至 vector
+
+<li>
+参考例子 osgcamera
+
+</ul>
+<li>
+如果没有创建 Graphics Context, 程序会为你创建默认 Graphics Context
+
+<ul>
+<li>
+OSG_CONFIG_FILE 配置文件路径
+
+<li>
+OSG_WINDOW: 窗口大小和尺寸, 使用 osgViewer::View::setUpViewInWindow
+
+<li>
+OSG_SCREEN: 屏幕窗口, 创建相应数量的屏幕
+
+<li>
+osgViewer::View::setUpViewAcrossAllScreens 函数, 创建一个全屏显示的图形设备
+
+</ul>
+</ul>
+<li>
+osgViewer::View::setUpViewInWindow: 五个参数, 窗口左上角x, y, 宽度 width, 高度 height, 屏幕数量 screenNum
+
+<ul>
+<li>
+获取 osg::DisplaySettings 的指针. osg::DisplaySettings 保存了 OSG 目前用到的, 与图形显示, 尤其是与立体显示有关的所有信息.
+
+<li>
+osg::DisplaySettings
+
+<ul>
+<li>
+_displayType: 显示器类型. _stereoMode: 立体显示模式. _eyeSeparation: 双眼的物理距离. _screenWidth, _screenHeight: 屏幕的实际宽度和高度(默认为0.325, 0.26). _screenDistance: 人眼到屏幕的距离, 默认为0.5.
+
+<li>
+_splitStereoHorizontalEyeMapping: 左眼渲染左视口还是右视口.
+
+<li>
+_splitStereoHorizontalSeparation: 左视口和右视口之间的距离.
+
+<li>
+_splitStereoVerticalEyeEyeMapping: 左眼渲染顶视口还是底视口.
+
+<li>
+_splitStereoVerticalSeparation: 顶视口和底视口之间的距离.
+
+<li>
+_splitStereoAutoAdjustAspectRatio: 默认为 true, 用于屏幕分割之后对其宽高比进行补偿.
+
+<li>
+_maxNumOfGraphicsContexts: 用户程序中最多可用的 GraphicsContext 数量, 默认为 32 个.
+
+<li>
+_numMultiSamples: 多重采样的子像素样本数, 默认为 0. 可以打开.
+
+<li>
+_minimumNumberStencilBits: 模板缓存的最小位数.
+
+</ul>
+<li>
+调用函数 ScreenIdentifier::readDISPLAY
+
+<ul>
+<li>
+检查系统环境变量 DISPLAY, 调用 ScreenIdentifier::setScreenIdentifier 函数, 将其中的内容按照"hostName:0.0"的格式解析为系统的主机名字(hostName), 显示数(win32下必须为0)和屏幕梳(0或其他数字).
+
+</ul>
+<li>
+使用 osg::GraphicsContext::createGraphicsContext() 创建 gc
+
+<li>
+osgGA::GUIEventAdapter::setWindowRectangel 记录新建立的窗口设备的大小.
+
+<li>
+主摄像机 _camera 的透视投影参数, 并设置新的 Viewport 视口.
+
+<li>
+osg::Camera::setDrawBuffer 和 osgCamera::setReadBuffer: 执行 glDrawBuffer 和 glReadBuffer, 自动设置此摄像机想要绘制和读取的缓存.
+
+<li>
+一些辅助函数: getScreenResolution, setScreenResolution, setScreenRefreshRate 等相关函数.
+
+<li>
+执行 View::assignSceneDataToCameras, 包括如下工作:
+
+<ul>
+<li>
+对于场景漫游器, 执行 setNode 函数和 home 函数. 注意, 如果我们使用 setCameraManipulator 函数时, 也会自动执行同样的操作.
+
+<li>
+将场景图赋予主摄像机 _camera, 同时设置它对应的渲染器(Rnerder)的相关函数. 
+			  同样将场景图形赋予所有的从摄像机 _slaves, 并设置每个从摄像机的渲染器.
+
+</ul>
+</ul>
+<li>
+回到 realize() 函数
+
+<ul>
+<li>
+对之前获得的所有 gc, 依次执行以下代码
+<pre c++>
+gc-&gt;realize();
+if(_realizeOperation.valid() &amp;&amp; gc-&gt;valid())
+{
+	gc-&gt;makeCurrent();
+	(*_realizeOperation)(gc);
+	gc-&gt;releaseContext();
+}
+</pre>
+
+<li>
+再次遍历 GraphicsContext 设备. 对每个 gc, 判断其是否为 GraphicsWindow 对象, 执行 GraphicsWindow::grabFocusIfPointerInWindow 函数(负责把鼠标焦点转到当前窗口).
+
+<li>
+启动计时工作, osg::Timer::setStartTick().
+
+<li>
+Viewer::setStartTick(): 找到当前视景器和所有 GraphicsContext 设备的事件队列 _eventQueue, 并设定他们的启动时刻为当前时间.
+
+<li>
+ViewerBase::setUpThreading: 设置线程.
+
+</ul>
+<li>
+osgViewer::ViewerBase::setUpThreading()
+
+<ul>
+<li>
+osg 的视景器有四种线程模型, 可以使用 setThreadingModel 进行设置.
+
+<ul>
+<li>
+SingleThreaded: 单线程模型, 不会创建任何新线程来完成场景的筛选和渲染. 在单核以及配置较低的系统上运行稳定.
+
+<li>
+CullDrawThreadPerContext: 每个 GraphicsContext 创建一个图形线程, 实现并行的渲染工作, 尝试把线程分别放在不同的CPU上运行. 每一帧结束后强制同步所有的线程. 应用范围比较有限.
+
+<li>
+DrawThreadPerContext: 为每个 GraphicsContext 创建一个图形线程, 并分配到不同的CPU上, 在当前帧的所有线程完成工作之前, 开始下一帧, 和上面不同.
+
+<li>
+CullThreadPerCameraDrawTHreadPerContext: 为每个 GraphicsContext 和每个摄像机创建线程, 这种模式同样不会等待前一次的渲染结束. 四核甚至更高的配置时, 该线程模型将最大限度发挥多 CPU 的处理能力.
+
+</ul>
+<li>
+更新(Update)和筛选A(Cull)/绘制(Draw)工作是由 ViewerBase::renderingTraversals 函数来完成的. 很多线程的调度和同步工作也是在这个函数中完成的.
+
+<li>
+Viewer::getScenes 函数获取当前视景器对应的 osgViewer::Scene 对象, 也就是场景. 一个场景包括了唯一的场景图形根节点, 分页数据库(DatabasePager), 分页图像库(ImagePager). Viewer 对象通常只包括一个 Scene 场景, 而 COmpositeViewer 则可能包含多个场景对象.
+
+<li>
+ViewerBase::setUpThreading 自动执行 ViewerBase::startThreading.
+
+</ul>
+<li>
+realize()
+
+<ul>
+<li>
+编译上下文(Compile Contexts)
+<pre c++>
+osg::DisplaySettings::instance()-&gt;setCompileContextsHint(true);
+</pre>
+
+<ul>
+<li>
+遍历所有可能的 GraphicsContext 设备, 针对它们分别再各自添加一个新的 GraphicsContext 设备, 所用的函数为 GraphicsContext::getOrCreateCompileContext. 在这之后, 分别执行了创建图形线程, 设置 CPU 依赖性, 以及启动图形线程的工作.
+
+<li>
+getOrCreateComplieContext 函数: 主要用于创建后台 Graphics Context. 这些新增的 GraphicsContext 对象使用了 pBuffer 的特性, 并使用对应对象相同的图形上下文(Traits::sharedContext). 使用 Pixel BUffer 可以提高图形刷新的速度. 还可以为特定的 GraphicsContext 设备添加特殊的处理动作.
+
+<ul>
+<li>
+添加特殊处理动作: 使用 osg::GraphicsContext::getCompileContext 获取后台图形上下文, 再使用 GraphicsContext::add 函数向其中追加 osg::Operation 对象. 见例子 osgterrain.
+
+</ul>
+<li>
+注意: 编译上下文可能在 Windows 上的实现有问题.
+
+</ul>
+</ul>
+</ul>
+</ul>
+
+
+<ul>
+<li>
+advance 函数的工作内容:
+
+<ul>
+<li>
+获取上一次记录的参考时间(Reference Time)
+
+<li>
+计算帧间时间
+
+<li>
+记录已经经过的帧数
+
+<li>
+ViewerBase::getStats 获取 osg::Stats 对象, 进行帧状态的保存和显示.
+
+<li>
+Referenced::getDeleteHandler() 处理 osg::Referenced 对象被弃用之后的删除工作.
+
+</ul>
+<li>
+记录工作
+
+<ul>
+<li>
+osg::FrameStamp 变量 _frameStamp 处理总时间和总帧数.
+
+<li>
+osg::Stats 变量 _stats 记录当前帧以及之前的24帧的每帧用时, 事件遍历用时, 更新遍历用时, 渲染遍历用时.
+
+<li>
+osg::Referenced::getDeleteHnadler()-&gt;flush(): 统一删除
+
+<li>
+osg::Referenced::getDeleteHnadler()-&gt;setFrameNumber(_frameStamp-&gt;getFrameNUmber())
+
+<li>
+DeleteHandler 的参数 _numFramesToRetainObjects: 垃圾对象被收集后, 再经过多少帧(默认为2), 方予以释放. 使用 setFrameNumber 设置.
+
+<li>
+目前 OSG 的删除不是用垃圾回收, 而是渲染之前添加 ref_ptr 引用计数, 渲染之后 unref 引用计数, 但这样渲染效率会降低 6%.
+
+<li>
+如果要使用 DeleteHandler, 可以加入 #undef OSGUTIL_RENDERBACKEND_USE_REF_PTR
+
+</ul>
+<li>
+osgViewer::Viewer 包括几个最主要的组件
+
+<ul>
+<li>
+漫游器 _cameraManipulator, 用于实现交互式的场景漫游
+
+<li>
+时间处理器组 _eventHandlers, 负责处理 Viewer 的事件队列 _eventQueue, 主要是键盘/鼠标等事件的处理.
+
+<li>
+场景 _scene, 包括 Viewer 所对应的场景图形根节点, 以及用于提高节点和图像数据速度的两个分页数据库.
+
+<li>
+摄像机 _camera 和 _slaves, 前者为场景的主摄像机, 后者为从摄像机组.
+
+<ul>
+<li>
+视口(Viewport)
+
+<li>
+图形上下文 (GraphicsContext), 表示平台相关的图形显示窗口(Win32通过CreateWindowEx创建该窗口), 或者表示离屏渲染的设备(PixelBufferWin32).
+
+</ul>
+<li>
+渲染器(GraphicsOperation, 更多时候是 osgViewer::Renderer), 这是 CULL 和 DRAW 的关键
+
+<li>
+DisplaySettings 直接对摄像机的处理工作负责, 大部分设置选项可以传递到摄像机对应的窗口特性(GraphicsContext::Traits)
+
+</ul>
+<li>
+osgViewer::Viewer::eventTraversal
+
+<ul>
+<li>
+执行用户设置的事件回调(EventCallback), 并为所有的用户交互和系统事件提供一个响应的机制.
+
+<li>
+_eventHandlers 负责处理由图形窗口设备传递到事件队列 _eventQueue 的各种事件.
+
+<li>
+新的事件处理器通过 View::addEventHandler 添加, 除了 RecordCameraPathHandler 和 StatsHandler 等常见的处理器工具之外, 其他的自定义事件处理器都派生自 osgGA::GUIEventHandler, 并重写 handle 函数. 见 osgviewer, osgkeyboardmouse 等例子.
+
+<li>
+eventTraversal 主要任务: 每一帧过程中, 取出已经发生的所有事件, 丢弃对场景无益的(视口之外的鼠标点击和乱点)事件, 依次将所有事件提交给各个事件处理器, 最后清空现有的事件队列, 等待下一帧.
+
+<li>
+记录事件遍历的时间
+
+<li>
+记录起始时刻之后的工作
+
+<ul>
+<li>
+取出事件队列的状态事件(EventQueue::getCurrentEventState), 为事件队列公用的"状态事件"
+
+<li>
+取出主摄像机的viewport范围, 将该范围设置为事件队列的"响应范围"(EventQueue::setInputRange)
+
+<ul>
+<li>
+EventQueue::setInputRange 主要工作设置鼠标活动的最大和最小范围
+
+<li>
+EventQueue::setUseFIxedMouseInputRange: 开启了鼠标范围的限定标志, 鼠标移动的范围自动限制在这个范围之内(默认关闭)
+
+</ul>
+<li>
+计算主摄像机的 VPW 矩阵
+
+</ul>
+<li>
+通过 Viewer::getContexts 函数找到 Viewer 中所有已有的 GraphicsWindow 图形窗口, 然后执行 GraphicsWindowWin32::checkEvents 函数.
+
+<ul>
+<li>
+通知 Windows 执行窗口的消息回调函数, 进而执行用户交互和系统消息的检查函数 GraphicsWindowWin32::handleNativeWindowingEvent.
+
+<li>
+GraphicsWindowWin32::handleNativeWindowingEvent 的作用负责把 WM_* 消息转化并传递给 osgGA::EventQueue 消息队列
+
+</ul>
+<li>
+使用 EventQueue::takeEvents 函数, 把当前 GraphicsWindow 图形窗口对象 gw 的事件队列保存到指定的变量 gw_events 中.
+<pre c++>
+osgGA::EventQueue::Events gw_events;
+gw-&gt;getEventQueue()-&gt;takeEvents(gw_events);
+</pre>
+
+<li>
+符合下列条件的摄像机, 为"焦点摄像机"(_cameraWithFocus)
+
+<ul>
+<li>
+鼠标移动时, 鼠标进入了摄像机的视口范围之内
+
+<li>
+摄像机是对应该视口的, 允许接收事件(Camera::getAllowEventFocus), 且"渲染目标实现方式"(Render Target Implementaton) 为 Camera::FRAME_BUFFER
+
+</ul>
+<li>
+将焦点摄像机的坐标转换为主摄像机的二维坐标. 通过两者的 VPW 实现.
+<pre c++>
+osg::Viewport* viewport = getCameraWithFocus()-&gt;getViewport(); 
+osg::Matrix localCameraVPW = getCameraWithFocus()-&gt;getViewMatrix() *   
+    getCameraWithFocus()-&gt;getProjectionMatrix(); 
+if (viewport) localCameraVPW *= viewport-&gt;computeWindowMatrix(); 
+osg::Matrix matrix( osg::Matrix::inverse(localCameraVPW) * masterCameraVPW ); 
+osg::Vec3d new_coord = osg::Vec3d(x,y,0.0) * matrix; 
+x = new_coord.x(); 
+y = new_coord.y(); 
+…… 
+</pre>
+
+<li>
+单一窗口的关闭工作
+<pre c++>
+bool wasThreading = areThreadsRunning(); 
+if (wasThreading) stopThreading(); 
+gw-&gt;close(); 
+if (wasThreading) startThreading(); 
+</pre>
+
+<ul>
+<li>
+首先尝试终止所有的渲染线程(包括各个图形设备开启的线程和渲染器开启的线程), 关闭窗口后再打开所有的渲染线程.
+
+<li>
+当我们试图在运行时开启一个新的 OSG 图形窗口时, 也必须使用相同的线程控制步骤. 关闭线程, 创建新渲染窗口, 开启线程.
+
+</ul>
+<li>
+所有来自图形窗口和Viewer的事件都被添加到一个 std::list 链表中.
+
+<li>
+OSG 的推出事件
+
+<ul>
+<li>
+退出键 Esc
+
+<li>
+ViewerBase::setQuitEventSetsDone 设置是否允许按下某个键之后直接退出. 默认为 GUIEventAdapter::Key_Escape.
+
+<li>
+ViewerBase::setDone 函数帮助我们随时结束仿真程序.
+
+</ul>
+<li>
+遍历事件, 每个 GUIEventAdapter 事件 event 传递给每一个注册的 GUIEventHandler 事件处理器.
+<pre c++>
+for(EventHandlers::iterator hitr = _eventHandlers.begin(); 
+        hitr != _eventHandlers.end(); 
+        ++hitr) 
+{ 
+    (*hitr)-&gt;handleWithCheckAgainstIgnoreHandledEventsMask( *event, *this, 0, 0); 
+} 
+</pre>
+
+<ul>
+<li>
+osgGA::GUIEventHandler::handleWithCheckAgainstIgnoreHandledEventsMask()
+
+<ul>
+<li>
+主要工作是执行 GUIEventHandlere::handle 函数.
+
+<li>
+该函数不要去重写
+
+</ul>
+<li>
+GUIEventHandler::setIgnoreHandledEventsMask 函数, 希望某个事件处理器暂时不要处理某一事件. 通过 GUIEventAdapter::EventType 类型的参数实现.
+
+</ul>
+<li>
+遍历事件, 每个 GUIEventAdapter 事件 event 传递给 _cameraManipulator
+
+<li>
+执行每个节点和Drawable的事件回调函数
+
+<ul>
+<li>
+对于任意节点, Geode 叶节点以及任意 Drawable 几何体, 我们都可以使用 setEventCallback 和 setUpdateCallback 函数设置它的事件回调和更新回调对象. 这些回调函数在 eventTraversal 函数中处理
+
+<ul>
+<li>
+节点的回调对象必须为 osg::NodeCallback 以及 NodeCallback::operator() 函数, Drawable 对象的事件回调对象为 Drawable::EventCallback 以及 EventCallback::event() 函数, Drawable 对象的更新回调对象为 Drawable::UpdateCallback 以及 UpdateCallback::update 函数.
+
+<li>
+_eventVisitor 负责管理事件回调的遍历工作. _updateVisitor 负责更新遍历. 还可以使用 ViewerBase::setEventVisitor 加载我们自定义的事件访问器
+
+</ul>
+</ul>
+<li>
+执行每个相机和从属相机的事件回调函数, 使用事件访问器时注意关闭访问器的遍历
+<pre c++>
+osg::NodeVisitor::TraversalMode tm = _eventVisitor-&gt;getTraversalMode(); 
+_eventVisitor-&gt;setTraversalMode(osg::NodeVisitor::TRAVERSE_NONE); 
+if (_camera.valid() &amp;&amp; _camera-&gt;getEventCallback()) _camera-&gt;accept(*_eventVisitor); 
+for(unsigned int i=0; i&lt;getNumSlaves(); ++i) 
+{ 
+    osg::Camera* camera = getSlave(i)._camera.get(); 
+    if (camera &amp;&amp; camera-&gt;getEventCallback()) camera-&gt;accept(*_eventVisitor); 
+} 
+_eventVisitor-&gt;setTraversalMode(tm); 
+</pre>
+
+</ul>
+<li>
+osgViewer::Viewer::updateTraversal()
+
+<ul>
+<li>
+更新回调使用 _updateVisitor 进行场景图形更新遍历. 通过 setUpdateCallback 设置更新回调.
+
+<li>
+事件回调和更新回调的区别: 每个事件都会调用事件回调一次, 更新回调只在每帧调用一次.
+
+<li>
+updateTraversal 的作用: 处理用户的更新回调对象, 更新摄像机的位置, 更新分页数据库 DatabasePager 和图像库 ImagePager 的内容. 主要流程如下:
+
+<ul>
+<li>
+获取函数的起始时刻
+
+<li>
+_updateVisitor 访问场景图形的根节点并遍历其子节点. 实现各个节点和 Drawable 对象的更新回调.
+
+<li>
+DatabasePager::updateSceneGraph 以及 ImagePager::updateSceneGraph 更新场景的分页数据库和分页图像库
+
+<li>
+处理用户定义的更新工作队列 _updateOperations.
+
+<li>
+主摄像机 _camera 以及从摄像机 _slaves 的更新回调(注意别遍历它们的子节点)
+
+<li>
+根据_cameraManipulator 的位置姿态矩阵去更新主摄像机的 _camera 的观察矩阵. MatrixManipulator::getInverseMatrix.
+
+<li>
+View::updateSlaves 更新所有 _slaves 中所有摄像机的投影矩阵, 观察矩阵以及场景筛选设置(CullSetting)
+
+<li>
+获取函数的结束时刻, 将相关的时刻信息保存到记录器中.
+
+</ul>
+<li>
+之前 ViewerBase::setRealizeOperation 进行自定义的场景预处理工作. 这里我们可以使用 _updateOperations 更新工作队列进行自定义的场景更新工作, 通过函数 ViewerBase::addUpdateOperation 写入多组更新处理器 Operation 对象(或者使用对应的成员函数 removeUpdateOperation 来移除), 因此可以实现的操作也更丰富.
+
+<ul>
+<li>
+习惯上 Operation 对象可以用来处理与图形设备以及 OpenGL 底层 API 相关的工作, 不过用户层级的工作在这里实现通常也没有问题
+
+</ul>
+<li>
+osgViewer::View::updateSlave()
+
+<ul>
+<li>
+更新从属摄像机组 _slaves:
+
+<ul>
+<li>
+从属摄像机继承了主摄像机的投影矩阵, 观察矩阵和场景筛选设置. 但可以在 View::addSlave 添加从属摄像机时, 设置投影矩阵与观察矩阵的偏置值, 还可以使用 CullSettings::setInheritanceMask 设置 CullSettings 的继承掩码
+
+<li>
+osg::Camera 类继承自 osg::CullSettings 类, 有几种筛选:
+
+<ul>
+<li>
+背面筛选: GL_CULLFACE
+
+<li>
+视锥体筛选: view frustum culling
+
+<li>
+剪切平面筛选: clip plane
+
+<li>
+遮挡筛选: occlusion culling, 会增大计算的开销, 仅作为一个预处理步骤出现
+
+</ul>
+<li>
+OSG 支持的场景筛选方式
+
+<ul>
+<li>
+NO_CULLING: 不进行场景筛选工作
+
+<li>
+NEAR_PLANE_CULLING: 近平面筛选, 将超出近平面范围之外的对象剔除
+
+<li>
+FAR_PLANE_CULLING: 远平面筛选, 将超出平面范围之外的对象剔除
+
+<li>
+VIEW_FRUSTUM_CULLING: 视锥体筛选, 保证场景中只有视锥体范围内的一小部分节点和Drawable是可见的, 因而加速场景的绘制速度.
+
+<li>
+VIEW_FRUSTUM_SIDES_CULLING: 视锥体侧面筛选, 它不执行近平面/远平面的筛选工作, 除此之外与VIEW_FRUSTUM_CULLING没有区别
+
+<li>
+SMALL_FEATURE_CULLING: 细节筛选, 筛选掉细微物体. CullSettings::setSmallFeatureCullingPixelsSize 设置细微物体的阀值
+
+<li>
+SHADOW_OCCLUSION_CULLING: 遮挡筛选, 见例子 osgoccluder
+
+<li>
+CLUSTER_CULLING: 聚集筛选, 类似于背面筛选, 将多个对象组合起来并进行统一的背面筛选, OSG 可以使用筛选回调 ClusterCullingCallback 来实现节点的聚集筛选(对节点使用 Node::setCullback). 对于地球地理信息的裁剪时很适用
+
+<li>
+DEFAULT_CULLING: 默认情况打开视锥体侧面筛选, 细节筛选, 遮挡筛选和聚集筛选的选项
+
+<li>
+ENABLE_ALL_CULLING: 开启全部筛选方式.
+
+</ul>
+<li>
+CullSettings::setCullingMode 设置一种或多种筛选方式. 如暂时屏蔽一种筛选方式
+<pre c++>
+camera-&gt;setCullingMode(camera-&gt;getCullingMode() &amp; 
+    ~osg::CullSettings::SMALL_FEATURE_CULLING); 
+</pre>
+
+<li>
+有关各种筛选方式的详细算法，可以参考 CullingSet::isCulled 函数，有关遮挡筛选和聚集筛选的算法请单独参阅 OccluderNode，ConvexPlanarOccluder 和 ClusterCullingCallback 等相关类的实现代码。
+
+</ul>
+</ul>
+</ul>
+<li>
+线程处理库 OpenThreads
+
+<ul>
+<li>
+OSG 将其纳入了自己的结构体系, 包含了几个主要的线程处理类
+
+<ul>
+<li>
+Thread 类: 线程实现类, 是一个面向对象的线程实现接口, 没定义一个Thread类, 相当于定义一个共享进程资源, 但是可以独立调度的线程. 重写 run() 和 cancel() 这两个成员函数, 即可实现线程运行时和取消时的操作; 通过调用 start() 和 cancel(), 可以启动或中止已经定义的进程对象.
+
+<li>
+Mutex 类: 互斥体接口类. lock() 函数加锁, unlock() 函数解锁. 一个线程类中可以存在多个 Mutex 成员, 用于在不同的地点或情形下为共享区域加锁.
+
+<li>
+Condition 类: 条件量接口类. 它依赖于某个 Mutex 互斥体, 互斥体加锁时阻塞所在的线程, 解锁或者超过时限则释放此线程, 允许其继续运行.
+
+<li>
+Block 类: 阻塞器类. 可以阻塞线程的执行, 使用 block() 阻塞执行它的线程(注意, 不一定是定义它的Thread线程, 而是当前执行了 block 函数的线程, 包括系统主进程). 使用 release() 释放之前被阻塞的线程.
+
+<ul>
+<li>
+下面代码首先阻塞的是主进程, 然后再次阻塞的是 TestThread 线程
+<pre c++>
+#include &lt;OpenThreads/Thread&gt;
+#include &lt;OpenThreads/Condition&gt;
+#include &lt;OpenThreads/Mutex&gt;
+#include &lt;OpenThreads/ScopedLock&gt;
+#include &lt;OpenThreads/Block&gt;
+#include &lt;iostream&gt;
+
+class TestThread : public OpenThreads::Thread
+{
+public:
+    TestThread() : _done(false), _count(0){ }
+    ~TestThread() {  cancel();  }
+
+    void block(){ _block.block(); }
+
+    virtual int cancel()
+    {
+        _block.release();
+        _done = true;
+        while (isRunning())
+        {
+            OpenThreads::Thread::YieldCurrentThread();
+        }
+        return 0;
+    }
+
+    virtual void run()
+    {
+        do 
+        {
+            std::cout &lt;&lt; "(" &lt;&lt; _count &lt;&lt; ")";
+            ++_count;
+
+            if (_count == 10)
+            {
+                _block.release();
+                _block.reset();
+                _block.block();
+            }
+            microSleep(150000);
+
+        } while (!_done);
+    }
+
+protected:
+    bool                    _done;
+    unsigned long       _count;
+    OpenThreads::Block  _block;
+};
+
+int main()
+{
+    TestThread t;
+    t.start();
+    t.block();
+    std::cout &lt;&lt; "(Main)" &lt;&lt; std::endl;
+    getchar();
+    t.cancel();
+
+    return 0;
+}
+</pre>
+
+</ul>
+<li>
+BlockCount 类: 计数阻塞器类, 类似于阻塞器类, block() 阻塞线程, release() 释放线程. BlockCount 的构造函数还可以设置一个阻塞计数值, 计数的作用是每当阻塞器对象的 completed() 函数被执行一次, 计数器就减一, 直至减到零就释放被阻塞的线程.
+
+<li>
+Barrier 类: 线程栅栏类. 它的构造函数与 BlockCount 类似, 可以设置一个整数值, 该值理解为栅栏的"强度". 每个执行 Barrier::block() 函数的线程都将被阻塞. 当被阻塞在栅栏处的线程达到指定的数目时, 就好比栅栏无法支撑那么大的强度一样, 栅栏将被重开, 所有的线程将被释放. 重要的是, 这些线程是几乎同时释放的, 也就保证了线程执行的同步性.
+
+<ul>
+<li>
+注意 BlockCount 和 Barrier 的区别. 前者任意线程执行指定次数的 completed() 函数, 即可释放被阻塞的线程, 后者必须阻塞指定个数的线程之后, 所有的线程才会同时被释放.
+
+</ul>
+<li>
+ScopedLock 模板: 与 Mutex 配合出现, 它的作用域之内将对共享资源进行加锁, 作用域之外自动解锁
+<pre c++>
+{
+	OpenThreads::ScopedLock&lt;OpenThreads::Mutex&gt; lock(_mutex):
+	// ... ...
+}
+// ... ...
+</pre>
+
+</ul>
+</ul>
+<li>
+osgDB::DatabasePager::updateSceneGraph()
+
+<ul>
+<li>
+工作内容为更新分页数据库的内容, 它的内容简单到只包含两个执行函数的内容
+
+<ul>
+<li>
+DatabasePager::removeExpiredSubgraphs: 去除已经过期的场景子树
+
+<li>
+DatabasePager::addLoadedDataToSceneGraph: 向场景图形中添加新载入的数据.
+
+</ul>
+</ul>
+</ul>
+
+    </div>
+</body>
+</html>
