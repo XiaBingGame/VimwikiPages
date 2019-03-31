@@ -1,46 +1,56 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+ï»¿<html>
 <head>
-<link rel="Stylesheet" type="text/css" href="../../../../style.css">
-<title>OgreSource</title>
-<meta http-equiv="Content-Type" content="text/html; charset=cp936">
+    <link rel="Stylesheet" type="text/css" href="../../../../style.css" />
+    <title>OgreSource</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
-
+<div id="all">
+<div id="header">
+	<ul id="top-nav">
+		<li>
+			<a href="../index.html">é¦–é¡µ</a>
+		</li>
+	</ul>
+</div>
+</div>
+    <div class="content">
+    
 <p>
 Ogre::Root
-	ÃèÊö: ¿Í»§¶Ë³ÌĞòµÄÆğµã, ¹ÜÀíÒÑ±£´æµÄÅäÖÃ, logging, ÒÑ¾­·ÃÎÊÏµÍ³ÖĞµÄÆäËûÀà. ¿ÉÍ¨¹ı Root::getSingletonÀ´·ÃÎÊ
-	»ùÀà: Singleton&lt;Root&gt;, RootAlloc
+	æè¿°: å®¢æˆ·ç«¯ç¨‹åºçš„èµ·ç‚¹, ç®¡ç†å·²ä¿å­˜çš„é…ç½®, logging, å·²ç»è®¿é—®ç³»ç»Ÿä¸­çš„å…¶ä»–ç±». å¯é€šè¿‡ Root::getSingletonæ¥è®¿é—®
+	åŸºç±»: Singleton&lt;Root&gt;, RootAlloc
 </p>
 
 <ul>
 <li>
-ÕâÀïÊ¹ÓÃµÄÄÚ´æ·ÖÅäÆ÷Îªnedmalloc
+è¿™é‡Œä½¿ç”¨çš„å†…å­˜åˆ†é…å™¨ä¸ºnedmalloc
 <pre c++>
 	typedef AllocatedObject&lt;GeneralAllocPolicy&gt; GeneralAllocatedObject
 </pre>
 
 <ul>
 <li>
-ÆäÖĞÀà AllocatedObjec Ê¹ÓÃ GeneralAllocPolicyµÄallocateBytes·½·¨ºÍdeallocateBytes·½Ê½ÖØĞÂÊµÏÖ²Ù×÷·ûoperator newºÍdelete
+å…¶ä¸­ç±» AllocatedObjec ä½¿ç”¨ GeneralAllocPolicyçš„allocateBytesæ–¹æ³•å’ŒdeallocateBytesæ–¹å¼é‡æ–°å®ç°æ“ä½œç¬¦operator newå’Œdelete
 <pre c++>
 	typedef CategorisedAllocPolicy&lt;Ogre::MEMCATEGORY_GENERAL&gt; GeneralAllocPolicy;
 </pre>
 
 <li>
-ÆäÖĞ Ogre::MEMCATEGORY_GENERAL ±íÊ¾Àà±ğ, ÔÚÔ´ÂëÀï²¢Ã»ÓĞÓÃµ½¸Ã²ÎÊı, Ô¤Áô
+å…¶ä¸­ Ogre::MEMCATEGORY_GENERAL è¡¨ç¤ºç±»åˆ«, åœ¨æºç é‡Œå¹¶æ²¡æœ‰ç”¨åˆ°è¯¥å‚æ•°, é¢„ç•™
 
 <li>
-CategorisedAllocPolicy µÄ»ùÀàÎª NedPoolingPolicy
+CategorisedAllocPolicy çš„åŸºç±»ä¸º NedPoolingPolicy
 
 <li>
-Àà NedPoolingPolicy ¹¹Ôìº¯ÊıÎªË½ÓĞ, ÊµÏÖÁËÈı¸ö¾²Ì¬·½·¨ allocateBytes, deallocateBytes, getMaxAllocationSize
+ç±» NedPoolingPolicy æ„é€ å‡½æ•°ä¸ºç§æœ‰, å®ç°äº†ä¸‰ä¸ªé™æ€æ–¹æ³• allocateBytes, deallocateBytes, getMaxAllocationSize
 
 <li>
-ÕâÈı¸ö·½·¨¶¼µ÷ÓÃÁË NedPoolingImplµÄ¶ÔÓ¦º¯Êı, ¾ßÌåÊµÏÖ¼ûÔ´ÂëÎÄ¼ş OgreMemoryNedPooling.h, OgreMemoryNedPooling.cpp
+è¿™ä¸‰ä¸ªæ–¹æ³•éƒ½è°ƒç”¨äº† NedPoolingImplçš„å¯¹åº”å‡½æ•°, å…·ä½“å®ç°è§æºç æ–‡ä»¶ OgreMemoryNedPooling.h, OgreMemoryNedPooling.cpp
 
 </ul>
 </ul>
 
+    </div>
 </body>
 </html>

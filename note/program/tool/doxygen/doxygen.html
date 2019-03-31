@@ -7,21 +7,16 @@
 <body>
 <div id="all">
 <div id="header">
-<!--
 	<ul id="top-nav">
 		<li>
-			<a href="file:///D:/Documents and Settings/Vimwiki/Vimwiki_html/index.html">首页</a>
-		</li>
-		<li>
-			<a href="file:///D:/Documents and Settings/Vimwiki/Vimwiki_html/diary/diary.html">日记</a>
+			<a href="../index.html">首页</a>
 		</li>
 	</ul>
--->	
 </div>
 </div>
     <div class="content">
     
-<h1 id="toc_1">用法</h1>
+<div id="用法"><h1 id="用法">用法</h1></div>
 <ul>
 <li>
 要生成文档所需的步骤:
@@ -74,7 +69,7 @@ RTF输出: 缺省 style sheet(见RTF_STYLESHEET_FILE)
 </ol>
 </ul>
 
-<h1 id="toc_2">入门</h1>
+<div id="入门"><h1 id="入门">入门</h1></div>
 <ul>
 <li>
 第一步: 检查是否支持你的编程语言
@@ -84,7 +79,7 @@ RTF输出: 缺省 style sheet(见RTF_STYLESHEET_FILE)
 
 <ul>
 <li>
-如果你的程序复杂, 有多个文件, 可设置 INPUT 标记为程序根目录, 设置 FILE_PATTERNS 标记为文件格式(*.cpp *h), 设置 RECURSIVE 为真进行递归遍历, 设置 EXCLUDE_PATTERN 可设置忽略的目录和文件, 如 EXCLUDE_PATTERNS = <strong>/test/</strong> 
+如果你的程序复杂, 有多个文件, 可设置 INPUT 标记为程序根目录, 设置 FILE_PATTERNS 标记为文件格式(*.cpp *h), 设置 RECURSIVE 为真进行递归遍历, 设置 EXCLUDE_PATTERN 可设置忽略的目录和文件, 如 EXCLUDE_PATTERNS = <span id="入门-/test/"></span><strong id="/test/">/test/</strong> 
 
 <li>
 EXTRACT_ALL 标记为YES, 假设你的源代码已经文档化; SOURCE_BROWSER 标记为YES, 用于生成交叉引用. INLINE_SOURCES 标记为 YES, 则文档包含源码 
@@ -154,7 +149,7 @@ Man page 输出
 </ul>
 </ul>
 
-<h1 id="toc_3">HTML命令</h1>
+<div id="HTML命令"><h1 id="HTML命令">HTML命令</h1></div>
 <ul>
 <li>
 支持的HTML命令<br />
@@ -465,7 +460,7 @@ doxygen 可以认识的 HTML字符
 </ul>
 </ul>
 
-<h1 id="toc_4">特定文档块 </h1>
+<div id="特定文档块 "><h1 id="特定文档块 ">特定文档块 </h1></div>
 <ul>
 <li>
 两种注释: 简略注释, 详细注释, 还有函数体内的注释.
@@ -497,7 +492,7 @@ Qt Style
 上面两者注释风格中, ... text ... 之前的星号'*' 不是必须的
 
 <li>
-第三种可选择的风格: 最少两行C++注释, 且每行要多一个'/'或者'!', 且以一个空格结束该文档块<br /&gt;
+第三种可选择的风格: 最少两行C++注释, 且每行要多一个'/'或者'!', 且以一个空格结束该文档块
 <pre c++>
 ///
 /// ... text ...
@@ -509,7 +504,7 @@ Qt Style
 </pre>
 
 <li>
-其他格式<br />
+其他格式
 <pre c++>
 /********************************************//**
  *  ... text
@@ -526,7 +521,7 @@ Qt Style
 
 <ul>
 <li>
-在上面所介绍的注释风格中, 可以使用'\brief'开头, 该命令在段落末段结束, 所以详细描述位于空行之后<br /&gt;
+在上面所介绍的注释风格中, 可以使用'\brief'开头, 该命令在段落末段结束, 所以详细描述位于空行之后
 <pre c++>
 /*! \brief Brief description.
  *         Brief description continued.
@@ -536,7 +531,7 @@ Qt Style
 </pre>
 
 <li>
-如果 JAVADOC_AUTOBRIEF 为真, 则使用 JavaDoc style 的注释会自动开始一个简短描述, 由第一个句号为终点, 该句号后为空白, 另外还有QT_AUTOBRIEF<br />
+如果 JAVADOC_AUTOBRIEF 为真, 则使用 JavaDoc style 的注释会自动开始一个简短描述, 由第一个句号为终点, 该句号后为空白, 另外还有QT_AUTOBRIEF
 
 <li>
 另外 JAVADOC_AUTOBRIFE 对于多行的C++注释也有作用, 每行前多一个'/'或者'!', 这样句号也会终结一个简略注释
@@ -550,7 +545,7 @@ Qt Style
 </pre>
 
 <li>
-其他方法, 注意第二个例子, JAVADOC_AUTOBRIEF 要设为NO<br />
+其他方法, 注意第二个例子, JAVADOC_AUTOBRIEF 要设为NO
 <pre c++>
 /// Brief description.
 /** Detailed description. */
@@ -580,7 +575,7 @@ JavaDoc Style的缺省设置其注释块的第一行不为简短描述, 除非�
 不同于其他文档系统, 可以在定义之前放置文档. 这种方式允许在源文件中放置文档, 而不仅仅是头文件. 这样可以在头文件的声明放置简短描述, 在源文件的定义中放置详细描述
 
 <li>
-在类, 结构体, 文件, 联合, 枚举的成员定义之后进行注释, 则需要注释块中添加记号'&lt;', 该方法对函数参数也有效<br /&gt;
+在类, 结构体, 文件, 联合, 枚举的成员定义之后进行注释, 则需要注释块中添加记号'&lt;', 该方法对函数参数也有效
 
 <li>
 详细描述
@@ -594,7 +589,7 @@ int var; ///&lt; C++风格详细描述
 </pre>
 
 <li>
-简单描述<br /&gt;
+简单描述
 <pre c++>
 int var;	//!&lt; 简单描述
 int var;	///&lt; 简单描述
@@ -621,7 +616,7 @@ structural command
 如果不将注释块放在其对象之前或者之后, 而是存放于其他地方. 则需要在注释块中放置 structural command. 平时尽量不要使用 structural command.
 
 <li>
-Structural 命令由'\'开头或'@'开头, 而后跟随一个命令名称以及一个或多个参数. 下面的例子可以将该注释块存放于任何地方, 这是由于其有"\class"命令 <br />
+Structural 命令由'\'开头或'@'开头, 而后跟随一个命令名称以及一个或多个参数. 下面的例子可以将该注释块存放于任何地方, 这是由于其有"\class"命令
 <pre c++>
 /*! \class Test
     \brief A test class.
@@ -672,7 +667,7 @@ Structural 命令由'\'开头或'@'开头, 而后跟随一个命令名称以及�
 更多的其他命令见 Special Command
 
 <li>
-要对类成员进行文档, 就需要先文档化该类, 同样, 对于名字空间也一样. 要文档全局C函数, typedef, enum和预处理定义, 就要文档化包含这些内容的文件. 所以文档至少包含一个命令: /*! \file <strong>/ 或者 /</strong>* @file */<br />
+要对类成员进行文档, 就需要先文档化该类, 同样, 对于名字空间也一样. 要文档全局C函数, typedef, enum和预处理定义, 就要文档化包含这些内容的文件. 所以文档至少包含一个命令: /*! \file <span id="特定文档块 -/ 或者 /"></span><strong id="/ 或者 /">/ 或者 /</strong>* @file */
 <pre c++>
 /*! \file structcmd.h
     \brief A Documented file.
@@ -739,7 +734,7 @@ int read(int,char *,size_t);
 </ul>
 </ul>
 
-<h1 id="toc_5">列表</h1>
+<div id="列表"><h1 id="列表">列表</h1></div>
 <ul>
 <li>
 使用破折号
@@ -830,23 +825,32 @@ int read(int,char *,size_t);
 </ul>
 </ul>
 
-<h1 id="toc_6">Grouping</h1>
+<div id="Grouping"><h1 id="Grouping">Grouping</h1></div>
 <ul>
+<li>
+三种分组方式: modules, member groups, pages
+
 <li>
 Modules
 
 <ul>
 <li>
-将成员组合在一起放在一个单独的页面中
+将内容组合在一起放在一个单独的页面中
 
 <li>
-\defgroup 命令定义一个组, 第一个参数为组的标识, 第二个参数为组的名称或者标题
+其成员可以是文件, 名字空间, 类, 函数, 变量, 枚举, typedefs, define, 以及其他组.
 
 <li>
-\ingroup 将一个成员放置进一个组
+\defgroup 命令定义一个组, 第一个参数为组的唯一标识, 第二个参数为组的名称或者标题, 其显示于文档内.
 
 <li>
-符号 "@{" 和 "@}" 用于包括一个组的内容
+\ingroup 将一个成员放置进一个组, 只需将该命令放置于该成员的文档块中即可.
+
+<li>
+符号 "@{" 和 "@}" 用于包括一个组的内容, 避免反复使用 \ingroup 命令. 该符号可放置于组定义文档块中, 也可以是单独的文档块中.
+
+<li>
+分组可以嵌套.
 
 <li>
 如果你不想使用唯一的标签, 你可使用 \addtogroup 代替 \defgroup, 该命令关于组标题的参数可选.
@@ -860,7 +864,40 @@ Modules
 </pre>
 
 <li>
-包装实体(如类, 文件, 名字空间)可以放入多个组, 但是成员(如变量, 函数, tpyedef, 枚举)则只能做为一个组的成员
+组合的实体(如类, 文件, 名字空间)可以放入多个组, 但是成员(如变量, 函数, tpyedef, 枚举)则只能做为一个组的成员
+
+<li>
+如果一个成员有最高"优先级"的定义, 则将该成员放入该组中. 例如: 显式的 \ingroup 覆盖通过@{ @}实现的隐式分组定义. 相同优先级分组定义的冲突则触发警告, 直到用于一个成员的定义没有显式的文档. 下面的例子将 VarInA 放置组 A 内, 其静默解决了 IntegerVariable 的冲突, 将其放入组 IntVariables, 这是因为第二个 IntegerVariable 实例是未文档化的.
+<pre>
+/**
+ * \ingroup A
+ */
+extern int VarInA;
+
+/**
+ * \defgroup IntVariables Global integer variables
+ * @{
+ */
+
+/** an integer variable */
+extern int IntegerVariable;
+
+/**@}*/
+
+....
+
+/**
+ * \defgroup Variables Global variables
+ */
+/**@{*/
+
+/** a variable in group A */
+int VarInA;
+
+int IntegerVariable;
+
+/**@}*/
+</pre>
 
 <li>
 \ref 命令可用于关联至一个组, 该命令第一个参数为组的label.
@@ -905,7 +942,7 @@ SubPaging
 </ul>
 </ul>
 
-<h1 id="toc_7">Including formula</h1>
+<div id="Including formula"><h1 id="Including formula">Including formula</h1></div>
 <ul>
 <li>
 为了包含数学方程式	, 你需要软件: latex, dvips, gs. 对于HTML则需要 MathJax. 注意配置选项 USE_MATHJAX
@@ -950,7 +987,7 @@ SubPaging
 
 </ul>
 
-<h1 id="toc_8">Graph and diagrams</h1>
+<div id="Graph and diagrams"><h1 id="Graph and diagrams">Graph and diagrams</h1></div>
 <ul>
 <li>
 支持生成C++类的继承图标
@@ -1015,7 +1052,7 @@ DOT_GRAPH_MAX_NODES 和 MAX_DOT_GRAPH_DEPTH 用于限制各种图的大小
 </ul>
 </ul>
 
-<h1 id="toc_9">Preprocessing</h1>
+<div id="Preprocessing"><h1 id="Preprocessing">Preprocessing</h1></div>
 <ul>
 <li>
 设置 ENABLE_PREPROCESSING 为 NO 可以禁止所有的预处理.
@@ -1182,7 +1219,7 @@ PREDEFINED           = "DECLARE_INTERFACE(name)=class name" \
 
 </ul>
 
-<h1 id="toc_10">Linking to external documentation</h1>
+<div id="Linking to external documentation"><h1 id="Linking to external documentation">Linking to external documentation</h1></div>
 <ul>
 <li>
 使用 doxygen 的 tag file 机制, 将 GENERATE_TAGFILE 选项之后放置 tag file 的名称

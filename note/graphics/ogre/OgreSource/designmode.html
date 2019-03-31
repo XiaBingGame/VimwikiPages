@@ -9,18 +9,15 @@
 <div id="header">
 	<ul id="top-nav">
 		<li>
-			<a href="file:///F:/NetShare/BaiduYun/百度云/Vimwiki/Vimwiki_html/index.html">首页</a>
-		</li>
-		<li>
-			<a href="file:///F:/NetShare/BaiduYun/百度云/Vimwiki/Vimwiki_html/diary/diary.html">日记</a>
+			<a href="../index.html">首页</a>
 		</li>
 	</ul>
 </div>
 </div>
     <div class="content">
     
-<h1 id="toc_1">Ogre 分析之设计模式 </h1>
-<h2 id="toc_1.1">一. Singleton</h2>
+<div id="Ogre 分析之设计模式 "><h1 id="Ogre 分析之设计模式 ">Ogre 分析之设计模式 </h1></div>
+<div id="Ogre 分析之设计模式 -一. Singleton"><h2 id="一. Singleton">一. Singleton</h2></div>
 <blockquote>
 Ogre::Singleton&lt;T&gt; --- 模板类
 </blockquote>
@@ -46,7 +43,7 @@ Ogre::Singleton&lt;T&gt; --- 模板类
 <blockquote>
 使用: class Myclass : public Singleton&lt;Myclass&gt; {//...}
 </blockquote>
-<h2 id="toc_1.2">二. Factory 方法</h2>
+<div id="Ogre 分析之设计模式 -二. Factory 方法"><h2 id="二. Factory 方法">二. Factory 方法</h2></div>
 <ul>
 <li>
 Factory Method 本质上代理了某个类的实例化过程, 封装了一个 new 的语句而已, 负责对象的 delete.
@@ -66,7 +63,7 @@ Factory Method 本质上代理了某个类的实例化过程, 封装了一个 ne
 </pre>
 
 </ul>
-<h2 id="toc_1.3">三. Abstract Factory</h2>
+<div id="Ogre 分析之设计模式 -三. Abstract Factory"><h2 id="三. Abstract Factory">三. Abstract Factory</h2></div>
 <ul>
 <li>
 用来创建一系列相关或相互依赖对象的接口, 体现在它的 Plug-in 机制, Abstract Factory 实现的 Plug-in 机制
@@ -75,7 +72,7 @@ Factory Method 本质上代理了某个类的实例化过程, 封装了一个 ne
 Plug-in 机制把与平台相关的部分和平台无关的部分分离开来, 如底层渲染使用OpenGl或DirectX, 场景使用BSP或Octree方式管理
 
 </ul>
-<h2 id="toc_1.4">四. Adapter</h2>
+<div id="Ogre 分析之设计模式 -四. Adapter"><h2 id="四. Adapter">四. Adapter</h2></div>
 <ul>
 <li>
 使得原本由于接口不兼容而不能一起工作的类在一起工作
@@ -87,14 +84,14 @@ Plug-in 机制把与平台相关的部分和平台无关的部分分离开来, �
 文件的处理使用 Ogre::DataStream 接口 --- FileHandleDataStream, FileStreamDataStream, MemoryDataStream, ZipDataStream
 
 </ul>
-<h2 id="toc_1.5">五. Bridge</h2>
+<div id="Ogre 分析之设计模式 -五. Bridge"><h2 id="五. Bridge">五. Bridge</h2></div>
 <ul>
 <li>
 抽象部分和实现部分分离
 		具体见 MeshSerializer
 
 </ul>
-<h2 id="toc_1.6">六. Proxy</h2>
+<div id="Ogre 分析之设计模式 -六. Proxy"><h2 id="六. Proxy">六. Proxy</h2></div>
 <ul>
 <li>
 为其他对象提供一种代理以控制对该对象的访问. GoF 提到四种常见情况: Remote Proxy, Virtual Proxy, Protection Proxy, Smart Pointer
@@ -103,7 +100,7 @@ Plug-in 机制把与平台相关的部分和平台无关的部分分离开来, �
 Ogre的Smart Pointer --- Ogre::SharedPtr, 引用计数的共享指针, mutex 机制实现
 
 </ul>
-<h2 id="toc_1.7">七. Chain of Responsibility</h2>
+<div id="Ogre 分析之设计模式 -七. Chain of Responsibility"><h2 id="七. Chain of Responsibility">七. Chain of Responsibility</h2></div>
 <ul>
 <li>
 把请求或消息以链的方式传送给对象处理者, 避免请求的发送者和接收者之间的耦合关系

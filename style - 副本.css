@@ -12,11 +12,6 @@ body {
     margin: 40px auto 15px;
     font: 100 18px/1.5 "Trebuchet MS", Helvetica, SimSun, sans-serif;
 }
-
-.content {
-	margin: 20;
-}
-
 p, ul, li, table {
     margin: 0;
     padding: 0;
@@ -44,7 +39,7 @@ input:focus, a:focus, button:focus {
 
 h1, h2, h3, h4, h5, h6 { 
     font-family: "Microsoft Yahei", sans-serif;
-    margin: 20;
+    margin: 0;
     padding: 0.15em 0;
 }
 h1 {
@@ -277,7 +272,7 @@ textarea {
 }
 #top-nav {
     position: relative;
-    top: -45px;
+    top: -25px;
     width: 280px;
     margin: 0 auto;
     overflow: hidden;
