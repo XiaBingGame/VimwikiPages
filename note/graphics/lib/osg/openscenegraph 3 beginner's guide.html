@@ -16,7 +16,7 @@
 </div>
     <div class="content">
     
-<div id="3 Creating Your First OSG Program"><h1 id="3 Creating Your First OSG Program">3 Creating Your First OSG Program</h1></div>
+<div id="3 Creating Your First OSG Program"><h1 id="3 Creating Your First OSG Program" class="header"><a href="#3 Creating Your First OSG Program">3 Creating Your First OSG Program</a></h1></div>
 <ul>
 <li>
 使用 CMake, 写一个 CMakeLists.txt
@@ -52,7 +52,7 @@ OSG_INCLUDE_DIR, OSG_LIBRARY, OSG_LIBRARY_DEBUG
 
 </ul>
 <li>
-osg::ref_ptr&lt;&gt;: valid(), release()
+osg::ref_ptr&lt;&gt;: valid()(是否有效指针), release()(计数减一但不释放, 返回相应指针)
 
 <li>
 osg::Referenced: ref(), unref(), referenceCount()(可以返回引用数)
@@ -91,7 +91,7 @@ osg::NotifyHandler 派生类可以让 notifier 将内容输出至流或者文件
 </ul>
 </ul>
 
-<div id="4 Buiding Geometry Models"><h1 id="4 Buiding Geometry Models">4 Buiding Geometry Models</h1></div>
+<div id="4 Buiding Geometry Models"><h1 id="4 Buiding Geometry Models" class="header"><a href="#4 Buiding Geometry Models">4 Buiding Geometry Models</a></h1></div>
 <ul>
 <li>
 显示列表利于静态物体. VBO 利于动态变化物体
@@ -101,7 +101,7 @@ osg::Geode 的几个方法
 
 <ul>
 <li>
-addDrawable(), removeDrawable(), removeDrawables(), geiDrawable(), getNumDrawablesa()
+addDrawable(), removeDrawable(), removeDrawables(), getDrawable(), getNumDrawables()
 
 <li>
 可以用如下代码一次性移除所有的 drawables
@@ -290,7 +290,7 @@ drawable-&gt;setUseDisplayList(false);
 
 <ul>
 <li>
-当有几何变形动作或动画时, 该语句有用.
+当有几何变形动作或动画时, 该语句有用, 主要用于绘制顶点数据会变化的物体.
 
 <li>
 不要再该函数释放 OpenGL 渲染上下文
@@ -312,7 +312,7 @@ const char* name = obj-&gt;className();
 
 </ul>
 
-<div id="5 Managing Scene Graph"><h1 id="5 Managing Scene Graph">5 Managing Scene Graph</h1></div>
+<div id="5 Managing Scene Graph"><h1 id="5 Managing Scene Graph" class="header"><a href="#5 Managing Scene Graph">5 Managing Scene Graph</a></h1></div>
 <ul>
 <li>
 osg::Group 节点
@@ -374,10 +374,10 @@ osg::Node 的 asGroup() 和 asGeode() 节省 dynamic_cast&lt;&gt; 这样的时�
 
 </ul>
 <li>
-osg::Transform 由 osg::Group, 但不能直接实例化
+osg::Transform 由 osg::Group 派生而来, 但不能直接实例化
 
 <li>
-相对坐标系, 绝对坐标系(osg::Transform::ABSOLUTE_RF, osg::Transform::RELATIVE_RF)
+相对坐标系, 绝对坐标系(osg::Transform::ABSOLUTE_RF - 相当于使用 glLoadMatrix, osg::Transform::RELATIVE_RF)
 
 <li>
 osg::Matrix 常用方法
@@ -432,7 +432,7 @@ setValue() 设置某个子节点是否可见
 setNewChildDefaultValue() 设置新子节点的默认可见性
 
 <li>
-traverse() 函数重写可实现某种程度的动画
+traverse() 函数重写可实现某种程度的动画, 各种回调时会调用该方法
 
 </ul>
 <li>
@@ -508,7 +508,7 @@ virtual void apply( osg::Transform&amp; );
 </ul>
 </ul>
 
-<div id="6 Creating Realistic Rendering Effects"><h1 id="6 Creating Realistic Rendering Effects">6 Creating Realistic Rendering Effects</h1></div>
+<div id="6 Creating Realistic Rendering Effects"><h1 id="6 Creating Realistic Rendering Effects" class="header"><a href="#6 Creating Realistic Rendering Effects">6 Creating Realistic Rendering Effects</a></h1></div>
 <ul>
 <li>
 osg::StateAttribute 类为虚基类. 派生类实现不同的渲染属性, 如光照, 材质, 雾
@@ -593,19 +593,16 @@ light-&gt;setLightNum( 1 );  // Specify light number 1
 osg::ref_ptr&lt;osg::LightSource&gt; lightSource = new osg::LightSource;
 lightSource-&gt;setLight( light.get() );  // Add to a light source node
 ...
-// Add the source node to the scene root and enable rendering mode GL_
-LIGHT1 to fit the light's set!
+// Add the source node to the scene root and enable rendering mode GL_LIGHT1 to fit the light's set!
 root-&gt;addChild( lightSource.get() );
-root-&gt;getOrCreateStateSet()-&gt;setMode( GL_LIGHT1, 
-    osg::StateAttribute::ON );
+root-&gt;getOrCreateStateSet()-&gt;setMode( GL_LIGHT1, osg::StateAttribute::ON );
 </pre>
 
 <li>
-setStateSetModes() 来设置允许光照
+osg::LightSource::setStateSetModes() 来设置允许光照
 <pre c++>
 root-&gt;addChild( lightSource.get() );
-lightSource-&gt;setStateSetModes( root-&gt;getOrCreateStateSet(), 
-osg::StateAttribute::ON );
+lightSource-&gt;setStateSetModes( root-&gt;getOrCreateStateSet(), osg::StateAttribute::ON );
 </pre>
 
 <li>
@@ -625,7 +622,7 @@ osg::LightSource 可以影响不是它子节点的节点, 这是因为 positiona
 
 <ul>
 <li>
-有 glLight, glClipPlane, glTexGen
+有 glLight, glClipPlane, glTexGen --- 都可以影响不是它子节点的节点
 
 </ul>
 <li>
@@ -645,7 +642,7 @@ data() 返回 unsigned char* 指针
 getPixelFormat(), getDataType()
 
 <li>
-分配一个图像
+分配一个图像 allocateImage()
 <pre c++>
 osg::ref_ptr&lt;osg::Image&gt; image = new osg::Image;
 image-&gt;allocateImage( s, t, r, GL_RGB, GL_UNSIGNED_BYTE );
@@ -653,11 +650,15 @@ unsigned char* ptr = image-&gt;data();
 ...  // Operate on the ptr variable directly!
 </pre>
 
+</ul>
+<li>
+纹理设置其使用的图像.
+
+<ul>
 <li>
 setImage
 <pre c++>
-osg::ref_ptr&lt;osg::Image&gt; image =
-    osgDB::readImageFile( "picture.bmp" );
+osg::ref_ptr&lt;osg::Image&gt; image = osgDB::readImageFile( "picture.bmp" );
 osg::ref_ptr&lt;osg::Texture2D&gt; texture = new osg::Texture2D;
 texture-&gt;setImage( image.get() );
 </pre>
@@ -665,10 +666,8 @@ texture-&gt;setImage( image.get() );
 <li>
 构造函数
 <pre c++>
-osg::ref_ptr&lt;osg::Image&gt; image =
-    osgDB::readImageFile( "picture.bmp" );
-osg::ref_ptr&lt;osg::Texture2D&gt; texture =
-    new osg::Texture2D( image.get() );
+osg::ref_ptr&lt;osg::Image&gt; image = osgDB::readImageFile( "picture.bmp" );
+osg::ref_ptr&lt;osg::Texture2D&gt; texture = new osg::Texture2D( image.get() );
 </pre>
 
 </ul>
@@ -701,14 +700,12 @@ setFilter
 渲染次序对混合有很大影响
 
 <li>
-osg::StateSet 的 setRenderingHint() 方法控制节点和 drawable 的渲染次序, 先绘制不透明物体, <a href="而后由远到近绘制透明物体.html">而后由远到近绘制透明物体</a>
+osg::StateSet 的 setRenderingHint() 方法控制节点和 drawable 的渲染次序, 先绘制不透明物体, 而后由远到近绘制透明物体
 <pre c++>
 // 表示该节点不透明
-node-&gt;getOrCreateStateSet()-&gt;setRenderingHint(
-    osg::StateSet::OPAQUE_BIN );
+node-&gt;getOrCreateStateSet()-&gt;setRenderingHint(osg::StateSet::OPAQUE_BIN );
 // 表示该节点透明
-node-&gt;getOrCreateStateSet()-&gt;setRenderingHint(
-    osg::StateSet::TRANSPARENT_BIN );
+node-&gt;getOrCreateStateSet()-&gt;setRenderingHint(osg::StateSet::TRANSPARENT_BIN );
 </pre>
 
 <ul>
@@ -737,7 +734,7 @@ osg::Program
 osg::Uniform
 
 <li>
-额外的属性数组如何传递给顶点着色器, 使用 osg::Program 的 addBindAttribLocation() 方法, 还有几何体的 setVertexAttribArray() 方法
+增加额外的属性数组传递给顶点着色器, 使用 osg::Program 的 addBindAttribLocation() 方法, 还有几何体的 setVertexAttribArray() 方法
 
 <li>
 几何着色器用于 OpenGL 3.2 core 版本之上, 否则着色器应当声明 GL_EXT_geometry_shader4
@@ -761,8 +758,11 @@ osgCompute, osgCUDA 计算着色器, osgNV, osgOcean, osgPPU
 
 </ul>
 
-<div id="7 Viewing the World"><h1 id="7 Viewing the World">7 Viewing the World</h1></div>
+<div id="7 Viewing the World"><h1 id="7 Viewing the World" class="header"><a href="#7 Viewing the World">7 Viewing the World</a></h1></div>
 <ul>
+<li>
+本章主要是关于视图的内容
+
 <li>
 模型矩阵用 osg::MatrixTransform, osg::PositionAttitudeTransform, 视图矩阵使用 osg::Camera
 
@@ -778,7 +778,7 @@ osg::Camera 主要功能有四个类别
 setViewMatrix(), setViewMatrixAsLookAt()
 
 <li>
-setProjectIONTmATRIX()
+setProjectionMatrix()
 
 <li>
 setProjectionMatrixAsFrustum(), setProjectionMatrixAsOrtho(), setProjectionMatrixAsOrtho2D(), setProjectionMatrixAsPerspective()
@@ -787,11 +787,14 @@ setProjectionMatrixAsFrustum(), setProjectionMatrixAsOrtho(), setProjectionMatri
 setViewport()
 
 <li>
-可使用相应的 get* 函数, 如 getViewMatrixAsLookAt
+可使用相应的 get* 函数, 如 getViewMatrixAsLookAt()
 
 </ul>
 <li>
 封装了 OpenGL 函数, 例如 glClear(), glClearColor(), glClearDepth()
+
+<li>
+相机绑定了清空缓存的相关内容.
 
 <ul>
 <li>
@@ -802,7 +805,7 @@ setClearColor(), 还有相应的 depth, stencil, accum 方法, 以及相应的 g
 
 </ul>
 <li>
-管理该相机相关的 OpenGL 图形上下文
+管理该相机相关的 OpenGL 图形上下文, 也就是窗口
 
 <li>
 一个相机可以挂接一个纹理代表内部的buffer组件, 如 color buffer, depth buffer 等.
@@ -816,7 +819,7 @@ osgViewer::Viewer 创建和管理一个主相机, 使用 getCamera() 方法得�
 其会自动添加根节点作为它的子节点.
 
 <li>
-其他的相机, 则间接或直接地添加至根节点, 将会共享关联主相机的图形上下文, 在相同的渲染窗口内并绘制它们自己的子场景.
+其他的相机, 则间接或直接地添加至根节点, 将会共享(不需自己创建)关联主相机的图形上下文, 在相同的渲染窗口内并绘制它们自己的子场景.
 
 </ul>
 <li>
@@ -953,7 +956,7 @@ setNumMultiSamples()
 
 </ul>
 <li>
-多重采样在 WGL 中由 WGL_SAMPLE_BUFFERS_ARB 和 WGL_SAMPLES_ARB
+多重采样在 WGL 中有 WGL_SAMPLE_BUFFERS_ARB 和 WGL_SAMPLES_ARB
 
 <li>
 osg::GraphicsContext 及其派生类 osgViewer::GraphicsWindowWin32, 其管理渲染窗口的配置和管理
@@ -965,6 +968,9 @@ osg::DisplaySettings 保存显示属性的默认值
 3D 渲染
 
 <li>
+下面关于渲染至纹理的内容.
+
+<li>
 欲实现 texture baking, 有三步要做:
 
 <ul>
@@ -972,7 +978,7 @@ osg::DisplaySettings 保存显示属性的默认值
 创建要渲染的纹理
 
 <li>
-渲染场景至纹理\
+渲染场景至纹理
 
 <li>
 如常使用该纹理
@@ -1022,7 +1028,7 @@ osgDB::writeImageFile( *image, "saved_image.bmp" );
 
 </ul>
 
-<div id="8 Animating Scene Objects"><h1 id="8 Animating Scene Objects">8 Animating Scene Objects</h1></div>
+<div id="8 Animating Scene Objects"><h1 id="8 Animating Scene Objects" class="header"><a href="#8 Animating Scene Objects">8 Animating Scene Objects</a></h1></div>
 <ul>
 <li>
 写 while viewer done 循环, 并在其内制作后期动画的一些动作, 容易与单独的 cull 和 draw 线程产生访问冲突
@@ -1034,10 +1040,27 @@ osg::NodeCallback 是更新, 事件, 剔除回调的一个重要实现, 其仅�
 setUpdateCallback(), addUpdateCallback()
 
 <li>
-osg::Drawable::UpdateCallback 要重写的虚函数为 update(), osg::Drawable::EventCallback 要重写的虚函数为 event(), osg::Drawable::CullCallback 要重写的虚函数为 cull()
+osg::Drawable 回调需要重写的函数
+
+<ul>
+<li>
+osg::Drawable::UpdateCallback 要重写的虚函数为 update()
 
 <li>
-另有 osg::StateAttribute::Callback 可用于 State attribute 的更新和事件回调, osg::Uniform::Callback 用于 Uniform 的更新回调, 事件回调. osg::Camera::DrawCallback 用于相机的绘制前和绘制后回调(osg::Camera::setPreDrawCallback(), osg::Camera::setPostDrawCallback())
+osg::Drawable::EventCallback 要重写的虚函数为 event()
+
+<li>
+osg::Drawable::CullCallback 要重写的虚函数为 cull()
+
+</ul>
+<li>
+另有 osg::StateAttribute::Callback 可用于 State attribute 的更新和事件回调
+
+<li>
+osg::Uniform::Callback 用于 Uniform 的更新回调, 事件回调
+
+<li>
+osg::Camera::DrawCallback 用于相机的绘制前和绘制后回调(osg::Camera::setPreDrawCallback(), osg::Camera::setPostDrawCallback())
 
 <li>
 traverse() 方法用于两个目的: 一个是之前 osg::Switch 的 traverse() 方法用于遍历时自身的执行代码, 而 osg::NodeVisitor 的 traverse() 方法则用于继续遍历. 虽然两者有不同的参数, 但执行的是相同的处理管线. node 的 traverse() 会调用 visitor 的 apply() 方法, 而该方法会继续调用 node 的 traverse() 方法, 以便进行整个场景的遍历.
@@ -1285,7 +1308,7 @@ http://osgcal.sourceforge.net/
 
 </ul>
 
-<div id="9 Interacting with Outside Elements"><h1 id="9 Interacting with Outside Elements">9 Interacting with Outside Elements</h1></div>
+<div id="9 Interacting with Outside Elements"><h1 id="9 Interacting with Outside Elements" class="header"><a href="#9 Interacting with Outside Elements">9 Interacting with Outside Elements</a></h1></div>
 <ul>
 <li>
 osgGA::GUIEventHandler --- 处理 GUI 事件
@@ -1306,6 +1329,9 @@ bool handle( const osgGA::GUIEventAdapter&amp; ea,
 
 <li>
 osgGA::GUIActionAdapter 可以请求 GUI 采取某些行动用于响应输入的事件, 大多数时候, 其可被看成 viewer 对象, osgViewer::Viewer 派生自 osgGA::GUIActionAdapter.
+
+<li>
+一句话, 界面Action适配器大多数情况下可以转换为 osgViewer::Viewer.
 <pre c++>
 osgViewer::Viewer* viewer = dynamic_cast&lt;osgViewer::Viewer*&gt;(&amp;aa);
 </pre>
@@ -1364,7 +1390,7 @@ getKey() 返回值是字母键的ascii值, 或者 Key_Symbol 枚举值, 例如 K
 FRAME: 帧事件
 
 <li>
-USER: 用户定义的时间
+USER: 用户定义的事件
 
 <ul>
 <li>
@@ -1375,7 +1401,7 @@ getUserData() 得到用户数据指针, 用户数据对象需要从 osg::Referen
 <li>
 getModKeyMask() 可以得到当前的 modifier 按键, 其返回值为 MODKEY_CTRL, MODKEY_SHIFT, MODKEY_ALT 等等的或值.
 <pre c++>
-if ( ea.getModKeyMask()&amp;osgGA::GUIEventAdapter::MODKEY_CTRL )
+if ( ea.getModKeyMask() &amp; osgGA::GUIEventAdapter::MODKEY_CTRL )
 {
    …  // Related operations
 }
@@ -1386,7 +1412,7 @@ if ( ea.getModKeyMask()&amp;osgGA::GUIEventAdapter::MODKEY_CTRL )
 
 </ul>
 <li>
-osg::Camera 通过方法  setAllowEventFocus() 可以设置是否接收用户输入, 如禁止接收用户输入, 则需要设置相机的视图矩阵, 此时其不会自动生成视图矩阵, 可使用方法 setViewMatrixAsLookAt
+osg::Camera 通过方法 setAllowEventFocus() 可以设置是否接收用户输入, 如禁止接收用户输入, 则需要设置相机的视图矩阵, 此时其不会自动生成视图矩阵, 可使用方法 setViewMatrixAsLookAt
 
 <li>
 osgGA::GUIEventHandler 的 handle() 方法返回 false 表没有处理完毕, 可以被后面的其他处理器和回调函数继续处理
@@ -1397,6 +1423,9 @@ osg 同样允许设置节点的事件回调, 在节点或 drawables 上, 调用 
 <ul>
 <li>
 osg::NodeCallback 的 operator() 内节点访问器参数可以转换为 osg::EventVisitor 指针
+
+<li>
+意思是节点或可渲染对象的回调也可以获取事件列表
 <pre c++>
 #include &lt;osgGA/EventVisitor&gt;
 …
@@ -1415,7 +1444,7 @@ osgGA::CameraManipulator 也有个虚函数名为 handle(), 其从 osgGA::GUIEve
 
 <ul>
 <li>
-通过调用 getInverseMatrix() 方法计算该 manipulator 的逆变换矩阵, 在更新遍历中通过 setViewMatrix() 设置主相机的视图矩阵
+通过调用 getInverseMatrix() 方法计算该 manipulator 的逆变换矩阵, 在更新遍历中通过 setViewMatrix() 设置主相机的视图矩阵(讲述了通过操作器设置相机视图矩阵的时机)
 
 <li>
 所有的 OSG manipulator, 包括用户自定义的, 都应当重写该方法
@@ -1436,6 +1465,9 @@ addEvent() --- 任何时候调用该方法压入事件, 参数为 osgGA::GUIEven
 
 <li>
 userEvent() --- 用户定义的事件使用用户的数据指针作为参数, 无需创建一个新的事件队列对象
+
+<li>
+可以改动 viewer 的事件队列.
 <pre c++>
 viewer.getEventQueue()-&gt;userEvent(data);
 </pre>
@@ -1443,6 +1475,9 @@ viewer.getEventQueue()-&gt;userEvent(data);
 <ul>
 <li>
 USER 事件, 通过 getUserData() 方法处理, data 是 osg::Referenced 派生类对象
+
+<li>
+这里讲述了如何添加一个用户事件
 
 </ul>
 </ul>
@@ -1488,6 +1523,11 @@ osgUtil::IntersectionVisitor iv( intersector.get() );
 camera-&gt;accept( iv );
 </pre>
 
+<ul>
+<li>
+上面的代码演示了如何自己处理相交测试
+
+</ul>
 <li>
 intersector 的 containsIntersections() 方法可用于检查是否有相交的结果.
 
@@ -1506,6 +1546,9 @@ osgUtil::LineSegmentIntersector::Intersection&amp; result =
 <ul>
 <li>
 setNodeMask --- 给节点加上标志, NodeVisitor 可以用 setTraversalMask 根据标志设置可以遍历的节点
+
+<li>
+Visitor 遍历时还可以设置自己的 mask
 
 </ul>
 <li>
@@ -1593,7 +1636,7 @@ gw-&gt;getEventQueue()-&gt;keyPress( 'W' );
 </ul>
 </ul>
 
-<div id="10 存储和加载文件 "><h1 id="10 存储和加载文件 ">10 存储和加载文件 </h1></div>
+<div id="10 存储和加载文件 "><h1 id="10 存储和加载文件 " class="header"><a href="#10 存储和加载文件 ">10 存储和加载文件 </a></h1></div>
 <ul>
 <li>
 惯例 osgdb_后缀.dll 或 osgdb_后缀.s, 有的插件可以支持多个后缀, 例如 osgdb_jpeg 插件支持 .jpg 和 .jpeg.
@@ -1795,7 +1838,7 @@ BEGIN_ENUM_SERIALIZER(), ADD_ENUM_VALUE(), END_ENUM_SERIALIZER() 宏, 用于构�
 
 </ul>
 
-<div id="11 Developing Visual Components"><h1 id="11 Developing Visual Components">11 Developing Visual Components</h1></div>
+<div id="11 Developing Visual Components"><h1 id="11 Developing Visual Components" class="header"><a href="#11 Developing Visual Components">11 Developing Visual Components</a></h1></div>
 <ul>
 <li>
 osg::BillBoard
@@ -2013,8 +2056,8 @@ VirtualPlanetBuilder
 </ul>
 </ul>
 
-<div id="12 Improving Rendering Efficency"><h1 id="12 Improving Rendering Efficency">12 Improving Rendering Efficency</h1></div>
-<div id="12 Improving Rendering Efficency-OpenThreads"><h2 id="OpenThreads">OpenThreads</h2></div>
+<div id="12 Improving Rendering Efficency"><h1 id="12 Improving Rendering Efficency" class="header"><a href="#12 Improving Rendering Efficency">12 Improving Rendering Efficency</a></h1></div>
+<div id="12 Improving Rendering Efficency-OpenThreads"><h2 id="OpenThreads" class="header"><a href="#12 Improving Rendering Efficency-OpenThreads">OpenThreads</a></h2></div>
 <ul>
 <li>
 基础元素: OpenThreads::Thead, OpenThreads::Mutex, OpenThread::Barrier, OpenThreads::Condition
@@ -2116,7 +2159,7 @@ CULL 技术的描述: 不要绘制你不能看到的物体. 通过两种方式�
 
 <ul>
 <li>
-会导致实际意义的几何点不会被渲染. 禁用该功能
+会导致实际意义的几何点不会被渲染. 禁用该功能, 否则只有一个顶点的物体可能不会绘制
 <pre c++>
 camera-&gt;setCullingMode(
    camera-&gt;getCullingMode() &amp; ~osg::Camera::SMALL_FEATURE_CULLING );
@@ -2124,7 +2167,7 @@ camera-&gt;setCullingMode(
 
 </ul>
 <li>
-视体追剔除
+视体锥剔除
 
 <li>
 遮挡剔除(Occlusion culling)
