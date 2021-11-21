@@ -1195,11 +1195,10 @@ osgViewer::Renderer, 转而执行 Renderer::operator()(osg::Object* object)函�
 </p>
 <ul>
 <li>
-简单地介绍一下 OSG 分配 CPU 的策略。对于各个 GC 线程（除了单线程之外的三种模式），将使用 OpenThreads::Thread::setProcessorAffinity 函数平均地安排到每个
+简单地介绍一下 OSG 分配 CPU 的策略。对于各个 GC 线程（除了单线程之外的三种模式），将使用 OpenThreads::Thread::setProcessorAffinity 函数平均地安排到每个CPU 上；如果还有摄像机线程的话，则按照与 GC 线程相同的做法，安置到最后一个 GC 线程之后的 CPU 上。 
 
 </ul>
 <p>
-CPU 上；如果还有摄像机线程的话，则按照与 GC 线程相同的做法，安置到最后一个 GC 线程之后的 CPU 上。 
 <img src="http://www.xiabingdev.com/cloudimages/images/2021/06/24/cpuassign.png" />
 </p>
 
