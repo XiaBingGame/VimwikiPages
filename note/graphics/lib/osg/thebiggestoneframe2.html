@@ -1,0 +1,144 @@
+﻿<html>
+<head>
+    <link rel="Stylesheet" type="text/css" href="../../../../style.css" />
+    <title>thebiggestoneframe2</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<div id="all">
+<div id="header">
+	<ul id="top-nav">
+		<li>
+			<a href="../index.html">首页</a>
+		</li>
+	</ul>
+</div>
+</div>
+    <div class="content">
+    
+
+<div id="osgUtil::SceneView::cull()"><h2 id="osgUtil::SceneView::cull()" class="header"><a href="#osgUtil::SceneView::cull()">osgUtil::SceneView::cull()</a></h2></div>
+<ul>
+<li>
+OSG 渲染后台的主体是场景视图(SceneView), 它实现了"树状结构"的管理方式, 以及多个专用于渲染工作的内部类
+
+<li>
+OSG 渲染后台的几个"重要角色"
+
+<ul>
+<li>
+osgUtil::CullViisitor: "筛选访问器", 对每一个遇到的节点执行场景筛选的工作, 判断它是否会超出视截锥体范围, 过于渺小, 或者被遮挡节点(OccluderNode)挡住, 从而将无助益于场景浏览的物体筛选并剔除, 降低场景绘制的资源消耗.
+
+<li>
+osg::RenderInfo: "渲染信息"管理器, 负责保存和管理与场景绘制息息相关的几个重要数据. 当前场景的视景器, 当前场景对应的所有摄像机, 当前所有 OpenGL 渲染状态和顶点数据. 用于在场景筛选和渲染时为OSG的工作提供重要依据
+
+<li>
+osgUtil::StateGraph: "状态节点", 类似场景树的组节点(Group), 将 StateGraph 理解为 OSG 渲染后台的组节点. 以节点的渲染状态集(StateSet)为依据, 状态节点采用映射表 std::map 来组织它的子节点, 同一层次的子节点如果渲染状态相同, 则合并到同一个"状态节点"中.
+
+<li>
+osgUtil::RenderLeaf: "渲染叶", 我们可以把 RenderLeaf 理解为 OSG 渲染后台状态树的叶节点. 其绝非等同于场景树的 Geode 节点, "渲染叶"的工作主要是记录场景树中存在的各种 Drawable 对象(以及与之相关的投影矩阵, 模型视点矩阵等信息). 每个"状态节点(osgUtil::StateGraph)"中都包含了一个渲染叶的列表(StateGraph::_leaves), 不过只有最末端的"状态节点"会负责记录场景中的"渲染叶".
+
+<li>
+osgUtil::RenderStage: "渲染台". OSG 的渲染后台除了使用"状态树"来组织和优化节点的渲染状态之外, 还有另外一种用于场景实际渲染的组织结构, 我们称之为"渲染树", "渲染树"的根节点就是"渲染台"
+
+<ul>
+<li>
+"摄像机渲染顺序"的功能, 通过 Camera::setRenderOrder 设置, PRE_RENDER 的摄像机在主相机之前执行渲染，可实现"纹理烘培(Render To Texture)"的功能, 见例子 osgprerender。POST_RENDER 的摄像机在主相机之后进行渲染, 可实现诸如 HUD 的效果。
+
+<li>
+slave cameras 主要是为了实现同一场景的分窗口以及分屏幕显示。(见例子 osgcamera)
+
+<li>
+对于 HUD显示, 简单鹰眼图等功能，则向场景图添加新的摄像机节点, 并设置与主摄像机不同的观察矩阵和投影矩阵。
+
+</ul>
+<li>
+osgUtil::RenderBin: "渲染元", OSG 渲染树的分支节点，渲染树按照遍历的顺序，把"状态节点"和"渲染叶"记录到作为根节点的"渲染台(RenderStage)"当中, (std::vector成员变量 RenderBin::_stateGraphList, RenderBin::_renderLeafList), 然后就可以执行场景的绘制工作. 注意的是 RenderStage 派生自 RenderBin.
+
+<ul>
+<li>
+osg::StateSet::setRenderBinDetail 设置渲染顺序
+
+<ul>
+<li>
+第一个参数为整数，小于0的渲染状态集将排列在前, 大于0的渲染状态集则排列在后.
+
+<li>
+第二个字符串参数: "RenderBin" 表示在渲染树中新建分支进行渲染, "DepthSortedBin" 表示新建分支, 并且所有要渲染的数据按照深度值降序进行排序.
+
+<li>
+注意当字符串参数不为 "RenderBin" 或 "DepthSortedBin" 时, 本函数的设置无效.
+<pre c++>
+// 默认渲染方式，渲染顺序为0，此时状态节点直接置入"渲染台"
+stateSet-&gt;setRenderBinDetails(0, "");
+// 渲染顺序 -1(先渲染)， 渲染树新建一个"渲染元"节点
+stateSet-&gt;setRenderBinDetails(0, "RenderBin");
+// 渲染顺序 10， 渲染树新建一个"渲染元"节点, 并按深度值降序排序各元素.
+stateSet-&gt;setRenderBinDetails(10, "DepthSortedBin");
+</pre>
+
+</ul>
+<li>
+osg::StateSet::setRenderingHint() 设置渲染的顺序, 参数可为枚举值 OPAQUE_BIN 或 TRANSPARENT_BIN
+<pre c++>
+state-&gt;setRenderingHint(OPAQUE_BIN);
+// 等价于
+state-&gt;setRenderBinDetails(0, "RenderBin")
+
+state-&gt;setRenderingHint(TRANSPARENT_BIN);
+// 等价于
+state-&gt;setRenderBinDetails(0, "DepthSortedBin")
+</pre>
+
+</ul>
+</ul>
+<li>
+举例
+
+</ul>
+<p>
+<img src="http://www.xiabingdev.com/cloudimages/images/2021/05/02/08_node_relation.png" />
+</p>
+<ul>
+<li>
+"ss"加上数字代号来标识这些 StateSet 对象, "-" 表示空字串, "R" 表示 "RenderBin", "D" 表示 "DepthSortedBin"
+<pre c++>
+ss03-&gt;setRenderBinDetails(0, "");  // 这是默认的设置.
+ss11-&gt;setRenderBinDetails(0, ""); 
+ss13-&gt;setRenderBinDetails(-1, "RenderBin"); 
+ss14-&gt;setRenderBinDetails(1, "RenderBin"); 
+ss15-&gt;setRenderBinDetails(10, "DepthSortedBin"); 
+ss16-&gt;setRenderBinDetails(10, "DepthSortedBin"); 
+</pre>
+
+<li>
+OSG中所有的 drawable 几何体对象都会自动关联一个 StateSet 对象, 无论用户是否设置了.
+
+<li>
+OSG 生成相应的"状态树", 由"状态节点"(StateGraph)和"渲染叶"(RenderLeaf)所组成
+
+</ul>
+<p>
+<img src="http://www.xiabingdev.com/cloudimages/images/2021/05/03/09_osgstatetree.png" />
+</p>
+<ul>
+<li>
+状态根节点 _rootState 和局部状态节点 _localState 由状态树自动生成, _localState 保护和维护一些渲染后台自动创建的渲染属性. 全局状态节点 _globalStateSet 的取值来自于主相机的 StateSet.
+
+<li>
+一个或多个渲染叶必然被一个状态树末端的节点(StateGraph)所拥有.
+
+<li>
+后台生成对应的"渲染树", 由一个 RenderStage 对象和多个 RenderBin 对象组成.
+
+<li>
+如不使用 setRenderBinDetails 设置 StateSet 的渲染细节, 则所有状态树中的末端节点都会按照遍历顺序保存到渲染树根节点(渲染台)中, 否则如下图
+
+</ul>
+<p>
+<img src="http://www.xiabingdev.com/cloudimages/images/2021/05/03/09_render_tree.png" />
+</p>
+
+    </div>
+</body>
+</html>
